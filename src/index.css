@@ -50,17 +50,20 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-heraglyph-black text-heraglyph-white font-sans;
   }
 
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-8 md:mb-12;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-8 md:mb-12 relative;
+  }
+  
+  .section-title::after {
+    @apply content-[''] absolute bottom-0 left-0 w-20 h-1 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end;
   }
 
   .section-subtitle {
@@ -68,20 +71,24 @@
   }
 
   .glass-card {
-    @apply bg-heraglyph-dark-gray/80 backdrop-blur-sm border border-heraglyph-white/10 rounded-lg;
+    @apply bg-heraglyph-dark-gray/80 backdrop-blur-sm border border-heraglyph-white/10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300;
   }
 
   .eye-animate {
-    animation: pulse 3s infinite;
+    animation: float 6s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0% { opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
   }
   
   .opacity-0 {
     opacity: 0;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end;
   }
 }

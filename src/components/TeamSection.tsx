@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Users } from "lucide-react";
+import { Users, Linkedin, Twitter, Github } from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -27,34 +27,53 @@ const TeamSection = () => {
   ];
 
   return (
-    <section id="team" className="bg-heraglyph-black py-16 md:py-24">
-      <div className="section-container">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="section-title opacity-0 animate-fade-in">
-            Meet Our <span className="text-heraglyph-white">Team</span>
+    <section id="team" className="bg-gradient-to-b from-heraglyph-dark-gray to-heraglyph-black py-20 md:py-28 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-40 right-20 w-72 h-72 bg-heraglyph-accent/5 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-40 left-20 w-72 h-72 bg-heraglyph-gradient-end/5 rounded-full filter blur-3xl"></div>
+      
+      <div className="section-container relative z-10">
+        <div className="text-center mb-16">
+          <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">The Experts</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4 opacity-0 animate-fade-in">
+            Meet Our <span className="gradient-text">Team</span>
           </h2>
-          <p className="section-subtitle opacity-0 animate-fade-in-delayed">
-            The talented people behind HERAGLYPH's success
+          <div className="h-1 w-24 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full mx-auto mb-6 opacity-0 animate-fade-in"></div>
+          <p className="section-subtitle opacity-0 animate-fade-in-delayed max-w-2xl mx-auto">
+            The talented people behind HERAGLYPH's success, combining creativity with technical expertise to deliver exceptional results
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {teamMembers.map((member) => (
-            <Card key={member.name} className="glass-card opacity-0 animate-fade-in-delayed border-heraglyph-white/10 overflow-hidden group">
-              <CardContent className="p-6 flex flex-col items-center text-center">
+            <Card key={member.name} className="glass-card bg-heraglyph-black/50 opacity-0 animate-fade-in-delayed border border-heraglyph-white/10 hover:border-heraglyph-accent/30 overflow-hidden group rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-heraglyph-accent/10">
+              <CardContent className="p-8 flex flex-col items-center text-center">
                 <div className="mb-6 mt-2 relative">
-                  <Avatar className="h-24 w-24 border-2 border-heraglyph-white/20 bg-heraglyph-dark-gray">
-                    <AvatarFallback className="bg-heraglyph-dark-gray text-heraglyph-white text-xl font-medium">
+                  <div className="absolute inset-0 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full opacity-0 blur-xl group-hover:opacity-20 transition-all duration-500 -z-10 scale-[1.35]"></div>
+                  <Avatar className="h-28 w-28 border-2 border-heraglyph-accent/20 bg-heraglyph-dark-gray group-hover:border-heraglyph-accent/50 transition-all duration-300 p-0.5">
+                    <AvatarFallback className="bg-gradient-to-br from-heraglyph-black to-heraglyph-dark-gray text-heraglyph-white text-xl font-medium rounded-full">
                       {member.initials}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="absolute -bottom-2 -right-2 bg-heraglyph-white text-heraglyph-black p-1 rounded-full">
+                  <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white p-1.5 rounded-full shadow-lg">
                     <Users size={16} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-heraglyph-white mb-1">{member.name}</h3>
-                <p className="text-heraglyph-gray font-medium mb-4">{member.role}</p>
-                <p className="text-heraglyph-gray text-sm">{member.bio}</p>
+                <h3 className="text-2xl font-bold text-heraglyph-white mb-2">{member.name}</h3>
+                <p className="text-heraglyph-accent font-medium mb-4">{member.role}</p>
+                <p className="text-heraglyph-gray text-base mb-6">{member.bio}</p>
+                
+                <div className="flex space-x-4 mt-2">
+                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                    <Linkedin size={18} />
+                  </a>
+                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                    <Twitter size={18} />
+                  </a>
+                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                    <Github size={18} />
+                  </a>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -63,5 +82,6 @@ const TeamSection = () => {
     </section>
   );
 };
+         
 
 export default TeamSection;

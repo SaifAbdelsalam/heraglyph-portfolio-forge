@@ -62,13 +62,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				heraglyph: {
-					black: '#1A1A1A',
+				},				heraglyph: {
+					black: '#121212',
 					white: '#FFFFFF',
-					gray: '#8E9196',
-					'dark-gray': '#2C2C2C',
-					'light-gray': '#F5F5F5',
+					gray: '#9CA3AF',
+					'dark-gray': '#1F1F1F',
+					'light-gray': '#F9FAFB',
+					accent: '#D4A017', // Gold/Amber accent color (replacing purple)
+					'accent-light': '#F0C75F', // Lighter gold
+					'accent-dark': '#A67C00', // Darker gold
+					'gradient-start': '#D4A017', // Gold gradient start
+					'gradient-end': '#B8860B', // Gold gradient end (slightly darker for depth)
+					'terracotta': '#CD5C5C', // Optional: Egyptian terracotta color
+					'teal': '#088F8F', // Optional: Egyptian teal accent color
+					'sand': '#D2B48C', // Optional: Sand/papyrus color
 				}
 			},
 			borderRadius: {
@@ -92,8 +99,7 @@ export default {
 					to: {
 						height: '0'
 					}
-				},
-				'fade-in': {
+				},				'fade-in': {
 					'0%': {
 						opacity: '0',
 						transform: 'translateY(10px)'
@@ -113,14 +119,34 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
-			},
-			animation: {
+				'scale-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0.95)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+			},			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.7s ease-out',
 				'fade-in-delayed': 'fade-in 0.7s ease-out 0.3s forwards',
 				'fade-in-delayed-more': 'fade-in 0.7s ease-out 0.6s forwards',
 				'fade-in-right': 'fade-in-right 0.7s ease-out',
+				'scale-up': 'scale-up 0.5s ease-out',
+				'scale-up-delayed': 'scale-up 0.5s ease-out 0.3s forwards',
+				'float': 'float 4s ease-in-out infinite',
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
