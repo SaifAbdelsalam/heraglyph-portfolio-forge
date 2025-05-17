@@ -1,0 +1,63 @@
+
+import { ArrowDown } from 'lucide-react';
+
+const HeroSection = () => {
+  return (
+    <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-heraglyph-black">
+      {/* Background pattern */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern"></div>
+      </div>
+
+      <div className="section-container relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="md:w-1/2 mb-10 md:mb-0">
+            <div className="opacity-0 animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-tight mb-6">
+                YOUR VISION,<br />OUR CODE
+              </h1>
+              <p className="text-heraglyph-gray text-lg md:text-xl mb-8 max-w-lg">
+                We help companies build their startup portfolio or upgrade their existing brand identity with comprehensive design solutions.
+              </p>
+            </div>
+            
+            <div className="opacity-0 animate-fade-in-delayed flex flex-col sm:flex-row gap-4">
+              <a 
+                href="#contact" 
+                className="bg-heraglyph-white text-heraglyph-black px-6 py-3 rounded-md font-medium text-center hover:bg-heraglyph-gray transition-colors"
+              >
+                Get Started
+              </a>
+              <a 
+                href="#services" 
+                className="border border-heraglyph-white text-heraglyph-white px-6 py-3 rounded-md font-medium text-center hover:bg-heraglyph-white/10 transition-colors"
+              >
+                Our Services
+              </a>
+            </div>
+          </div>
+          
+          <div className="md:w-1/2 flex justify-center md:justify-end">
+            <div className="opacity-0 animate-fade-in-delayed-more">
+              <div className="eye-animate">
+                <img 
+                  src="/lovable-uploads/e24f33e0-5805-471a-bfe3-e124572faffc.png" 
+                  alt="HERAGLYPH Logo" 
+                  className="w-full max-w-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#services" className="text-heraglyph-gray hover:text-heraglyph-white">
+          <ArrowDown size={32} />
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default HeroSection;
