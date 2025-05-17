@@ -10,10 +10,9 @@ const Footer = () => {
       
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center mb-4">
+          <div>            <div className="flex items-center mb-4">
               <img 
-                src="/lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
+                src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
                 alt="HERAGLYPH Logo" 
                 className="h-12 mr-3"
               />

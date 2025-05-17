@@ -5,6 +5,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: './', // Add this line for relative paths - works for most deployment scenarios
   server: {
     host: "::",
     port: 8080,
