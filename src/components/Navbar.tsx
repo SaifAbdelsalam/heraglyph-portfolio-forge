@@ -14,11 +14,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
-            <img 
-              src="/lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
-              alt="HERAGLYPH Logo" 
-              className="h-10 w-auto"
-            />
+            <span className="text-heraglyph-white text-xl font-bold font-heading">HERAGLYPH</span>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-6">
