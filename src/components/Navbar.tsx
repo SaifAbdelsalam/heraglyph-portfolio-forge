@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <img 
-              src="/lovable-uploads/e24f33e0-5805-471a-bfe3-e124572faffc.png" 
+              src="/lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
               alt="HERAGLYPH Logo" 
               className="h-10 w-auto"
             />

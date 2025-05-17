@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <img 
-              src="/lovable-uploads/e24f33e0-5805-471a-bfe3-e124572faffc.png" 
+              src="/lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
               alt="HERAGLYPH Logo" 
               className="h-12 mb-4"
             />

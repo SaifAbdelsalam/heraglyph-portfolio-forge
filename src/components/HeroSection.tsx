@@ -41,7 +41,7 @@ const HeroSection = () => {
             <div className="opacity-0 animate-fade-in-delayed-more">
               <div className="eye-animate">
                 <img 
-                  src="/lovable-uploads/e24f33e0-5805-471a-bfe3-e124572faffc.png" 
+                  src="/lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
                   alt="HERAGLYPH Logo" 
                   className="w-full max-w-md"
                 />
