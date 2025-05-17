@@ -20,6 +20,7 @@ const Navbar = () => {
             <div className="ml-10 flex items-center space-x-6">
               <a href="#services" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">Services</a>
               <a href="#about" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">About</a>
+              <a href="#team" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">Team</a>
               <a href="#portfolio" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">Portfolio</a>
               <a href="#testimonials" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">Testimonials</a>
               <a href="#contact" className="bg-heraglyph-white text-heraglyph-black px-4 py-2 rounded-md font-medium hover:bg-heraglyph-gray transition-colors">Contact Us</a>
@@ -53,6 +54,13 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               About
+            </a>
+            <a 
+              href="#team" 
+              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white transition-colors"
+              onClick={toggleMenu}
+            >
+              Team
             </a>
             <a 
               href="#portfolio" 
