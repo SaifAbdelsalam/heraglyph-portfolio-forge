@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const ContactSection = () => {
@@ -44,20 +43,143 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-heraglyph-black py-20">
-      <div className="section-container">
-        <div className="text-center mb-12">
-          <h2 className="section-title">Get In Touch</h2>
+    <section id="contact" className="min-h-screen py-20 relative overflow-hidden bg-heraglyph-black">
+      {/* Modern minimalist background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Dark background base */}
+        <div className="absolute inset-0 bg-heraglyph-black/95"></div>
+        
+        {/* Minimalist geometric patterns */}
+        {/* Horizontal lines */}
+        <div className="absolute top-20 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-heraglyph-accent/15 to-transparent"></div>
+        <div className="absolute bottom-20 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-heraglyph-accent/15 to-transparent"></div>
+        
+        {/* Subtle golden accents */}
+        <div className="absolute top-40 -left-20 w-64 h-64 rounded-full bg-heraglyph-accent/5 blur-3xl"></div>
+        <div className="absolute bottom-40 -right-20 w-64 h-64 rounded-full bg-heraglyph-accent/5 blur-3xl"></div>
+        
+        {/* Modern geometric shapes - subtle triangles and pyramids */}
+        <div className="absolute bottom-10 right-10 opacity-10">
+          <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M150 20L280 250H20L150 20Z" stroke="currentColor" strokeWidth="1" className="text-heraglyph-accent" fill="none" />
+            <path d="M150 80L230 230H70L150 80Z" stroke="currentColor" strokeWidth="0.5" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-10 left-10 opacity-10">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 20L180 170H20L100 20Z" stroke="currentColor" strokeWidth="1" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        {/* Additional pyramid shapes */}
+        <div className="absolute top-1/3 right-1/4 opacity-15 transform rotate-12">
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10L90 90H10L50 10Z" stroke="currentColor" strokeWidth="0.8" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        <div className="absolute bottom-1/4 left-1/3 opacity-10 transform -rotate-15">
+          <svg width="160" height="160" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 0L100 86.6H0L50 0Z" fill="currentColor" className="text-heraglyph-accent" opacity="0.05" />
+            <path d="M50 0L100 86.6H0L50 0Z" stroke="currentColor" strokeWidth="0.6" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-2/3 right-1/2 opacity-8 transform rotate-45">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 20L80 80H20L50 20Z" stroke="currentColor" strokeWidth="0.5" className="text-heraglyph-accent" fill="none" />
+            <path d="M50 35L65 70H35L50 35Z" fill="currentColor" className="text-heraglyph-accent" opacity="0.1" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-1/4 right-1/5 opacity-12">
+          <svg width="140" height="140" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 15L85 85H15L50 15Z" stroke="currentColor" strokeWidth="0.7" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        {/* Clean grid lines */}
+        <div className="absolute inset-0 grid grid-cols-12 opacity-5">
+          {[...Array(13)].map((_, i) => (
+            <div key={`v-${i}`} className="absolute h-full w-[0.5px] bg-heraglyph-accent/20" 
+                 style={{left: `${(i/12) * 100}%`}}></div>
+          ))}
+        </div>
+        
+        {/* Abstract minimal circle */}
+        <div className="absolute top-1/2 left-3/4 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-heraglyph-accent/10 opacity-20"></div>
+        
+        {/* More pyramid-inspired shapes */}
+        <div className="absolute bottom-1/3 right-1/6 opacity-8">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 20L50 70L10 70L30 20Z" stroke="currentColor" strokeWidth="0.5" className="text-heraglyph-accent" fill="none" />
+            <path d="M70 20L90 70L50 70L70 20Z" stroke="currentColor" strokeWidth="0.5" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-2/5 left-1/4 opacity-10 transform rotate-30">
+          <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 20L110 120H10L60 20Z" stroke="currentColor" strokeWidth="0.7" className="text-heraglyph-accent-light" fill="none" />
+            <path d="M60 40L90 100H30L60 40Z" fill="currentColor" className="text-heraglyph-accent" opacity="0.05" />
+          </svg>
+        </div>
+        
+        {/* Overlapping triangular shapes */}
+        <div className="absolute bottom-10 left-1/6 opacity-10">
+          <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M90 30L150 130H30L90 30Z" stroke="currentColor" strokeWidth="0.6" className="text-heraglyph-accent" fill="none" />
+            <path d="M60 70L90 130H30L60 70Z" stroke="currentColor" strokeWidth="0.4" className="text-heraglyph-accent" fill="none" />
+            <path d="M120 70L150 130H90L120 70Z" stroke="currentColor" strokeWidth="0.4" className="text-heraglyph-accent" fill="none" />
+          </svg>
+        </div>
+        
+        {/* Golden light gradients */}
+        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-heraglyph-accent/5 to-transparent opacity-30"></div>
+        <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-heraglyph-gradient-end/5 to-transparent opacity-30"></div>
+      </div>
+
+      <div className="section-container relative z-10">
+        <div className="text-center mb-16 relative">
+          {/* Modern minimal decoration */}
+          {/* <div className="relative mb-6">
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-10 h-[1px] bg-heraglyph-accent/50"></div>
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-5 h-[1px] bg-heraglyph-accent"></div>
+          </div> */}
+          
+          <h2 className="section-title itext-heraglyph-white">
+            Get In Touch
+          </h2>
+          
+          <div className="w-20 h-[1px] bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end mx-auto mt-3 mb-3 opacity-80"></div>
+          <div className="w-12 h-[1px] bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end mx-auto mb-8 opacity-60"></div>
+          
           <p className="section-subtitle">
             Ready to elevate your brand? Contact us today to discuss how we can help bring your vision to life.
           </p>
         </div>
 
+        {/* Elegant free consultation message */}
+        <div className="max-w-4xl mx-auto mb-12 flex items-center justify-center">
+          <div className="py-3 px-4 border-l-2 border-heraglyph-accent flex items-center gap-4">
+            <div className="text-2xl text-heraglyph-accent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current">
+              <path d="M2 12C2 12 5.63636 7 12 7C18.3636 7 22 12 22 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M21 12C21 12 18.3636 16 12 16C5.63636 16 3 12 3 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <span className="font-medium text-heraglyph-white">Book your first consultation for FREE —</span>
+              <span className="ml-1 text-heraglyph-gray">Schedule your complimentary strategy session today.</span>
+            </div>
+          </div>
+        </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+          <div className="glass-card p-8 rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-heraglyph-white mb-2">Name</label>
+                <label htmlFor="name" className="block text-heraglyph-white mb-2 font-medium">Name</label>
                 <input
                   type="text"
                   id="name"
@@ -65,13 +187,14 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 bg-heraglyph-dark-gray border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-white"
+                  className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                  placeholder="Your name"
                 />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="email" className="block text-heraglyph-white mb-2">Email</label>
+                  <label htmlFor="email" className="block text-heraglyph-white mb-2 font-medium">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -79,31 +202,38 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 bg-heraglyph-dark-gray border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-white"
+                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                    placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-heraglyph-white mb-2">Phone</label>
+                  <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">Phone</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full p-3 bg-heraglyph-dark-gray border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-white"
+                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                    placeholder="(123) 456-7890"
                   />
                 </div>
               </div>
               
               <div>
-                <label htmlFor="subject" className="block text-heraglyph-white mb-2">Subject</label>
+                <label htmlFor="subject" className="block text-heraglyph-white mb-2 font-medium">Subject</label>
                 <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 bg-heraglyph-dark-gray border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-white"
+                  className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all appearance-none custom-select"
+                  style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", 
+                         backgroundPosition: "right 0.5rem center", 
+                         backgroundRepeat: "no-repeat", 
+                         backgroundSize: "1.5em 1.5em",
+                         paddingRight: "2.5rem"}}
                 >
                   <option value="">Select a service</option>
                   <option value="Website Design">Website Design</option>
@@ -117,7 +247,7 @@ const ContactSection = () => {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-heraglyph-white mb-2">Message</label>
+                <label htmlFor="message" className="block text-heraglyph-white mb-2 font-medium">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -125,7 +255,8 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full p-3 bg-heraglyph-dark-gray border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-white"
+                  className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                  placeholder="Tell us about your project..."
                 />
               </div>
               
@@ -133,14 +264,30 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-heraglyph-white text-heraglyph-black py-3 px-6 rounded-md font-medium hover:bg-heraglyph-gray transition-colors disabled:opacity-70"
+                  className="w-full relative overflow-hidden bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-black py-3 px-6 rounded-md font-semibold hover:from-heraglyph-accent-dark hover:to-heraglyph-accent transition-all duration-300 disabled:opacity-70 group"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-heraglyph-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </div>
+                  ) : (
+                    <>
+                      Send Message
+                      <span className="absolute right-0 top-0 h-full w-0 bg-white/20 transform skew-x-12 group-hover:animate-shimmer"></span>
+                    </>
+                  )}
                 </button>
               </div>
               
               {submitMessage && (
-                <div className="mt-4 p-3 bg-green-800/30 border border-green-600 text-green-200 rounded-md">
+                <div className="mt-4 p-4 bg-green-800/30 border border-green-600 text-green-200 rounded-md animate-fade-in flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
                   {submitMessage}
                 </div>
               )}
@@ -148,32 +295,48 @@ const ContactSection = () => {
           </div>
           
           <div className="lg:pl-12">
-            <div className="glass-card p-8 rounded-lg h-full">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <div className="glass-card p-8 rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5 h-full bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/80 relative overflow-hidden">
+              {/* Geometric pyramid icon */}
+              <div className="absolute top-0 right-0 w-40 h-40 opacity-10">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M50 0L100 86.6H0L50 0Z" fill="currentColor" className="text-heraglyph-accent" />
+                </svg>
+              </div>
               
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <Mail className="text-heraglyph-white mr-4 mt-1" size={20} />
+              <h3 className="text-2xl font-bold mb-8 relative">
+                <span className="gradient-text">Contact Information</span>
+                <div className="w-12 h-0.5 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end mt-2"></div>
+              </h3>
+              
+              <div className="space-y-8">
+                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2 mr-4 mt-1">
+                    <Mail className="text-heraglyph-black" size={18} />
+                  </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Email</p>
-                    <a href="mailto:contact@heraglyph.com" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">
-                      contact@heraglyph.com
+                    <a href="mailto:contact@heraglyph.com" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                      info@heraglyphs.com
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <Phone className="text-heraglyph-white mr-4 mt-1" size={20} />
+                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2 mr-4 mt-1">
+                    <Phone className="text-heraglyph-black" size={18} />
+                  </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Phone</p>
-                    <a href="tel:+11234567890" className="text-heraglyph-gray hover:text-heraglyph-white transition-colors">
-                      +1 (123) 456-7890
+                    <a href="tel:+11234567890" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                      +(30) 694 86 77416
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <MapPin className="text-heraglyph-white mr-4 mt-1" size={20} />
+                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2 mr-4 mt-1">
+                    <MapPin className="text-heraglyph-black" size={18} />
+                  </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Location</p>
                     <p className="text-heraglyph-gray">
@@ -184,15 +347,34 @@ const ContactSection = () => {
                 </div>
               </div>
               
-              <div className="mt-8">
-                <h4 className="font-medium text-heraglyph-white mb-4">Business Hours</h4>
-                <p className="text-heraglyph-gray mb-2">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p className="text-heraglyph-gray">Saturday - Sunday: Closed</p>
+              <div className="mt-10 pt-8 border-t border-heraglyph-gray/20">
+                <h4 className="font-medium text-heraglyph-white mb-4 gradient-text">Business Hours</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-heraglyph-gray">Monday - Friday:</span>
+                    <span className="text-heraglyph-white">9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-heraglyph-gray">Saturday - Sunday:</span>
+                    <span className="text-heraglyph-white">Closed</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Modern geometric decorative element */}
+              <div className="absolute bottom-0 right-0 w-40 h-40 opacity-10">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M50 20L80 70H20L50 20Z" fill="none" stroke="currentColor" strokeWidth="1" className="text-heraglyph-accent" />
+                  <path d="M50 0L90 80H10L50 0Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-heraglyph-accent-light" />
+                  <path d="M50 40L65 65H35L50 40Z" fill="currentColor" className="text-heraglyph-accent" opacity="0.3" />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* CSS animations are defined in index.css */}
     </section>
   );
 };
