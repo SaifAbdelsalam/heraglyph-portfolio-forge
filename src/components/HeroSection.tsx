@@ -1,10 +1,11 @@
-
 import { ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
-  return (    <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-heraglyph-black">      {/* Background image */}
+  return (
+    <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-heraglyph-black">
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" 
+        <div className="absolute inset-0 bg-cover bg-center opacity-20"
              style={{ backgroundImage: 'url("./lovable-uploads/pyramid-bg.jpg")' }}>
         </div>
         <div className="absolute inset-0 bg-heraglyph-black/60"></div>
@@ -12,11 +13,12 @@ const HeroSection = () => {
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heraglyph-accent via-heraglyph-accent/30 to-transparent"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-heraglyph-accent/10 rounded-full filter blur-3xl opacity-20"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-heraglyph-gradient-end/10 rounded-full filter blur-3xl opacity-20"></div>
-      </div><div className="section-container relative z-10">
+      </div>
+      <div className="section-container relative z-10">
         <div className="flex flex-col items-center justify-center">
           {/* Logo placed at the top */}
           <div className="flex justify-center w-full mb-8">
-        <div className="opacity-0 animate-scale-up-delayed">          <div className="animate-float">
+        <div className="opacity-0 animate-scale-up-delayed">          <div className="animate-float-slow">
             <img 
           src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
           alt="HERAGLYPH Logo" 

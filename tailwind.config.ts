@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -137,6 +136,10 @@ export default {
 						transform: 'translateY(-10px)'
 					}
 				},
+				'slide-up': {
+					'0%': { opacity: '0', transform: 'translateY(32px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
 			},			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
@@ -147,6 +150,7 @@ export default {
 				'scale-up': 'scale-up 0.5s ease-out',
 				'scale-up-delayed': 'scale-up 0.5s ease-out 0.3s forwards',
 				'float': 'float 4s ease-in-out infinite',
+				'slide-up': 'slide-up 0.8s cubic-bezier(.4,2,.6,1) forwards',
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
