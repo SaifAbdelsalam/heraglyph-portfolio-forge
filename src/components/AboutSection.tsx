@@ -32,15 +32,15 @@ const AboutSection = () => {
               
               <div className="grid grid-cols-2 gap-8 relative z-10">
                 <div className="text-center p-6 bg-heraglyph-black/30 rounded-lg border border-heraglyph-white/5 hover:border-heraglyph-white/10 hover:shadow-lg hover:shadow-heraglyph-accent/5 transition-all duration-300">
-                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">100+</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">35+</h3>
                   <p className="text-heraglyph-gray font-medium">Projects Completed</p>
                 </div>
                 <div className="text-center p-6 bg-heraglyph-black/30 rounded-lg border border-heraglyph-white/5 hover:border-heraglyph-white/10 hover:shadow-lg hover:shadow-heraglyph-accent/5 transition-all duration-300">
-                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">50+</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">20+</h3>
                   <p className="text-heraglyph-gray font-medium">Satisfied Clients</p>
                 </div>
                 <div className="text-center p-6 bg-heraglyph-black/30 rounded-lg border border-heraglyph-white/5 hover:border-heraglyph-white/10 hover:shadow-lg hover:shadow-heraglyph-accent/5 transition-all duration-300">
-                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">5+</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3">3+</h3>
                   <p className="text-heraglyph-gray font-medium">Years Experience</p>
                 </div>
                 <div className="text-center p-6 bg-heraglyph-black/30 rounded-lg border border-heraglyph-white/5 hover:border-heraglyph-white/10 hover:shadow-lg hover:shadow-heraglyph-accent/5 transition-all duration-300">

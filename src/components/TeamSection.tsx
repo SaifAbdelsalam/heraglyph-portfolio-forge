@@ -1,7 +1,6 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Users, Linkedin, Twitter, Github } from "lucide-react";
+import { Users, Linkedin, Instagram, Github } from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -35,7 +34,7 @@ const TeamSection = () => {
       <div className="section-container relative z-10">
         <div className="text-center mb-16">
           <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">The Experts</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4 opacity-0 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4 text-heraglyph-white opacity-100 animate-none">
             Meet Our <span className="gradient-text">Team</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full mx-auto mb-6 opacity-0 animate-fade-in"></div>
@@ -51,9 +50,17 @@ const TeamSection = () => {
                 <div className="mb-6 mt-2 relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full opacity-0 blur-xl group-hover:opacity-20 transition-all duration-500 -z-10 scale-[1.35]"></div>
                   <Avatar className="h-28 w-28 border-2 border-heraglyph-accent/20 bg-heraglyph-dark-gray group-hover:border-heraglyph-accent/50 transition-all duration-300 p-0.5">
-                    <AvatarFallback className="bg-gradient-to-br from-heraglyph-black to-heraglyph-dark-gray text-heraglyph-white text-xl font-medium rounded-full">
-                      {member.initials}
-                    </AvatarFallback>
+                    {member.name === "Adam Shawky" ? (
+                      <img
+                        src="/lovable-uploads/me.jpg"
+                        alt="Adam Shawky"
+                        className="h-full w-full object-cover rounded-full"
+                      />
+                    ) : (
+                      <AvatarFallback className="bg-gradient-to-br from-heraglyph-black to-heraglyph-dark-gray text-heraglyph-white text-xl font-medium rounded-full">
+                        {member.initials}
+                      </AvatarFallback>
+                    )}
                   </Avatar>
                   <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white p-1.5 rounded-full shadow-lg">
                     <Users size={16} />
@@ -64,13 +71,46 @@ const TeamSection = () => {
                 <p className="text-heraglyph-gray text-base mb-6">{member.bio}</p>
                 
                 <div className="flex space-x-4 mt-2">
-                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                  <a
+                    href={
+                      member.name === "Adam Shawky"
+                        ? "https://www.linkedin.com/in/adam-shawky23"
+                        : member.name === "Saif Rayan"
+                        ? "https://www.linkedin.com/in/saif-abdelsalam-33a09a279/"
+                        : "#"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors"
+                  >
                     <Linkedin size={18} />
                   </a>
-                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
-                    <Twitter size={18} />
+                  <a
+                    href={
+                      member.name === "Adam Shawky"
+                        ? "https://www.instagram.com/adam__shawky/"
+                        : member.name === "Saif Rayan"
+                        ? "https://www.linkedin.com/in/saif-abdelsalam-33a09a279/"
+                        : "#"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors"
+                  >
+                    <Instagram size={18} />
                   </a>
-                  <a href="#" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                  <a
+                    href={
+                      member.name === "Adam Shawky"
+                        ? "https://github.com/Adam-Shawky23"
+                        : member.name === "Saif Rayan"
+                        ? "https://github.com/SaifAbdelsalam"
+                        : "#"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors"
+                  >
                     <Github size={18} />
                   </a>
                 </div>
