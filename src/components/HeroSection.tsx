@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { ArrowDown } from 'lucide-react';
 
@@ -17,6 +18,11 @@ const HeroSection = () => {
     };
   }, []);
 
+=======
+import { ArrowDown } from 'lucide-react';
+
+const HeroSection = () => {
+>>>>>>> d72e60e (j)
   return (
     <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-heraglyph-black">
       {/* Background image */}
@@ -34,6 +40,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center justify-center">
           {/* Logo placed at the top */}
           <div className="flex justify-center w-full mb-8">
+<<<<<<< HEAD
             <div className={`transition-all duration-700 ${showLogo ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
               <div className="animate-float-slow">
                 <img 
@@ -43,6 +50,16 @@ const HeroSection = () => {
                 />
               </div>
             </div>
+=======
+        <div className="opacity-0 animate-scale-up-delayed">          <div className="animate-float-slow">
+            <img 
+          src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
+          alt="HERAGLYPH Logo" 
+          className="w-full max-w-2xl mx-auto drop-shadow-2xl"
+            />
+          </div>
+        </div>
+>>>>>>> d72e60e (j)
           </div>
           
           <div className="w-full text-center">
