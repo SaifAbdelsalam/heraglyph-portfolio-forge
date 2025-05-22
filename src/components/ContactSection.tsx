@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { emailJsConfig } from '../config/emailjs.config';
 
 const ContactSection = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +15,7 @@ const ContactSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -24,22 +28,37 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setIsError(false);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitMessage('Thank you for your message! We will get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-      
-      // Clear the success message after 5 seconds
-      setTimeout(() => setSubmitMessage(''), 5000);
-    }, 1500);
+    // Use EmailJS credentials from the config file
+    const { serviceId, templateId, publicKey } = emailJsConfig;
+    
+    if (form.current) {
+      emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+        .then((result) => {
+          console.log('Email sent successfully:', result.text);
+          setIsSubmitting(false);
+          setSubmitMessage('Thank you for your message! We will get back to you soon.');
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          });
+          
+          // Clear the success message after 5 seconds
+          setTimeout(() => setSubmitMessage(''), 5000);
+        }, (error) => {
+          console.error('Failed to send email:', error.text);
+          setIsSubmitting(false);
+          setIsError(true);
+          setSubmitMessage('Failed to send message. Please try again or contact us directly via email.');
+          
+          // Clear the error message after 5 seconds
+          setTimeout(() => setSubmitMessage(''), 5000);
+        });
+    }
   };
 
   return (
@@ -177,7 +196,7 @@ const ContactSection = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="glass-card p-8 rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-heraglyph-white mb-2 font-medium">Name</label>
                 <input
@@ -284,10 +303,16 @@ const ContactSection = () => {
               </div>
               
               {submitMessage && (
-                <div className="mt-4 p-4 bg-green-800/30 border border-green-600 text-green-200 rounded-md animate-fade-in flex items-center">
-                  <svg className="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+                <div className={`mt-4 p-4 ${isError ? 'bg-red-800/30 border border-red-600 text-red-200' : 'bg-green-800/30 border border-green-600 text-green-200'} rounded-md animate-fade-in flex items-center`}>
+                  {isError ? (
+                    <svg className="w-5 h-5 mr-2 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  )}
                   {submitMessage}
                 </div>
               )}
