@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -12,21 +14,79 @@ const ContactSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phone: string) => {
+    if (!phone) return true; // Phone is optional
+    const phoneRegex = /^\+?[0-9]{10,}$/;
+    return phoneRegex.test(phone);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    
+    if (name === 'phone') {
+      // Only allow numbers and + symbol
+      const sanitizedValue = value.replace(/[^0-9+]/g, '');
+      // Ensure + only appears at the start
+      const formattedValue = sanitizedValue.replace(/\+/g, (match, offset) => offset === 0 ? match : '');
+      
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: formattedValue
+      }));
+      
+      // Clear error when field is empty
+      if (!formattedValue) {
+        setPhoneError('');
+      }
+    } else {
+      if (name === 'email') {
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+        setEmailError('');
+      } else {
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      }
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate email before submission
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    // Validate phone number before submission
+    if (!validatePhoneNumber(formData.phone)) {
+      setPhoneError('Please enter a valid phone number (min 10 digits, + allowed at start)');
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Save to Firebase
+      const docRef = await addDoc(collection(db, 'contacts'), {
+        ...formData,
+        timestamp: new Date()
+      });
+      console.log("Document written with ID: ", docRef.id);
+
       setIsSubmitting(false);
       setSubmitMessage('Thank you for your message! We will get back to you soon.');
       setFormData({
@@ -39,7 +99,11 @@ const ContactSection = () => {
       
       // Clear the success message after 5 seconds
       setTimeout(() => setSubmitMessage(''), 5000);
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      setSubmitMessage('There was an error sending your message. Please try again.');
+      console.error('Error saving contact form:', error);
+    }
   };
 
   return (
@@ -163,10 +227,7 @@ const ContactSection = () => {
         <div className="max-w-4xl mx-auto mb-12 flex items-center justify-center">
           <div className="py-3 px-4 border-l-2 border-heraglyph-accent flex items-center gap-4">
             <div className="text-2xl text-heraglyph-accent">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current">
-              <path d="M2 12C2 12 5.63636 7 12 7C18.3636 7 22 12 22 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M21 12C21 12 18.3636 16 12 16C5.63636 16 3 12 3 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              𓂀
             </div>
             <div>
               <span className="font-medium text-heraglyph-white">Book your first consultation for FREE —</span>
@@ -202,21 +263,42 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                    className={`w-full p-3 bg-heraglyph-dark-gray/80 border ${
+                      emailError ? 'border-red-500' : 'border-heraglyph-gray/30'
+                    } rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all`}
                     placeholder="your@email.com"
                   />
+                  {emailError && (
+                    <p className="mt-2 text-sm text-red-400 min-h-[20px]">
+                      {emailError}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">Phone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
-                    placeholder="(123) 456-7890"
-                  />
+                  <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">
+                    Phone Number (Optional)
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <Phone className="w-5 h-5 text-heraglyph-gray" />
+                    </div>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={`w-full p-3 pl-10 bg-heraglyph-dark-gray/80 border ${
+                        phoneError ? 'border-red-500' : 'border-heraglyph-gray/30'
+                      } rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all`}
+                      placeholder="+1234567890"
+                    />
+                  </div>
+                  {phoneError && (
+                    <p className="mt-2 text-sm text-red-400 min-h-[20px]">
+                      {phoneError}
+                    </p>
+                  )}
                 </div>
               </div>
               
@@ -328,11 +410,12 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium text-heraglyph-white">Phone</p>
                     <a href="tel:+11234567890" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
-                      +(30) 694 86 77416
+                      +30 (694) 86 77416
                     </a>
                   </div>
                 </div>
                 
+                {/* Location section commented out
                 <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
                   <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2 mr-4 mt-1">
                     <MapPin className="text-heraglyph-black" size={18} />
@@ -345,18 +428,19 @@ const ContactSection = () => {
                     </p>
                   </div>
                 </div>
+                */}
               </div>
               
               <div className="mt-10 pt-8 border-t border-heraglyph-gray/20">
-                <h4 className="font-medium text-heraglyph-white mb-4 gradient-text">Business Hours</h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-heraglyph-gray">Monday - Friday:</span>
-                    <span className="text-heraglyph-white">9:00 AM - 6:00 PM</span>
+                <div className="flex items-center space-x-3">
+                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2">
+                    <svg className="w-4 h-4 text-heraglyph-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-heraglyph-gray">Saturday - Sunday:</span>
-                    <span className="text-heraglyph-white">Closed</span>
+                  <div>
+                    <h4 className="font-medium text-heraglyph-white gradient-text">Available 24/7</h4>
+                    <p className="text-heraglyph-gray">We're here to help anytime</p>
                   </div>
                 </div>
               </div>

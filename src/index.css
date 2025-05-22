@@ -78,13 +78,10 @@
   ::-webkit-scrollbar-corner {
     background: #1F1F1F; /* heraglyph-dark-gray */
   }
-<<<<<<< HEAD
 
   html {
     scroll-behavior: smooth;
   }
-=======
->>>>>>> dff9a3b (latest)
 
   html {
     scroll-behavior: smooth;

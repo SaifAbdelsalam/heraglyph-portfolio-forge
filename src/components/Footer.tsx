@@ -6,6 +6,37 @@ const Footer = () => {
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [showTermsOfService, setShowTermsOfService] = useState(false);
   const [showCookiePolicy, setShowCookiePolicy] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterError, setNewsletterError] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionSuccess, setSubscriptionSuccess] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateEmail(newsletterEmail)) {
+      setNewsletterError('Please enter a valid email address');
+      return;
+    }
+
+    setNewsletterError('');
+    setIsSubscribing(true);
+
+    // Simulate newsletter subscription
+    setTimeout(() => {
+      setIsSubscribing(false);
+      setSubscriptionSuccess(true);
+      setNewsletterEmail('');
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => setSubscriptionSuccess(false), 5000);
+    }, 1500);
+  };
   
   return (
     <footer className="bg-gradient-to-b from-heraglyph-black to-heraglyph-dark-gray py-16 relative">
@@ -16,14 +47,16 @@ const Footer = () => {
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>            <div className="flex items-center mb-4">
-              <img 
-                src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
-                alt="HERAGLYPH Logo" 
-                className="h-12 mr-3"
-              />
-              <span className="text-xl font-bold font-heading">
-                <span className="gradient-text">HERA</span>GLYPH
-              </span>
+              <a href="#" className="group flex items-center">
+                <img 
+                  src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
+                  alt="HERAGLYPH Logo" 
+                  className="h-12 mr-3 transition-transform duration-300 group-hover:scale-105"
+                />
+                <span className="text-xl font-bold font-heading transition-colors duration-300 group-hover:text-heraglyph-accent">
+                  <span className="gradient-text">HERA</span>GLYPH
+                </span>
+              </a>
             </div>
             <p className="text-heraglyph-gray mb-6">
               Transforming visions into digital realities with comprehensive branding solutions that elevate your business.
@@ -36,18 +69,18 @@ const Footer = () => {
               <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-gradient-to-r from-heraglyph-accent to-transparent"></span>
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
-              <li><a href="#" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+              <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
                 <span className="mr-2 text-xs">→</span>Website Development
-              </a></li>
-              <li><a href="#" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+              </div></li>
+              <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
                 <span className="mr-2 text-xs">→</span>Logo Design
-              </a></li>
-              <li><a href="#" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+              </div></li>
+              <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
                 <span className="mr-2 text-xs">→</span>Email Solutions
-              </a></li>
-              <li><a href="#" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+              </div></li>
+              <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
                 <span className="mr-2 text-xs">→</span>Business Cards & Stationery
-              </a></li>
+              </div></li>
             </ul>
           </div>
           
@@ -117,12 +150,35 @@ const Footer = () => {
             
             <div className="border border-heraglyph-white/10 p-4 rounded-lg bg-heraglyph-dark-gray/40 backdrop-blur-sm">
               <h4 className="text-sm font-medium mb-2 text-heraglyph-white">Sign up for our newsletter</h4>
-              <div className="flex">
-                <input type="email" placeholder="Your email" className="bg-heraglyph-black/50 text-sm border border-heraglyph-white/10 rounded-l-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-heraglyph-accent focus:border-heraglyph-accent" />
-                <button className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-r-md px-3 text-sm font-medium hover:opacity-90 transition-opacity">
-                  Subscribe
-                </button>
-              </div>
+              <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                <div className="flex">
+                  <input 
+                    type="email" 
+                    value={newsletterEmail}
+                    onChange={(e) => {
+                      setNewsletterEmail(e.target.value);
+                      setNewsletterError('');
+                    }}
+                    placeholder="Your email" 
+                    className={`bg-heraglyph-black/50 text-sm border ${
+                      newsletterError ? 'border-red-500' : 'border-heraglyph-white/10'
+                    } rounded-l-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-heraglyph-accent focus:border-heraglyph-accent text-heraglyph-white`}
+                  />
+                  <button 
+                    type="submit"
+                    disabled={isSubscribing}
+                    className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-black rounded-r-md px-3 text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                  >
+                    {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+                  </button>
+                </div>
+                {newsletterError && (
+                  <p className="text-sm text-red-400">{newsletterError}</p>
+                )}
+                {subscriptionSuccess && (
+                  <p className="text-sm text-green-400">Successfully subscribed to our newsletter!</p>
+                )}
+              </form>
             </div>
           </div>
         </div>
