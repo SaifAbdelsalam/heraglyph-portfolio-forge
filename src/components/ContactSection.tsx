@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { emailJsConfig } from '../config/emailjs.config';
 
 const ContactSection = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -16,22 +15,74 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [isError, setIsError] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phone: string) => {
+    if (!phone) return true; // Phone is optional
+    const phoneRegex = /^\+?[0-9]{10,}$/;
+    return phoneRegex.test(phone);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    
+    if (name === 'phone') {
+      // Only allow numbers and + symbol
+      const sanitizedValue = value.replace(/[^0-9+]/g, '');
+      // Ensure + only appears at the start
+      const formattedValue = sanitizedValue.replace(/\+/g, (match, offset) => offset === 0 ? match : '');
+      
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: formattedValue
+      }));
+      
+      // Clear error when field is empty
+      if (!formattedValue) {
+        setPhoneError('');
+      }
+    } else if (name === 'email') {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+      setEmailError('');
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate email before submission
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    // Validate phone number before submission
+    if (!validatePhoneNumber(formData.phone)) {
+      setPhoneError('Please enter a valid phone number (min 10 digits, + allowed at start)');
+      return;
+    }
+
     setIsSubmitting(true);
     setIsError(false);
     
-    // Use EmailJS credentials from the config file
-    const { serviceId, templateId, publicKey } = emailJsConfig;
+    // EmailJS configuration
+    const serviceId = 'service_8tjf30b';
+    const templateId = 'template_hle784s';
+    const publicKey = 'T_MaEfPL4Kf782Lc-';
     
     if (form.current) {
       emailjs.sendForm(serviceId, templateId, form.current, publicKey)
@@ -60,7 +111,6 @@ const ContactSection = () => {
         });
     }
   };
-
   return (
     <section id="contact" className="min-h-screen py-20 relative overflow-hidden bg-heraglyph-black">
       {/* Modern minimalist background */}
@@ -182,10 +232,7 @@ const ContactSection = () => {
         <div className="max-w-4xl mx-auto mb-12 flex items-center justify-center">
           <div className="py-3 px-4 border-l-2 border-heraglyph-accent flex items-center gap-4">
             <div className="text-2xl text-heraglyph-accent">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current">
-              <path d="M2 12C2 12 5.63636 7 12 7C18.3636 7 22 12 22 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M21 12C21 12 18.3636 16 12 16C5.63636 16 3 12 3 12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              𓂀
             </div>
             <div>
               <span className="font-medium text-heraglyph-white">Book your first consultation for FREE —</span>
@@ -221,21 +268,37 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
+                    className={`w-full p-3 bg-heraglyph-dark-gray/80 border ${
+                      emailError ? 'border-red-500' : 'border-heraglyph-gray/30'
+                    } rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all`}
                     placeholder="your@email.com"
                   />
+                  {emailError && (
+                    <p className="mt-2 text-sm text-red-400 min-h-[20px]">
+                      {emailError}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">Phone</label>
+                  <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">
+                    Phone Number (Optional)
+                  </label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all"
-                    placeholder="(123) 456-7890"
+                    className={`w-full p-3 bg-heraglyph-dark-gray/80 border ${
+                      phoneError ? 'border-red-500' : 'border-heraglyph-gray/30'
+                    } rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all`}
+                    placeholder="+1234567890"
                   />
+                  {phoneError && (
+                    <p className="mt-2 text-sm text-red-400 min-h-[20px]">
+                      {phoneError}
+                    </p>
+                  )}
                 </div>
               </div>
               
@@ -248,11 +311,13 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   className="w-full p-3 bg-heraglyph-dark-gray/80 border border-heraglyph-gray/30 rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all appearance-none custom-select"
-                  style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")", 
-                         backgroundPosition: "right 0.5rem center", 
-                         backgroundRepeat: "no-repeat", 
-                         backgroundSize: "1.5em 1.5em",
-                         paddingRight: "2.5rem"}}
+                  style={{
+                    backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+                    backgroundPosition: "right 0.5rem center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "1.5em 1.5em",
+                    paddingRight: "2.5rem"
+                  }}
                 >
                   <option value="">Select a service</option>
                   <option value="Website Design">Website Design</option>
@@ -318,10 +383,9 @@ const ContactSection = () => {
               )}
             </form>
           </div>
-          
+
           <div className="lg:pl-12">
             <div className="glass-card p-8 rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5 h-full bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/80 relative overflow-hidden">
-              {/* Geometric pyramid icon */}
               <div className="absolute top-0 right-0 w-40 h-40 opacity-10">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                   <path d="M50 0L100 86.6H0L50 0Z" fill="currentColor" className="text-heraglyph-accent" />
@@ -340,7 +404,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Email</p>
-                    <a href="mailto:contact@heraglyph.com" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                    <a href="mailto:info@heraglyphs.com" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
                       info@heraglyphs.com
                     </a>
                   </div>
@@ -352,41 +416,27 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Phone</p>
-                    <a href="tel:+11234567890" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
-                      +(30) 694 86 77416
+                    <a href="tel:+306948677416" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                      +30 (694) 86 77416
                     </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
-                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2 mr-4 mt-1">
-                    <MapPin className="text-heraglyph-black" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-medium text-heraglyph-white">Location</p>
-                    <p className="text-heraglyph-gray">
-                      123 Creative Avenue<br />
-                      San Francisco, CA 94103
-                    </p>
                   </div>
                 </div>
               </div>
               
               <div className="mt-10 pt-8 border-t border-heraglyph-gray/20">
-                <h4 className="font-medium text-heraglyph-white mb-4 gradient-text">Business Hours</h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-heraglyph-gray">Monday - Friday:</span>
-                    <span className="text-heraglyph-white">9:00 AM - 6:00 PM</span>
+                <div className="flex items-center space-x-3">
+                  <div className="rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end p-2">
+                    <svg className="w-4 h-4 text-heraglyph-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-heraglyph-gray">Saturday - Sunday:</span>
-                    <span className="text-heraglyph-white">Closed</span>
+                  <div>
+                    <h4 className="font-medium text-heraglyph-white gradient-text">Available 24/7</h4>
+                    <p className="text-heraglyph-gray">We're here to help anytime</p>
                   </div>
                 </div>
               </div>
-              
-              {/* Modern geometric decorative element */}
+
               <div className="absolute bottom-0 right-0 w-40 h-40 opacity-10">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                   <path d="M50 20L80 70H20L50 20Z" fill="none" stroke="currentColor" strokeWidth="1" className="text-heraglyph-accent" />

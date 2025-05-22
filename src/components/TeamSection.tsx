@@ -90,7 +90,7 @@ const TeamSection = () => {
                       member.name === "Adam Shawky"
                         ? "https://www.instagram.com/adam__shawky/"
                         : member.name === "Saif Rayan"
-                        ? "https://www.linkedin.com/in/saif-abdelsalam-33a09a279/"
+                        ? "https://www.instagram.com/saif_rayan0_0/"
                         : "#"
                     }
                     target="_blank"

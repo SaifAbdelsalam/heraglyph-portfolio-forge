@@ -57,7 +57,7 @@ const PortfolioSection = () => {
 		<section id="portfolio" className="bg-heraglyph-black py-20 relative overflow-hidden">
 			<div className="section-container relative z-10">
 				<div className="text-center mb-12">
-					<h2 className="section-title">Our Portfolio</h2>
+					<h2 className="section-title">Our Projects</h2>
 					<p className="section-subtitle">
 						Explore our recent projects showcasing our expertise in website
 						development and brand identity design.
