@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import WhatsAppButton from './components/WhatsAppButton';
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <WhatsAppButton />
       </TooltipProvider>
     </QueryClientProvider>
   );
