@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { emailJsConfig } from '../config/emailjs.config';
 
 const ContactSection = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -30,8 +29,11 @@ const ContactSection = () => {
     setIsSubmitting(true);
     setIsError(false);
     
-    // Use EmailJS credentials from the config file
-    const { serviceId, templateId, publicKey } = emailJsConfig;
+    // Replace these with your actual EmailJS credentials
+    // You'll need to create an account at https://www.emailjs.com/
+    const serviceId = 'service_8tjf30b'; // Replace with your service ID
+    const templateId = 'template_hle784s'; // Replace with your template ID
+    const publicKey = 'T_MaEfPL4Kf782Lc-'; // Replace with your public key
     
     if (form.current) {
       emailjs.sendForm(serviceId, templateId, form.current, publicKey)
