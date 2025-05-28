@@ -1,5 +1,4 @@
-
-import { Code, Image, Mail, Smartphone, FileText, Layout, PenTool } from 'lucide-react';
+import { Code, Image, Mail, Smartphone, FileText, Layout, PenTool, Database, Search, Palette } from 'lucide-react'; 
 
 const services = [
   {
@@ -18,19 +17,19 @@ const services = [
     description: "Professional email setups with custom domains and branded signatures."
   },
   {
-    icon: <PenTool size={32} />,
-    title: "Business Cards",
-    description: "Memorable business cards that make a lasting impression."
+    icon: <Search size={32} />,
+    title: "SEO Optimization",
+    description: "Enhance your website's visibility in search engines and attract more organic traffic to your business."
   },
   {
-    icon: <FileText size={32} />,
-    title: "Letterheads & A4 Papers",
-    description: "Consistent branded stationery for all your business needs."
+    icon: <Database size={32} />,
+    title: "Database Solutions",
+    description: "Custom database systems for collecting and managing customer data, emails, and business information."
   },
   {
-    icon: <Code size={32} />,
-    title: "Digital Brand Assets",
-    description: "Complete digital brand packages for consistent online presence."
+    icon: <Palette size={32} />,
+    title: "Full Branding Package",
+    description: "Complete brand identity development including website, logo, color schemes, typography, and all essential brand elements."
   }
 ];
 
