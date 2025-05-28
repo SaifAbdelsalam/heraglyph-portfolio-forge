@@ -118,6 +118,17 @@ const Navbar = () => {
                 Portfolio
               </a>
               <a 
+                href="#faq" 
+                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('faq') as HTMLElement);
+                  setIsMenuOpen(false); // for mobile menu
+                }}
+              >
+                FAQ
+              </a>
+              <a 
                 href="#testimonials" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
@@ -210,6 +221,17 @@ const Navbar = () => {
               }}
             >
               Testimonials
+            </a>
+            <a 
+              href="#faq" 
+              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              onClick={e => {
+                e.preventDefault();
+                smoothScrollTo(document.getElementById('faq') as HTMLElement);
+                setIsMenuOpen(false);
+              }}
+            >
+              FAQ
             </a>
             <a 
               href="#contact" 
