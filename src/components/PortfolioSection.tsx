@@ -41,9 +41,19 @@ const portfolioItems = [
 	},
 	{
 		category: "Website Design",
+		title: "Cleaning Service Landing Page",
+		image: "/lovable-uploads/MacBook_Mockup_3-2.png",
+	},
+	{
+		category: "Website Design",
 		title: "News Website",
 		image:
 			"/lovable-uploads/Free_Mac_Book_Mockup_3.png",
+	},
+	{
+		category: "Logo Design",
+		title: "Brand Logos",
+		image: "/lovable-uploads/case study-8.png",
 	},
 ];
 
@@ -175,9 +185,51 @@ const PortfolioSection = () => {
 										</h3>
 									</div>
 								</a>
+							) : item.title === "Cleaning Service Landing Page" ? (
+								<a
+									href="https://zesty-kitsune-88889c.netlify.app"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="block"
+								>
+									<img
+										src={item.image}
+										alt={item.title}
+										className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-[1.15]"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-heraglyph-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+										<p className="text-sm text-heraglyph-gray mb-1">
+											{item.category}
+										</p>
+										<h3 className="text-xl font-bold text-heraglyph-white">
+											{item.title}
+										</h3>
+									</div>
+								</a>
 							) : item.title === "News Website" ? (
 								<a
 									href="https://laudansky-2713e0.webflow.io"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="block"
+								>
+									<img
+										src={item.image}
+										alt={item.title}
+										className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-[1.15]"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-heraglyph-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+										<p className="text-sm text-heraglyph-gray mb-1">
+											{item.category}
+										</p>
+										<h3 className="text-xl font-bold text-heraglyph-white">
+											{item.title}
+										</h3>
+									</div>
+								</a>
+							) : item.title === "Brand Logos" ? (
+								<a
+									href="https://www.behance.net/gallery/226796385/My-Logos-2025"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="block"
