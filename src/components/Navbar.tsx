@@ -50,8 +50,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-heraglyph-black/95 backdrop-blur-md py-2 shadow-lg' 
-        : 'bg-transparent py-4'
+        ? 'bg-heraglyph-black shadow-lg py-4' 
+        : 'bg-heraglyph-black py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -106,17 +106,7 @@ const Navbar = () => {
               >
                 Team
               </a>
-              <a 
-                href="#portfolio" 
-                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
-                onClick={e => {
-                  e.preventDefault();
-                  smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
-                }}
-              >
-                Portfolio
-              </a>
+            
               <a 
                 href="#faq" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"

@@ -224,7 +224,7 @@ const ContactSection = () => {
           <div className="w-12 h-[1px] bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end mx-auto mb-8 opacity-60"></div>
           
           <p className="section-subtitle">
-            Ready to elevate your brand? Contact us today to discuss how we can help bring your vision to life.
+          Ready to optimize your potential? Contact us today to explore how our AI-driven solutions can elevate your brand and accelerate your growth.
           </p>
         </div>
 

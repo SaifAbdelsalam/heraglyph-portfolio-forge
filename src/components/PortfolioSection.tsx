@@ -2,16 +2,6 @@ import { useState } from "react";
 
 const portfolioItems = [
 	{
-		category: "Website Design",
-		title: "Full Stack Landing page",
-		image: "/lovable-uploads/MacBook_Dresser_Mockup_3.png",
-	},
-	{
-		category: "Website Design",
-		title: "Laudansky Landing Page",
-		image: "/lovable-uploads/Free_Mac_Book_Mockup_2.png",
-	},
-	{
 		category: "Web Application",
 		title: "Furniture Store Website",
 		image:
