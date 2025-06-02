@@ -93,9 +93,6 @@ const Footer = () => {
               <li><a href="#about" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>About Us
               </a></li>
-              <li><a href="#portfolio" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
-                <span className="mr-2 text-xs">→</span>Portfolio
-              </a></li>
               <li><a href="#testimonials" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Testimonials
               </a></li>

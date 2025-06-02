@@ -1,21 +1,20 @@
-
 import { useState, useEffect } from 'react';
 
 const testimonials = [
   {
-    quote: "HERAGLYPH transformed our outdated website into a modern, user-friendly platform that perfectly represents our brand. Their attention to detail and creativity exceeded our expectations.",
-    name: "Sarah J.",
-    position: "CEO, TechStart Inc."
+    quote: "HERAGLYPH's AI automation solutions transformed our customer service. Their custom chatbot handles 80% of our inquiries 24/7, reducing response times from hours to seconds while maintaining high customer satisfaction.",
+    name: "David Chen",
+    position: "Operations Director, TechFlow Solutions"
   },
   {
-    quote: "The team at HERAGLYPH created an incredible brand identity for our startup. From logo to website to business cards, everything works together seamlessly and has helped us establish a professional presence in our industry.",
-    name: "Michael Smith",
-    position: "Founder, Novus Solutions"
+    quote: "The AI-powered workflow automation HERAGLYPH implemented has revolutionized our business processes. We've seen a 65% reduction in manual tasks and our team can now focus on strategic initiatives instead of repetitive work.",
+    name: "Rachel Martinez",
+    position: "CEO, InnovateAI Systems"
   },
   {
-    quote: "Working with HERAGLYPH was effortless. They took the time to understand our vision and translated it into a beautiful website that converts visitors into customers. The ROI has been fantastic.",
-    name: "Ahmed El-Sayed",
-    position: "Marketing Director, Elevate Group"
+    quote: "Their expertise in integrating AI chatbots with our existing systems was impressive. The intelligent automation not only improved our customer engagement but also provided valuable insights through data analytics. A game-changer for our business.",
+    name: "Mark Thompson",
+    position: "Head of Digital Transformation, Future Corp"
   }
 ];
 
