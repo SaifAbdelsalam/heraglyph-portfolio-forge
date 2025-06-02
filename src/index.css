@@ -146,6 +146,24 @@
   .animate-fade-in {
     animation: fade-in 0.5s ease forwards;
   }
+  
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+  
+  /* Embla carousel styling */
+  .embla {
+    overflow: hidden;
+  }
+  
+  .embla__container {
+    display: flex;
+  }
+  
+  .embla__slide {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
 }
 
 /* Custom dark scrollbar styling */
