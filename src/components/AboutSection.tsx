@@ -1,4 +1,3 @@
-
 import { Bot, Cpu, SatelliteDish, BrainCircuit } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -74,17 +73,17 @@ const AboutSection = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-8">
               <motion.div
                 variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                className="bg-heraglyph-dark-gray rounded-xl p-8 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
                 style={{
                   background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
                 }}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <Bot size={28} />
+                    <Bot size={32} />
                   </div>
                   <h3 className="text-xl font-medium ml-4 text-heraglyph-white">AI Projects</h3>
                 </div>
@@ -94,14 +93,14 @@ const AboutSection = () => {
 
               <motion.div
                 variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                className="bg-heraglyph-dark-gray rounded-xl p-8 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
                 style={{
                   background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
                 }}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <Cpu size={28} />
+                    <Cpu size={32} />
                   </div>
                   <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Integrations</h3>
                 </div>
@@ -111,14 +110,14 @@ const AboutSection = () => {
 
               <motion.div
                 variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                className="bg-heraglyph-dark-gray rounded-xl p-8 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
                 style={{
                   background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
                 }}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <BrainCircuit size={28} />
+                    <BrainCircuit size={32} />
                   </div>
                   <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Experience</h3>
                 </div>
@@ -128,14 +127,14 @@ const AboutSection = () => {
 
               <motion.div
                 variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
+                className="bg-heraglyph-dark-gray rounded-xl p-8 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
                 style={{
                   background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
                 }}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <SatelliteDish size={28} />
+                    <SatelliteDish size={32} />
                   </div>
                   <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Support</h3>
                 </div>
