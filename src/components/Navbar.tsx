@@ -106,7 +106,6 @@ const Navbar = () => {
               >
                 Team
               </a>
-            
               <a 
                 href="#faq" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
@@ -118,24 +117,26 @@ const Navbar = () => {
               >
                 FAQ
               </a>
+              {/* Portfolio section temporarily hidden
               <a 
-                href="#testimonials" 
+                href="#portfolio" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
+                  setIsMenuOpen(false);
                 }}
               >
-                Testimonials
+                Portfolio
               </a>
+              */}
               <a 
                 href="#contact" 
-                className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white px-5 py-2.5 rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
+                className="px-4 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:opacity-90 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
                   smoothScrollTo(document.getElementById('contact') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  setIsMenuOpen(false);
                 }}
               >
                 Contact Us
@@ -191,28 +192,6 @@ const Navbar = () => {
               Team
             </a>
             <a 
-              href="#portfolio" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Portfolio
-            </a>
-            <a 
-              href="#testimonials" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Testimonials
-            </a>
-            <a 
               href="#faq" 
               className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
               onClick={e => {
@@ -223,9 +202,22 @@ const Navbar = () => {
             >
               FAQ
             </a>
+            {/* Portfolio section temporarily hidden
+            <a 
+              href="#portfolio" 
+              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              onClick={e => {
+                e.preventDefault();
+                smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
+                setIsMenuOpen(false);
+              }}
+            >
+              Portfolio
+            </a>
+            */}
             <a 
               href="#contact" 
-              className="block mx-3 mt-2 px-3 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:shadow-lg hover:opacity-90 transition-all duration-300"
+              className="block px-4 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:opacity-90 transition-all duration-300 mx-6 mt-2"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('contact') as HTMLElement);

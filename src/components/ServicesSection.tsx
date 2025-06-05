@@ -1,108 +1,187 @@
-import { Bot, Zap, BarChart3, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Database, Shield, Cloud, Code } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { cn } from "@/lib/utils";
 
-const aiServices = [
+const services = [
 	{
-		icon: <Bot size={32} />,
-		title: 'AI Chatbot Development',
-		description:
-			'Custom conversational AI solutions with natural language understanding to enhance customer engagement and support.',
+		icon: <Database size={32} />,
+		title: 'Database Architecture',
+		description: 'Scalable database solutions with optimized performance and security.',
+		details: [
+			'High-performance database design',
+			'Data migration & optimization',
+			'Scalable infrastructure setup',
+			'Real-time data processing'
+		],
+		gradient: 'from-amber-500/20 to-amber-700/20'
 	},
 	{
-		icon: <Zap size={32} />,
-		title: 'Business Process Automation',
-		description:
-			'Streamline workflows with AI-powered automation using n8n, Zapier, and custom integrations to boost efficiency.',
+		icon: <Code size={32} />,
+		title: 'Custom Development',
+		description: 'Tailored solutions built with cutting-edge technologies.',
+		details: [
+			'Full-stack development',
+			'API integration & development',
+			'Performance optimization',
+			'Modern tech stack implementation'
+		],
+		gradient: 'from-amber-600/20 to-amber-800/20'
 	},
 	{
-		icon: <BarChart3 size={32} />,
-		title: 'AI-powered Analytics',
-		description:
-			'Data-driven insights and recommendation engines that help your business make smarter decisions and personalize user experiences.',
+		icon: <Cloud size={32} />,
+		title: 'Cloud Infrastructure',
+		description: 'Robust cloud solutions with automated scaling and deployment.',
+		details: [
+			'Cloud architecture design',
+			'Auto-scaling configuration',
+			'DevOps implementation',
+			'Continuous deployment setup'
+		],
+		gradient: 'from-amber-500/20 to-amber-700/20'
 	},
 	{
-		icon: <Sparkles size={32} />,
-		title: 'Custom AI Integrations',
-		description:
-			'Tailor-made AI solutions including GPT-4 implementations, image generation, OCR, and other advanced AI technologies.',
-	},
+		icon: <Shield size={32} />,
+		title: 'Security Solutions',
+		description: 'Enterprise-grade security with advanced protection protocols.',
+		details: [
+			'Security audit & implementation',
+			'Authentication systems',
+			'Data encryption',
+			'Compliance management'
+		],
+		gradient: 'from-amber-600/20 to-amber-800/20'
+	}
 ];
 
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.2,
-		},
-	},
-};
-
-const itemVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: 'easeOut',
-		},
-	},
-};
-
 const ServicesSection = () => {
+	const [activeIndex, setActiveIndex] = useState(0);
+	const [isAutoplay, setIsAutoplay] = useState(true);
+	const [isHovered, setIsHovered] = useState(false);
+
+	useEffect(() => {
+		if (!isAutoplay || isHovered) return;
+
+		const interval = setInterval(() => {
+			setActiveIndex((current) => (current + 1) % services.length);
+		}, 3000);
+
+		return () => clearInterval(interval);
+	}, [isAutoplay, isHovered]);
+
 	return (
-		<section id="ai-services" className="bg-heraglyph-black py-24">
-			<div className="section-container max-w-6xl mx-auto px-6">
+		<section id="services" className="bg-heraglyph-black py-32 relative overflow-hidden">
+			{/* Background Effects */}
+			<div className="absolute inset-0 bg-gradient-to-b from-heraglyph-accent/5 to-transparent opacity-60" />
+			<div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heraglyph-accent/10 via-transparent to-transparent opacity-30" />
+			
+			<div className="max-w-4xl mx-auto px-6 relative">
 				<motion.div
-					className="text-center mb-16"
-					initial={{ opacity: 0, y: 20 }}
+					className="text-center mb-20"
+					initial={{ opacity: 0, y: 30 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.6 }}
+					transition={{ duration: 0.8 }}
 				>
-					<h2 className="section-title text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4">
-						<span className="text-heraglyph-accent">AI</span>
-						<span className="text-heraglyph-white">-Powered Solutions</span>
+					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
+						<span className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light bg-clip-text text-transparent">
+							Technical
+						</span>
+						<span className="text-heraglyph-white ml-3">Solutions</span>
 					</h2>
-					<p className="section-subtitle text-heraglyph-gray max-w-2xl mx-auto text-lg md:text-xl">
-						Innovative artificial intelligence technologies to transform your
-						business operations and customer experiences.
+					<p className="text-heraglyph-gray text-lg md:text-xl">
+						Enterprise-grade solutions powered by modern technologies
 					</p>
 				</motion.div>
 
-				<motion.div
-					className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16"
-					variants={containerVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
-				>
-					{aiServices.map((service, index) => (
-						<motion.div
-							key={index}
-							variants={itemVariants}
-							className="bg-heraglyph-dark-gray rounded-xl p-8 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-							style={{
-								background:
-									'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
-							}}
-						>
-							<div className="flex items-center mb-6">
-								<div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-									{service.icon}
-								</div>
-								<h3 className="text-xl font-medium ml-4 text-heraglyph-white">
-									{service.title}
-								</h3>
-							</div>
-							<p className="text-heraglyph-gray leading-relaxed">
-								{service.description}
-							</p>
-						</motion.div>
-					))}
-				</motion.div>
+				<div className="relative h-[450px] w-full max-w-2xl mx-auto">
+					<AnimatePresence mode="wait">
+						{services.map((service, index) => (
+							index === activeIndex && (
+								<motion.div
+									key={index}
+									className={cn(
+										"absolute inset-0 flex items-center justify-center",
+										"bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/95",
+										"rounded-2xl p-8 shadow-xl border border-heraglyph-accent/10",
+										"backdrop-blur-sm transition-all duration-300",
+										"hover:border-heraglyph-accent/30 hover:shadow-2xl"
+									)}
+									initial={{ opacity: 1, scale: 1, y: 0 }}
+									animate={{ opacity: 1, scale: 1, y: 0 }}
+									exit={{ opacity: 1, scale: 1, y: 0 }}
+									transition={{ duration: 0.5 }}
+									onHoverStart={() => {
+										setIsHovered(true);
+										setIsAutoplay(false);
+									}}
+									onHoverEnd={() => {
+										setIsHovered(false);
+										setIsAutoplay(true);
+									}}
+								>
+									<div className="max-w-2xl text-center">
+										<div className="mb-6 flex justify-center">
+											<div className={cn(
+												"p-4 rounded-xl bg-gradient-to-br",
+												service.gradient,
+												"shadow-inner text-heraglyph-accent"
+											)}>
+												{service.icon}
+											</div>
+										</div>
+										<h3 className="text-2xl md:text-3xl font-bold text-heraglyph-white mb-4">
+											{service.title}
+										</h3>
+										<p className="text-heraglyph-gray text-lg mb-6">
+											{service.description}
+										</p>
+										
+										<motion.div
+											initial={{ opacity: 0, height: 0 }}
+											animate={{ opacity: isHovered ? 1 : 0, height: isHovered ? 'auto' : 0 }}
+											className="overflow-hidden"
+										>
+											<ul className="text-heraglyph-gray/80 space-y-2">
+												{service.details.map((detail, i) => (
+													<motion.li
+														key={i}
+														initial={{ opacity: 0, x: -20 }}
+														animate={{ opacity: 1, x: 0 }}
+														transition={{ delay: i * 0.1 }}
+														className="flex items-center justify-center gap-2"
+													>
+														<span className="w-1.5 h-1.5 rounded-full bg-heraglyph-accent/50" />
+														{detail}
+													</motion.li>
+												))}
+											</ul>
+										</motion.div>
+									</div>
+								</motion.div>
+							)
+						))}
+					</AnimatePresence>
+				</div>
 
+				{/* Navigation Dots */}
+				<div className="flex justify-center gap-3 mt-8">
+					{services.map((_, index) => (
+						<button
+							key={index}
+							className={cn(
+								"w-2 h-2 rounded-full transition-all duration-300",
+								index === activeIndex 
+									? "bg-heraglyph-accent w-6" 
+									: "bg-heraglyph-gray/30 hover:bg-heraglyph-gray/50"
+							)}
+							onClick={() => {
+								setActiveIndex(index);
+								setIsAutoplay(false);
+							}}
+						/>
+					))}
+				</div>
 			</div>
 		</section>
 	);

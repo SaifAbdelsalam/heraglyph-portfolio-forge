@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 const Footer = () => {
@@ -70,16 +69,16 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Website Development
+                <span className="mr-2 text-xs">→</span>Database Architecture
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Logo Design
+                <span className="mr-2 text-xs">→</span>Custom Development
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Email Solutions
+                <span className="mr-2 text-xs">→</span>Cloud Infrastructure
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Business Cards & Stationery
+                <span className="mr-2 text-xs">→</span>Security Solutions
               </div></li>
             </ul>
           </div>
@@ -95,6 +94,9 @@ const Footer = () => {
               </a></li>
               <li><a href="#testimonials" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Testimonials
+              </a></li>
+              <li><a href="#faq" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+                <span className="mr-2 text-xs">→</span>FAQ
               </a></li>
               <li><a href="#contact" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Contact
