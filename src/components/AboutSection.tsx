@@ -1,5 +1,4 @@
-
-import { Bot, Cpu, SatelliteDish, BrainCircuit } from 'lucide-react';
+import { Bot, Cpu, SatelliteDish, BrainCircuit, Code, Users, Globe, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const containerVariants = {
@@ -7,64 +6,123 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 1, y: 20, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.5,
-      ease: 'easeOut',
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+      duration: 0.8,
     },
   },
 };
 
 const AboutSection = () => {
+  const stats = [
+    {
+      icon: <Code size={28} />,
+      title: "Technical Projects",
+      value: "50+",
+      description: "Successful deployments"
+    },
+    {
+      icon: <Cpu size={28} />,
+      title: "Performance",
+      value: "100%",
+      description: "Load time optimization"
+    },
+    {
+      icon: <Globe size={28} />,
+      title: "Global Reach",
+      value: "10+",
+      description: "Countries served"
+    },
+    {
+      icon: <Shield size={28} />,
+      title: "Security",
+      value: "99.9%",
+      description: "Uptime guaranteed"
+    }
+  ];
+
   return (
-    <section id="about" className="bg-heraglyph-black py-24 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-heraglyph-accent/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-heraglyph-gradient-end/5 rounded-full filter blur-3xl"></div>
+    <section id="about" className="bg-heraglyph-black py-32 relative overflow-hidden">
+      {/* Enhanced background elements */}
+      <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-heraglyph-accent/5 rounded-full filter blur-[100px] animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-heraglyph-gradient-end/5 rounded-full filter blur-[100px] animate-pulse"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-heraglyph-black via-transparent to-heraglyph-black"></div>
       
-      <div className="section-container max-w-6xl mx-auto px-6 relative z-10">
+      <div className="section-container max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="section-title text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4">
-            <span className="text-heraglyph-accent">About</span>
-            <span className="text-heraglyph-white"> Us</span>
+          <h2 className="section-title text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
+            <span className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light bg-clip-text text-transparent">
+              Crafting Digital
+            </span>
+            <span className="text-heraglyph-white ml-3">Excellence</span>
           </h2>
-          <p className="section-subtitle text-heraglyph-gray max-w-2xl mx-auto text-lg md:text-xl">
-            Pioneering AI solutions to empower businesses in the digital era
+          <p className="section-subtitle text-heraglyph-gray max-w-3xl mx-auto text-lg md:text-xl">
+            Empowering businesses with cutting-edge technical solutions and expert development services
           </p>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
           <motion.div 
             className="lg:w-1/2"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="text-heraglyph-gray text-lg leading-relaxed mb-6">
-              At HERAGLYPH, we use AI and smart design to build solutions that look great and boost your business. Our AI-driven tools help you work more efficiently and connect better with your customers.
-            </p>
-            <p className="text-heraglyph-gray text-lg leading-relaxed mb-6">
-              Our team of AI specialists and designers creates intelligent systems that automate tasks, improve customer experiences, and give you clear insights to help your business grow.
-            </p>
-            <p className="text-heraglyph-gray text-lg leading-relaxed">
-              We believe AI should be easy for every business to use. Instead of just adding AI, we make sure it fits your specific goals and strengthens your brand online.
-            </p>
+            <div className="space-y-8">
+              <p className="text-heraglyph-gray text-lg leading-relaxed">
+                <span className="text-heraglyph-white font-semibold">HERAGLYPH</span> is your partner in digital transformation. We specialize in crafting robust technical solutions that drive business growth and innovation.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-heraglyph-accent/10 text-heraglyph-accent mt-1">
+                    <Code size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-heraglyph-white font-medium mb-2">Expert Development</h3>
+                    <p className="text-heraglyph-gray">Full-stack development with modern technologies and best practices</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-heraglyph-accent/10 text-heraglyph-accent mt-1">
+                    <Shield size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-heraglyph-white font-medium mb-2">Secure Solutions</h3>
+                    <p className="text-heraglyph-gray">Enterprise-grade security and performance optimization</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-heraglyph-accent/10 text-heraglyph-accent mt-1">
+                    <Users size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-heraglyph-white font-medium mb-2">Dedicated Support</h3>
+                    <p className="text-heraglyph-gray">24/7 technical support and continuous maintenance</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
           
           <motion.div 
@@ -75,73 +133,26 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <div className="grid grid-cols-2 gap-6">
-              <motion.div
-                variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
-                }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <Bot size={28} />
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="group relative bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/95 
+                    rounded-xl p-6 shadow-lg border border-heraglyph-gray/10 backdrop-blur-sm 
+                    hover:border-heraglyph-accent/20 transition-all duration-500"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-heraglyph-accent/10 to-heraglyph-accent/5 
+                      shadow-inner text-heraglyph-accent group-hover:text-heraglyph-accent-light transition-colors duration-300">
+                      {stat.icon}
+                    </div>
+                    <h3 className="text-xl font-medium ml-4 text-heraglyph-white">{stat.title}</h3>
                   </div>
-                  <h3 className="text-xl font-medium ml-4 text-heraglyph-white">AI Projects</h3>
-                </div>
-                <p className="text-heraglyph-accent text-2xl font-bold mb-1">15+</p>
-                <p className="text-heraglyph-gray text-sm">Successful implementations</p>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
-                }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <Cpu size={28} />
-                  </div>
-                  <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Integrations</h3>
-                </div>
-                <p className="text-heraglyph-accent text-2xl font-bold mb-1">10+</p>
-                <p className="text-heraglyph-gray text-sm">Enterprise solutions</p>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
-                }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <BrainCircuit size={28} />
-                  </div>
-                  <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Experience</h3>
-                </div>
-                <p className="text-heraglyph-accent text-2xl font-bold mb-1">2+</p>
-                <p className="text-heraglyph-gray text-sm">Years in AI innovation</p>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="bg-heraglyph-dark-gray rounded-xl p-6 shadow-md border border-opacity-10 border-heraglyph-gray backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(31, 31, 31, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)',
-                }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-md bg-gradient-to-br from-[#1E1E1E] to-[#2A2A2A] shadow-inner text-heraglyph-accent-light">
-                    <SatelliteDish size={28} />
-                  </div>
-                  <h3 className="text-xl font-medium ml-4 text-heraglyph-white">Support</h3>
-                </div>
-                <p className="text-heraglyph-accent text-2xl font-bold mb-1">24/7</p>
-                <p className="text-heraglyph-gray text-sm">Dedicated monitoring</p>
-              </motion.div>
+                  <p className="text-heraglyph-accent text-3xl font-bold mb-2">{stat.value}</p>
+                  <p className="text-heraglyph-gray text-sm">{stat.description}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
