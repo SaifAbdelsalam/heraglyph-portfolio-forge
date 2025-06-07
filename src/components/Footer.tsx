@@ -37,6 +37,11 @@ const Footer = () => {
     }, 1500);
   };
   
+  // Only render footer on screens wider than 640px
+  if (typeof window !== 'undefined' && window.innerWidth <= 640) {
+    return null;
+  }
+
   return (
     <footer className="bg-gradient-to-b from-heraglyph-black to-heraglyph-dark-gray py-16 relative">
       {/* Background accents */}
@@ -69,16 +74,16 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Database Architecture
+                <span className="mr-2 text-xs">→</span>Website Development
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Custom Development
+                <span className="mr-2 text-xs">→</span>Logo Design
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Cloud Infrastructure
+                <span className="mr-2 text-xs">→</span>Email Solutions
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Security Solutions
+                <span className="mr-2 text-xs">→</span>Business Cards & Stationery
               </div></li>
             </ul>
           </div>
@@ -94,9 +99,6 @@ const Footer = () => {
               </a></li>
               <li><a href="#testimonials" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Testimonials
-              </a></li>
-              <li><a href="#faq" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
-                <span className="mr-2 text-xs">→</span>FAQ
               </a></li>
               <li><a href="#contact" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Contact
