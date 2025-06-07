@@ -50,8 +50,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-heraglyph-black shadow-lg py-4' 
-        : 'bg-heraglyph-black py-4'
+        ? 'bg-heraglyph-black/95 backdrop-blur-md py-2 shadow-lg' 
+        : 'bg-transparent py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -107,36 +107,34 @@ const Navbar = () => {
                 Team
               </a>
               <a 
-                href="#faq" 
-                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
-                onClick={e => {
-                  e.preventDefault();
-                  smoothScrollTo(document.getElementById('faq') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
-                }}
-              >
-                FAQ
-              </a>
-              {/* Portfolio section temporarily hidden
-              <a 
                 href="#portfolio" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
                   smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
-                  setIsMenuOpen(false);
+                  setIsMenuOpen(false); // for mobile menu
                 }}
               >
                 Portfolio
               </a>
-              */}
+              <a 
+                href="#testimonials" 
+                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
+                  setIsMenuOpen(false); // for mobile menu
+                }}
+              >
+                Testimonials
+              </a>
               <a 
                 href="#contact" 
-                className="px-4 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:opacity-90 transition-all duration-300"
+                className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white px-5 py-2.5 rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
                   smoothScrollTo(document.getElementById('contact') as HTMLElement);
-                  setIsMenuOpen(false);
+                  setIsMenuOpen(false); // for mobile menu
                 }}
               >
                 Contact Us
@@ -192,18 +190,6 @@ const Navbar = () => {
               Team
             </a>
             <a 
-              href="#faq" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('faq') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              FAQ
-            </a>
-            {/* Portfolio section temporarily hidden
-            <a 
               href="#portfolio" 
               className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
               onClick={e => {
@@ -214,10 +200,20 @@ const Navbar = () => {
             >
               Portfolio
             </a>
-            */}
+            <a 
+              href="#testimonials" 
+              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              onClick={e => {
+                e.preventDefault();
+                smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
+                setIsMenuOpen(false);
+              }}
+            >
+              Testimonials
+            </a>
             <a 
               href="#contact" 
-              className="block px-4 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:opacity-90 transition-all duration-300 mx-6 mt-2"
+              className="block mx-3 mt-2 px-3 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:shadow-lg hover:opacity-90 transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('contact') as HTMLElement);

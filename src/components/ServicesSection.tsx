@@ -6,49 +6,49 @@ import { cn } from "@/lib/utils";
 const services = [
 	{
 		icon: <Database size={32} />,
-		title: 'Database Architecture',
-		description: 'Scalable database solutions with optimized performance and security.',
+		title: 'AI Chatbots & Automation',
+		description: 'Custom AI chatbots and workflow automations to boost efficiency and customer engagement.',
 		details: [
-			'High-performance database design',
-			'Data migration & optimization',
-			'Scalable infrastructure setup',
-			'Real-time data processing'
+			'Conversational AI for websites & apps',
+			'Automated lead qualification & support',
+			'Integration with CRM and business tools',
+			'24/7 customer interaction'
 		],
 		gradient: 'from-amber-500/20 to-amber-700/20'
 	},
 	{
 		icon: <Code size={32} />,
-		title: 'Custom Development',
-		description: 'Tailored solutions built with cutting-edge technologies.',
+		title: 'Cold Email AI Systems',
+		description: 'AI-powered cold email outreach and follow-up systems for sales and marketing.',
 		details: [
-			'Full-stack development',
-			'API integration & development',
-			'Performance optimization',
-			'Modern tech stack implementation'
+			'Personalized email generation',
+			'Automated follow-ups & scheduling',
+			'Inbox management & analytics',
+			'Seamless integration with email platforms'
 		],
 		gradient: 'from-amber-600/20 to-amber-800/20'
 	},
 	{
 		icon: <Cloud size={32} />,
-		title: 'Cloud Infrastructure',
-		description: 'Robust cloud solutions with automated scaling and deployment.',
+		title: 'AI-Driven Process Optimization',
+		description: 'Streamline business operations with AI for data analysis, reporting, and workflow automation.',
 		details: [
-			'Cloud architecture design',
-			'Auto-scaling configuration',
-			'DevOps implementation',
-			'Continuous deployment setup'
+			'Automated data entry & reporting',
+			'Predictive analytics for business growth',
+			'Task and workflow automation',
+			'Custom AI integrations for unique needs'
 		],
 		gradient: 'from-amber-500/20 to-amber-700/20'
 	},
 	{
 		icon: <Shield size={32} />,
-		title: 'Security Solutions',
-		description: 'Enterprise-grade security with advanced protection protocols.',
+		title: 'AI Security & Compliance',
+		description: 'Protect your business with AI-powered security, monitoring, and compliance solutions.',
 		details: [
-			'Security audit & implementation',
-			'Authentication systems',
-			'Data encryption',
-			'Compliance management'
+			'AI-based threat detection',
+			'Automated compliance monitoring',
+			'Data privacy & encryption',
+			'Incident response automation'
 		],
 		gradient: 'from-amber-600/20 to-amber-800/20'
 	}
@@ -69,6 +69,16 @@ const ServicesSection = () => {
 		return () => clearInterval(interval);
 	}, [isAutoplay, isHovered]);
 
+	// Handler for mouse enter/leave
+	const handleSlideMouseEnter = () => {
+		setIsHovered(true);
+		setIsAutoplay(false);
+	};
+	const handleSlideMouseLeave = () => {
+		setIsHovered(false);
+		setIsAutoplay(true);
+	};
+
 	return (
 		<section id="services" className="bg-heraglyph-black py-32 relative overflow-hidden">
 			{/* Background Effects */}
@@ -78,10 +88,10 @@ const ServicesSection = () => {
 			<div className="max-w-4xl mx-auto px-6 relative">
 				<motion.div
 					className="text-center mb-20"
-					initial={{ opacity: 0, y: 30 }}
+					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.8 }}
+					transition={{ duration: 0.6, ease: "easeOut" }}
 				>
 					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
 						<span className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light bg-clip-text text-transparent">
@@ -95,7 +105,7 @@ const ServicesSection = () => {
 				</motion.div>
 
 				<div className="relative h-[450px] w-full max-w-2xl mx-auto">
-					<AnimatePresence mode="wait">
+					<AnimatePresence mode="wait" initial={false}>
 						{services.map((service, index) => (
 							index === activeIndex && (
 								<motion.div
@@ -107,18 +117,15 @@ const ServicesSection = () => {
 										"backdrop-blur-sm transition-all duration-300",
 										"hover:border-heraglyph-accent/30 hover:shadow-2xl"
 									)}
-									initial={{ opacity: 1, scale: 1, y: 0 }}
-									animate={{ opacity: 1, scale: 1, y: 0 }}
-									exit={{ opacity: 1, scale: 1, y: 0 }}
-									transition={{ duration: 0.5 }}
-									onHoverStart={() => {
-										setIsHovered(true);
-										setIsAutoplay(false);
+									initial={{ opacity: 0, x: 0 }}
+									animate={{ opacity: 1, x: 0 }}
+									exit={{ opacity: 0, x: 0 }}
+									transition={{ 
+										duration: 0.4,
+										ease: "easeInOut"
 									}}
-									onHoverEnd={() => {
-										setIsHovered(false);
-										setIsAutoplay(true);
-									}}
+									onMouseEnter={handleSlideMouseEnter}
+									onMouseLeave={handleSlideMouseLeave}
 								>
 									<div className="max-w-2xl text-center">
 										<div className="mb-6 flex justify-center">
@@ -137,9 +144,11 @@ const ServicesSection = () => {
 											{service.description}
 										</p>
 										
+										{/* Reveal more info on hover */}
 										<motion.div
 											initial={{ opacity: 0, height: 0 }}
 											animate={{ opacity: isHovered ? 1 : 0, height: isHovered ? 'auto' : 0 }}
+											transition={{ duration: 0.3 }}
 											className="overflow-hidden"
 										>
 											<ul className="text-heraglyph-gray/80 space-y-2">
@@ -147,8 +156,8 @@ const ServicesSection = () => {
 													<motion.li
 														key={i}
 														initial={{ opacity: 0, x: -20 }}
-														animate={{ opacity: 1, x: 0 }}
-														transition={{ delay: i * 0.1 }}
+														animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -20 }}
+														transition={{ delay: isHovered ? i * 0.1 : 0 }}
 														className="flex items-center justify-center gap-2"
 													>
 														<span className="w-1.5 h-1.5 rounded-full bg-heraglyph-accent/50" />

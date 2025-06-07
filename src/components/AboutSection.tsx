@@ -13,7 +13,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 1, y: 20, scale: 0.95 },
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
@@ -31,27 +31,27 @@ const AboutSection = () => {
   const stats = [
     {
       icon: <Code size={28} />,
-      title: "Technical Projects",
+      title: "AI Projects",
       value: "50+",
-      description: "Successful deployments"
+      description: "AI chatbots, automation & optimization"
     },
     {
-      icon: <Cpu size={28} />,
-      title: "Performance",
-      value: "100%",
-      description: "Load time optimization"
+      icon: <Users size={28} />,
+      title: "AI Specialists",
+      value: "15+",
+      description: "Engineers & data scientists"
     },
     {
       icon: <Globe size={28} />,
-      title: "Global Reach",
+      title: "Global AI Reach",
       value: "10+",
-      description: "Countries served"
+      description: "Countries using our AI solutions"
     },
     {
       icon: <Shield size={28} />,
-      title: "Security",
+      title: "AI Security",
       value: "99.9%",
-      description: "Uptime guaranteed"
+      description: "Uptime & compliance"
     }
   ];
 
@@ -72,12 +72,12 @@ const AboutSection = () => {
         >
           <h2 className="section-title text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
             <span className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light bg-clip-text text-transparent">
-              Crafting Digital
+              AI Optimization
             </span>
-            <span className="text-heraglyph-white ml-3">Excellence</span>
+            <span className="text-heraglyph-white ml-3">for Business Growth</span>
           </h2>
           <p className="section-subtitle text-heraglyph-gray max-w-3xl mx-auto text-lg md:text-xl">
-            Empowering businesses with cutting-edge technical solutions and expert development services
+            We empower companies with AI chatbots, automated cold email systems, and process optimization to drive efficiency and results.
           </p>
         </motion.div>
 
@@ -91,7 +91,7 @@ const AboutSection = () => {
           >
             <div className="space-y-8">
               <p className="text-heraglyph-gray text-lg leading-relaxed">
-                <span className="text-heraglyph-white font-semibold">HERAGLYPH</span> is your partner in digital transformation. We specialize in crafting robust technical solutions that drive business growth and innovation.
+                <span className="text-heraglyph-white font-semibold">HERAGLYPH</span> specializes in AI-driven digital transformation. We build custom chatbots, automate cold outreach, and optimize business processes with the latest in artificial intelligence.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -99,8 +99,8 @@ const AboutSection = () => {
                     <Code size={20} />
                   </div>
                   <div>
-                    <h3 className="text-heraglyph-white font-medium mb-2">Expert Development</h3>
-                    <p className="text-heraglyph-gray">Full-stack development with modern technologies and best practices</p>
+                    <h3 className="text-heraglyph-white font-medium mb-2">AI Chatbots & Assistants</h3>
+                    <p className="text-heraglyph-gray">Conversational AI for support, sales, and lead generation</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -108,8 +108,8 @@ const AboutSection = () => {
                     <Shield size={20} />
                   </div>
                   <div>
-                    <h3 className="text-heraglyph-white font-medium mb-2">Secure Solutions</h3>
-                    <p className="text-heraglyph-gray">Enterprise-grade security and performance optimization</p>
+                    <h3 className="text-heraglyph-white font-medium mb-2">Automated Outreach</h3>
+                    <p className="text-heraglyph-gray">Cold email systems and workflow automations for growth</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -117,8 +117,8 @@ const AboutSection = () => {
                     <Users size={20} />
                   </div>
                   <div>
-                    <h3 className="text-heraglyph-white font-medium mb-2">Dedicated Support</h3>
-                    <p className="text-heraglyph-gray">24/7 technical support and continuous maintenance</p>
+                    <h3 className="text-heraglyph-white font-medium mb-2">Process Optimization</h3>
+                    <p className="text-heraglyph-gray">AI-powered analytics and automation for business efficiency</p>
                   </div>
                 </div>
               </div>
