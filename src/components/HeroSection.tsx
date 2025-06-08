@@ -38,10 +38,9 @@ const HeroSection = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         >
-          <source src="./lovable-uploads/457382_Morocco_Kingdom_Of_Morocco_1920x1080.mp4" type="video/mp4" />
+          <source src="/lovable-uploads/background vid heraglyph.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-heraglyph-black/40"></div>
-        {/* Additional background elements */}
+        <div className="absolute inset-0 bg-heraglyph-black/60"></div>
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heraglyph-accent via-heraglyph-accent/30 to-transparent"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-heraglyph-accent/10 rounded-full filter blur-3xl opacity-20"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-heraglyph-gradient-end/10 rounded-full filter blur-3xl opacity-20"></div>

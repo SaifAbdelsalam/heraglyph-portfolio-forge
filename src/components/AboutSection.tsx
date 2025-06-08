@@ -13,7 +13,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  hidden: { opacity: 1, y: 20, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
@@ -30,28 +30,16 @@ const itemVariants = {
 const AboutSection = () => {
   const stats = [
     {
-      icon: <Code size={28} />,
-      title: "AI Projects",
-      value: "50+",
-      description: "AI chatbots, automation & optimization"
+      icon: <Code size={28} />, title: "AI Projects", value: "50+", description: "AI chatbots, automation & optimization"
     },
     {
-      icon: <Users size={28} />,
-      title: "AI Specialists",
-      value: "15+",
-      description: "Engineers & data scientists"
+      icon: <Users size={28} />, title: "AI Specialists", value: "15+", description: "Engineers & data scientists"
     },
     {
-      icon: <Globe size={28} />,
-      title: "Global AI Reach",
-      value: "10+",
-      description: "Countries using our AI solutions"
+      icon: <Globe size={28} />, title: "Global AI Reach", value: "10+", description: "Countries using our AI solutions"
     },
     {
-      icon: <Shield size={28} />,
-      title: "AI Security",
-      value: "99.9%",
-      description: "Uptime & compliance"
+      icon: <Shield size={28} />, title: "AI Security", value: "99.9%", description: "Uptime & compliance"
     }
   ];
 
@@ -61,7 +49,6 @@ const AboutSection = () => {
       <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-heraglyph-accent/5 rounded-full filter blur-[100px] animate-pulse"></div>
       <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-heraglyph-gradient-end/5 rounded-full filter blur-[100px] animate-pulse"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-heraglyph-black via-transparent to-heraglyph-black"></div>
-      
       <div className="section-container max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           className="text-center mb-20"
@@ -80,7 +67,6 @@ const AboutSection = () => {
             We empower companies with AI chatbots, automated cold email systems, and process optimization to drive efficiency and results.
           </p>
         </motion.div>
-
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <motion.div 
             className="lg:w-1/2"
@@ -124,7 +110,6 @@ const AboutSection = () => {
               </div>
             </div>
           </motion.div>
-          
           <motion.div 
             className="lg:w-1/2"
             variants={containerVariants}
@@ -137,13 +122,13 @@ const AboutSection = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="group relative bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/95 
-                    rounded-xl p-6 shadow-lg border border-heraglyph-gray/10 backdrop-blur-sm 
+                  className="group relative bg-gradient-to-br from-heraglyph-dark-gray/90 to-heraglyph-black/95 \
+                    rounded-xl p-6 shadow-lg border border-heraglyph-gray/10 backdrop-blur-sm \
                     hover:border-heraglyph-accent/20 transition-all duration-500"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-4">
-                    <div className="p-3 rounded-lg bg-gradient-to-br from-heraglyph-accent/10 to-heraglyph-accent/5 
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-heraglyph-accent/10 to-heraglyph-accent/5 \
                       shadow-inner text-heraglyph-accent group-hover:text-heraglyph-accent-light transition-colors duration-300">
                       {stat.icon}
                     </div>

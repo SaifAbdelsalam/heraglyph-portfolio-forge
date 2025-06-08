@@ -37,7 +37,7 @@ const Footer = () => {
     }, 1500);
   };
   
-  // Only render footer on screens wider than 640px
+  // Hide footer on mobile devices
   if (typeof window !== 'undefined' && window.innerWidth <= 640) {
     return null;
   }
@@ -74,16 +74,16 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Website Development
+                <span className="mr-2 text-xs">→</span>AI Chatbots & Automation
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Logo Design
+                <span className="mr-2 text-xs">→</span>Cold Email AI Systems
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Email Solutions
+                <span className="mr-2 text-xs">→</span>AI-Driven Process Optimization
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Business Cards & Stationery
+                <span className="mr-2 text-xs">→</span>AI Security & Compliance
               </div></li>
             </ul>
           </div>

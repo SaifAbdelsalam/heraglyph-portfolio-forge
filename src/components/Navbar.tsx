@@ -107,15 +107,15 @@ const Navbar = () => {
                 Team
               </a>
               <a 
-                href="#portfolio" 
+                href="#faq" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
+                  smoothScrollTo(document.getElementById('faq') as HTMLElement);
                   setIsMenuOpen(false); // for mobile menu
                 }}
               >
-                Portfolio
+                FAQ
               </a>
               <a 
                 href="#testimonials" 
@@ -127,6 +127,19 @@ const Navbar = () => {
                 }}
               >
                 Testimonials
+              </a>
+              <a
+                href="/el"
+                className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow mr-2 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
+                style={{ minWidth: 36, padding: 0 }}
+                aria-label="Switch to Greek"
+              >
+                <img
+                  src="/lovable-uploads/greece.png"
+                  alt="Greek"
+                  className="w-6 h-6 object-cover rounded-full"
+                  style={{ display: 'block' }}
+                />
               </a>
               <a 
                 href="#contact" 
@@ -190,15 +203,15 @@ const Navbar = () => {
               Team
             </a>
             <a 
-              href="#portfolio" 
+              href="#faq" 
               className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
-                smoothScrollTo(document.getElementById('portfolio') as HTMLElement);
+                smoothScrollTo(document.getElementById('faq') as HTMLElement);
                 setIsMenuOpen(false);
               }}
             >
-              Portfolio
+              FAQ
             </a>
             <a 
               href="#testimonials" 
@@ -210,6 +223,19 @@ const Navbar = () => {
               }}
             >
               Testimonials
+            </a>
+            <a
+              href="/el"
+              className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow mr-2 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
+              style={{ minWidth: 36 }}
+              aria-label="Switch to Greek"
+            >
+              <img
+                src="/lovable-uploads/greece.png"
+                alt="Greek"
+                className="w-6 h-6 object-cover rounded-full"
+                style={{ display: 'block' }}
+              />
             </a>
             <a 
               href="#contact" 
