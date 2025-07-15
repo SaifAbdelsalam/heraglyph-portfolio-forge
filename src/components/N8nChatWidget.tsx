@@ -67,8 +67,8 @@ const N8nChatWidget = ({ webhookUrl, mode = 'window' }: N8nChatWidgetProps) => {
             chatButton: {
               size: '60px',
               iconSize: '28px',
-              bottom: '32px',
-              left: '32px',
+              top: '96px',
+              right: '32px',
             },
             header: {
               title: 'Ask Heraglyph AI',
@@ -104,7 +104,7 @@ const N8nChatWidget = ({ webhookUrl, mode = 'window' }: N8nChatWidgetProps) => {
   }, [webhookUrl, mode]);
 
   return (
-    <div className="fixed bottom-8 left-8 z-40">
+    <div className="fixed top-24 right-8 z-40">
       {/* Custom glow effect matching Heraglyph theme */}
       <div className="absolute inset-0 bg-heraglyph-accent/30 rounded-full blur-2xl transform scale-[2] opacity-50" />
       <div className="absolute inset-0 bg-heraglyph-gradient-end/20 rounded-full blur-3xl transform scale-[1.8] opacity-40" />
