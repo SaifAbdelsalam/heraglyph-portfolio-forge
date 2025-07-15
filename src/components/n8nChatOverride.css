@@ -156,7 +156,11 @@
 /* Positioning adjustments to avoid overlapping with WhatsApp button */
 @media (max-width: 768px) {
   .n8n-chat-button {
-    top: 80px !important;
+    top: 24px !important;
     right: 20px !important;
   }
+}
+
+.n8n-chat-button, .n8n-chat-toggle, .n8n-chat-toggle-container {
+  display: none !important;
 }

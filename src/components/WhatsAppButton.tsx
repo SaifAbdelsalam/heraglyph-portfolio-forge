@@ -7,24 +7,23 @@ const WhatsAppButton = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
-      {/* Enhanced glow effect */}
-      <div className="absolute inset-0 bg-heraglyph-accent/30 rounded-full blur-2xl transform scale-[2] opacity-50" />
-      <div className="absolute inset-0 bg-heraglyph-gradient-end/20 rounded-full blur-3xl transform scale-[1.8] opacity-40" />
-      
+    <div className="fixed bottom-10 left-10 z-50 group">
+      {/* Soft gold glow */}
+      <div className="absolute inset-0 bg-heraglyph-accent/40 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-300" />
+      <div className="absolute inset-0 bg-heraglyph-gradient-end/30 rounded-full blur-3xl opacity-40" />
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex items-center justify-center w-16 h-16 bg-heraglyph-black border border-heraglyph-accent/20 rounded-full shadow-lg hover:-translate-y-3 transition-all duration-300 group animate-float-slow hover:shadow-heraglyph-accent/30 hover:shadow-2xl"
+        className="relative flex items-center justify-center w-16 h-16 bg-heraglyph-black border-2 border-heraglyph-accent rounded-full shadow-lg hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent animate-float-slow"
         aria-label="Contact us on WhatsApp"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <svg 
-          viewBox="0 0 24 24" 
+        <svg
+          viewBox="0 0 24 24"
           className={`w-8 h-8 transition-all duration-300 ${
-            isHovered ? 'text-heraglyph-accent scale-110' : 'text-heraglyph-gradient-end'
+            isHovered ? 'text-heraglyph-accent scale-110' : 'text-heraglyph-accent/80'
           }`}
           fill="currentColor"
         >
