@@ -1,0 +1,157 @@
+
+/* Custom styling for n8n chat to match Heraglyph theme */
+
+/* Button styling */
+.n8n-chat-button {
+  background-color: #121212 !important;
+  border: 1px solid #D4A017 !important;
+  box-shadow: 0 4px 14px rgba(212, 160, 23, 0.3) !important;
+  transition: all 0.3s ease !important;
+  width: 60px !important;
+  height: 60px !important;
+  animation: float 4s ease-in-out infinite !important;
+}
+
+.n8n-chat-button:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 8px 20px rgba(212, 160, 23, 0.5) !important;
+}
+
+.n8n-chat-button svg {
+  color: #D4A017 !important;
+  transform-origin: center !important;
+  transition: transform 0.3s ease !important;
+}
+
+.n8n-chat-button:hover svg {
+  transform: scale(1.1) !important;
+  color: #F0C75F !important;
+}
+
+/* Chat window styling */
+.n8n-chat-window {
+  border: 1px solid #D4A017 !important;
+  box-shadow: 0 12px 28px rgba(212, 160, 23, 0.25) !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+}
+
+/* Header styling */
+.n8n-chat-header {
+  background-color: #121212 !important;
+  border-bottom: 1px solid #D4A017 !important;
+  padding: 16px !important;
+}
+
+.n8n-chat-header-title {
+  color: #D4A017 !important;
+  font-weight: bold !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.n8n-chat-header-subtitle {
+  color: #9CA3AF !important;
+  font-size: 0.85rem !important;
+}
+
+/* Message bubbles */
+.n8n-chat-message-bubble.n8n-chat-message-bubble-bot {
+  background-color: #1F1F1F !important;
+  color: #FFFFFF !important;
+  border: 1px solid #333 !important;
+  border-radius: 18px 18px 18px 4px !important;
+}
+
+.n8n-chat-message-bubble.n8n-chat-message-bubble-user {
+  background-color: #D4A017 !important;
+  color: #121212 !important;
+  font-weight: 500 !important;
+  border-radius: 18px 18px 4px 18px !important;
+}
+
+/* Input area */
+.n8n-chat-input-container {
+  background-color: #1F1F1F !important;
+  border-top: 1px solid #333 !important;
+  padding: 12px !important;
+}
+
+.n8n-chat-input {
+  background-color: #2A2A2A !important;
+  border: 1px solid #333 !important;
+  border-radius: 24px !important;
+  padding: 12px 16px !important;
+  color: #FFFFFF !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.n8n-chat-input:focus {
+  border-color: #D4A017 !important;
+  box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.2) !important;
+  outline: none !important;
+}
+
+.n8n-chat-input::placeholder {
+  color: #9CA3AF !important;
+}
+
+/* Send button */
+.n8n-chat-send-button {
+  background-color: #D4A017 !important;
+  color: #121212 !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin-left: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.n8n-chat-send-button:hover {
+  background-color: #F0C75F !important;
+  transform: scale(1.1) !important;
+}
+
+.n8n-chat-send-button svg {
+  color: #121212 !important;
+}
+
+/* Message animation and styling */
+.n8n-chat-message-container {
+  margin-bottom: 12px !important;
+}
+
+.n8n-chat-message-bubble {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  padding: 12px 16px !important;
+  line-height: 1.5 !important;
+  max-width: 80% !important;
+}
+
+/* Messages area */
+.n8n-chat-messages {
+  padding: 20px !important;
+  background-color: #121212 !important;
+}
+
+/* Loading dots */
+.n8n-chat-message-loading-indicator span {
+  background-color: #D4A017 !important;
+}
+
+/* Custom animation for floating effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Positioning adjustments to avoid overlapping with WhatsApp button */
+@media (max-width: 768px) {
+  .n8n-chat-button {
+    bottom: 100px !important;
+    left: 20px !important;
+  }
+}
