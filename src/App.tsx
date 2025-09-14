@@ -10,7 +10,6 @@ import GreekPage from './pages/el';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import WhatsAppButton from './components/WhatsAppButton';
-import N8nChatWidget from './components/N8nChatWidget';
 
 const queryClient = new QueryClient();
 
@@ -31,7 +30,6 @@ const App = () => {
           </Routes>
         </BrowserRouter>
         <WhatsAppButton />
-        <N8nChatWidget webhookUrl="https://primary-production-e937.up.railway.app/webhook/1be5a202-2e86-4223-80b4-58ed406de545/chat" />
       </TooltipProvider>
     </QueryClientProvider>
   );

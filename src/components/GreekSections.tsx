@@ -402,14 +402,14 @@ export const GreekTeamSection = () => {
   const teamMembers = [
     {
       name: "Αδάμ Σαουκι",
-      role: "Front End Developer",
-      bio: "Ειδικεύεται στη δημιουργία όμορφων, responsive διεπαφών χρήστη με σύγχρονες τεχνολογίες web.",
+      role: "Αρχιτέκτονας Λύσεων AI",
+      bio: "Ειδικός στο σχεδιασμό και την υλοποίηση προηγμένων λύσεων AI, με εξειδίκευση στην επεξεργασία φυσικής γλώσσας και συστήματα μηχανικής μάθησης για επιχειρηματικές εφαρμογές.",
       initials: "ΑΣ",
     },
     {
       name: "Σαΐφ Ραγιάν",
-      role: "Backend Developer",
-      bio: "Ειδικός στην ανάπτυξη ανθεκτικών, επεκτάσιμων backend συστημάτων και αρχιτεκτονικής βάσεων δεδομένων.",
+      role: "Επικεφαλής Έρευνας & Ανάπτυξης AI",
+      bio: "Ειδικεύεται στην ανάπτυξη πρωτοποριακών μοντέλων και αλγορίθμων AI, με εξειδίκευση στη βαθιά μάθηση, τα νευρωνικά δίκτυα και τα αυτοματοποιημένα συστήματα λήψης αποφάσεων.",
       initials: "ΣΡ",
     },
   ];
@@ -419,13 +419,13 @@ export const GreekTeamSection = () => {
       <div className="absolute bottom-40 left-20 w-72 h-72 bg-heraglyph-gradient-end/5 rounded-full filter blur-3xl"></div>
       <div className="section-container relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">Οι Ειδικοί</span>
+          <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">Ηγέτες Καινοτομίας AI</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4 text-heraglyph-white opacity-100 animate-none">
-            Γνωρίστε την <span className="gradient-text">Ομάδα</span>
+            Γνωρίστε τους <span className="gradient-text">Ειδικούς AI</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full mx-auto mb-6 opacity-0 animate-fade-in"></div>
           <p className="section-subtitle opacity-0 animate-fade-in-delayed max-w-2xl mx-auto">
-            Τα ταλαντούχα άτομα πίσω από την επιτυχία της HERAGLYPH, συνδυάζοντας δημιουργικότητα με τεχνική εξειδίκευση για εξαιρετικά αποτελέσματα.
+            Η ομάδα των ειδικών μας στην AI συνδυάζει βαθιά τεχνική εξειδίκευση με καινοτόμο σκέψη για την ανάπτυξη προηγμένων λύσεων τεχνητής νοημοσύνης που μεταμορφώνουν τις επιχειρήσεις
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
@@ -506,10 +506,10 @@ export const GreekFAQSection = () => {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Τι μπορείτε να κάνετε;
+                  Ποιες ολοκληρωμένες υπηρεσίες προσφέρει η HERAGLYPH;
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Υλοποιούμε chatbots για επιχειρήσεις, αυτοματισμό email, φωνητικούς βοηθούς που μιλούν σε όλες τις γλώσσες του κόσμου, αυτοματισμό συστήματος προσέλκυσης πελατών και προσαρμοσμένους αυτοματισμούς για την επιχείρησή σας.
+                  Η HERAGLYPH παρέχει ολοκληρωμένες λύσεις AI, συμπεριλαμβανομένων chatbots επιχειρηματικής κλάσης, πολυγλωσσικών φωνητικών βοηθών, αυτοματοποιημένων συστημάτων email marketing, προηγμένων συστημάτων προσέλκυσης πελατών και εξειδικευμένου αυτοματισμού επιχειρηματικών διαδικασιών για τις ανάγκες του κλάδου σας.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -525,10 +525,10 @@ export const GreekFAQSection = () => {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Ποιες τεχνολογίες χρησιμοποιείτε;
+                  Πώς προσεγγίζει η HERAGLYPH την ανάπτυξη εξατομικευμένων λύσεων AI;
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Χρησιμοποιούμε σύγχρονες πλατφόρμες AI, cloud υποδομές και custom λύσεις για κάθε ανάγκη.
+                  Ακολουθούμε μια ολοκληρωμένη συμβουλευτική προσέγγιση, ξεκινώντας με διεξοδική ανάλυση των επιχειρηματικών σας αναγκών. Οι λύσεις μας αναπτύσσονται χρησιμοποιώντας τεχνολογίες AI επιχειρηματικής κλάσης, διασφαλίζοντας κλιμάκωση, ασφάλεια και ομαλή ενσωμάτωση με τα υπάρχοντα συστήματά σας.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -544,10 +544,10 @@ export const GreekFAQSection = () => {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Πώς διασφαλίζετε την ασφάλεια των δεδομένων;
+                  Τι απόδοση επένδυσης (ROI) μπορούν να περιμένουν οι επιχειρήσεις από τις λύσεις AI της HERAGLYPH;
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Εφαρμόζουμε κρυπτογράφηση, αυστηρά πρωτόκολλα και συμμόρφωση με GDPR.
+                  Οι πελάτες μας συνήθως βιώνουν σημαντικές βελτιώσεις στην επιχειρησιακή αποδοτικότητα και στην παραγωγή εσόδων. Μέσω των προηγμένων λύσεων AI, οι επιχειρήσεις παρατηρούν αυξημένα ποσοστά δέσμευσης πελατών, μειωμένο λειτουργικό κόστος και μετρήσιμες βελτιώσεις στα ποσοστά μετατροπής.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -563,10 +563,10 @@ export const GreekFAQSection = () => {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Προσφέρετε υποστήριξη μετά την υλοποίηση;
+                  Ποια μέτρα ασφαλείας και πρότυπα συμμόρφωσης διατηρεί η HERAGLYPH;
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Ναι, παρέχουμε συνεχή τεχνική υποστήριξη και βελτιώσεις.
+                  Διατηρούμε τα υψηλότερα πρότυπα ασφάλειας δεδομένων μέσω υποδομών επιχειρηματικής κλάσης, κρυπτογράφησης end-to-end και τακτικών ελέγχων ασφαλείας. Οι λύσεις μας συμμορφώνονται με διεθνείς κανονισμούς προστασίας δεδομένων, συμπεριλαμβανομένων των GDPR και CCPA. Εφαρμόζουμε ισχυρούς ελέγχους πρόσβασης, συνεχή παρακολούθηση και αυτοματοποιημένα συστήματα backup.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -611,24 +611,22 @@ export const GreekTestimonialsSection = () => {
   }, []);
   return (
     <section id="testimonials" className="min-h-screen py-20 relative overflow-hidden bg-heraglyph-black">
-      {/* ...background and decoration as in original... */}
       <div className="section-container relative z-10">
         <div className="text-center mb-16 relative">
-          <h2 className="section-title text-heraglyph-white">What Clients Say</h2>
+          <h2 className="section-title text-heraglyph-white">Τι Λένε οι Πελάτες μας</h2>
           <div className="w-20 h-[1px] bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end mx-auto mt-3 mb-3 opacity-80"></div>
           <p className="section-subtitle">
-            Hear from businesses we've helped transform their digital presence and brand identity.
+            Ακούστε από επιχειρήσεις που βοηθήσαμε να μεταμορφώσουν την ψηφιακή τους παρουσία με την τεχνητή νοημοσύνη.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto relative">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index} 
-              className={`glass-card rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5 \
+              className={`glass-card rounded-lg border border-heraglyph-accent/20 shadow-lg shadow-heraglyph-accent/5 
                         transition-all duration-500 overflow-hidden relative
                         ${activeIndex === index ? 'scale-105 border-heraglyph-accent/40' : 'scale-100 hover:scale-102'}`}
             >
-              {/* ...card content as in original... */}
               <div className="p-8 flex flex-col h-full relative">
                 <div className="mb-4 relative">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-heraglyph-accent to-heraglyph-gradient-end flex items-center justify-center">
@@ -653,7 +651,8 @@ export const GreekTestimonialsSection = () => {
             <button 
               key={index} 
               onClick={() => setActiveIndex(index)}
-              aria-label={`View testimonial ${index + 1}`}
+              aria-label={`Προβολή μαρτυρίας ${index + 1}`}
+              title={`Μαρτυρία ${index + 1}`}
               className={`w-8 h-1 rounded-full transition-all duration-300 ${activeIndex === index 
                 ? 'bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end' 
                 : 'bg-heraglyph-gray/30'}`}

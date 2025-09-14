@@ -13,14 +13,14 @@ const TeamSection = () => {
   const teamMembers: TeamMember[] = [
     {
       name: "Adam Shawky",
-      role: "Front End Developer",
-      bio: "Specializes in creating beautiful, responsive user interfaces with modern web technologies.",
+      role: "AI Solutions Architect",
+      bio: "Expert in designing and implementing advanced AI solutions, specializing in natural language processing and machine learning systems for enterprise applications.",
       initials: "AS",
     },
     {
       name: "Saif Rayan",
-      role: "Backend Developer",
-      bio: "Expert in building robust, scalable backend systems and database architecture.",
+      role: "AI Research & Development Lead",
+      bio: "Specializes in developing cutting-edge AI models and algorithms, with expertise in deep learning, neural networks, and automated decision systems.",
       initials: "SR",
     },
   ];
@@ -33,13 +33,13 @@ const TeamSection = () => {
       
       <div className="section-container relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">The Experts</span>
+          <span className="inline-block text-heraglyph-accent text-sm uppercase tracking-wider font-medium mb-2 opacity-0 animate-fade-in">AI Innovation Leaders</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading mb-4 text-heraglyph-white opacity-100 animate-none">
-            Meet Our <span className="gradient-text">Team</span>
+            Meet Our <span className="gradient-text">AI Experts</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full mx-auto mb-6 opacity-0 animate-fade-in"></div>
           <p className="section-subtitle opacity-0 animate-fade-in-delayed max-w-2xl mx-auto">
-            The talented people behind HERAGLYPH's success, combining creativity with technical expertise to deliver exceptional results
+            Our team of AI specialists combines deep technical expertise with innovative thinking to develop cutting-edge artificial intelligence solutions that transform businesses
           </p>
         </div>
 
