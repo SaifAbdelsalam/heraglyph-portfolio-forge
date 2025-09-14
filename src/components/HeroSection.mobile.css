@@ -77,9 +77,16 @@
     font-size: 1rem;
     padding: 0.5rem 0;
   }
-  /* Hide background video on mobile for performance */
-  .hero-mobile-fix ~ .absolute.inset-0.z-0 {
-    display: none !important;
+  /* Optimize background video on mobile for better performance */
+  .absolute.inset-0.z-0 video {
+    object-fit: cover !important;
+    object-position: center !important;
+    /* Mobile video optimizations */
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    will-change: transform !important;
   }
 
   /* Services Section mobile styles */

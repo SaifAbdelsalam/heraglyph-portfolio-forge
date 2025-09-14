@@ -52,7 +52,7 @@ const TeamSection = () => {
                   <Avatar className="h-28 w-28 border-2 border-heraglyph-accent/20 bg-heraglyph-dark-gray group-hover:border-heraglyph-accent/50 transition-all duration-300 p-0.5">
                     {member.name === "Adam Shawky" ? (
                       <img
-                        src="./lovable-uploads/me.jpg"
+                        src="./uploads/me.jpg"
                         alt="Adam Shawky"
                         className="h-full w-full object-cover rounded-full"
                       />
