@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing web development and brand design services. Built with React, TypeScript, and TailwindCSS.
 
-![Heraglyph Portfolio](public/lovable-uploads/MacBook_Mockup_2.png)
+![Heraglyph Portfolio](public/uploads/MacBook_Mockup_2.png)
 
 ## 🚀 Features
 

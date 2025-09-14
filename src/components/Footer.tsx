@@ -53,7 +53,7 @@ const Footer = () => {
           <div>            <div className="flex items-center mb-4">
               <a href="#" className="group flex items-center">
                 <img 
-                  src="./lovable-uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
+                  src="./uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" 
                   alt="HERAGLYPH Logo" 
                   className="h-12 mr-3 transition-transform duration-300 group-hover:scale-105"
                 />

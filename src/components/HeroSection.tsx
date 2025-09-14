@@ -38,7 +38,7 @@ const HeroSection = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         >
-          <source src="/lovable-uploads/background vid heraglyph.mp4" type="video/mp4" />
+          <source src="/uploads/background vid heraglyph.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-heraglyph-black/60"></div>
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heraglyph-accent via-heraglyph-accent/30 to-transparent"></div>
