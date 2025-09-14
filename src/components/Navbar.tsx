@@ -135,7 +135,7 @@ const Navbar = () => {
                 aria-label="Switch to Greek"
               >
                 <img
-                  src="/lovable-uploads/greece.png"
+                  src="/uploads/greece.png"
                   alt="Greek"
                   className="w-6 h-6 object-cover rounded-full"
                   style={{ display: 'block' }}
@@ -231,7 +231,7 @@ const Navbar = () => {
               aria-label="Switch to Greek"
             >
               <img
-                src="/lovable-uploads/greece.png"
+                src="/uploads/greece.png"
                 alt="Greek"
                 className="w-6 h-6 object-cover rounded-full"
                 style={{ display: 'block' }}

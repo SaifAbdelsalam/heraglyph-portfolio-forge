@@ -7,6 +7,7 @@ const HeroSection = () => {
   const [showHeadline, setShowHeadline] = useState(false);
   const [showSubheadline, setShowSubheadline] = useState(false);
   const [showTrust, setShowTrust] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const logoTimer = setTimeout(() => setShowLogo(true), 200);
@@ -31,14 +32,29 @@ const HeroSection = () => {
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-heraglyph-black">
       {/* Background video */}
       <div className="absolute inset-0 z-0">
+        {/* Fallback background image */}
+        <div 
+          className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-40'}`}
+          style={{ backgroundImage: 'url(/uploads/pyramid-bg.jpg)' }}
+        ></div>
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          preload="auto"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-40' : 'opacity-0'}`}
+          onLoadStart={() => console.log('Video loading started')}
+          onCanPlay={() => {
+            console.log('Video can start playing');
+            setVideoLoaded(true);
+          }}
+          onLoadedData={() => {
+            console.log('Video data loaded');
+            setVideoLoaded(true);
+          }}
         >
-          <source src="/lovable-uploads/background vid heraglyph.mp4" type="video/mp4" />
+          <source src="/uploads/background vid heraglyph.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-heraglyph-black/60"></div>
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heraglyph-accent via-heraglyph-accent/30 to-transparent"></div>
