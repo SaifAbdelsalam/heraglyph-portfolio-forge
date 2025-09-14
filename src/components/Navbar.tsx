@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 function smoothScrollTo(element: HTMLElement, duration = 500) {
   const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
@@ -48,25 +47,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-heraglyph-black/95 backdrop-blur-md py-2 shadow-lg' 
-        : 'bg-transparent py-4'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled || isMenuOpen ? 'bg-heraglyph-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <div className="flex-shrink-0 flex items-center">
-            <a
-              href="/"
-              aria-label="Go to top"
-              className="flex items-center"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.body, 500);
-                setIsMenuOpen(false);
-              }}
-            >
-              <span className="text-heraglyph-white text-xl font-bold font-heading">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0 z-50">
+            <a href="/" className="group flex items-center">
+              <img src="./uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" alt="HERAGLYPH Logo" className="h-8 mr-3 transition-transform duration-300 group-hover:scale-105" />
+              <span className="text-xl font-bold font-heading transition-colors duration-300 group-hover:text-heraglyph-accent">
                 <span className="gradient-text">HERA</span>GLYPH
               </span>
             </a>
@@ -157,21 +149,52 @@ const Navbar = () => {
           <div className="md:hidden">
             <button 
               onClick={toggleMenu}
-              className="text-heraglyph-gray hover:text-heraglyph-white transition-colors"
+              className="relative z-50 p-2 rounded-lg text-heraglyph-gray hover:text-heraglyph-white focus:outline-none focus:ring-2 focus:ring-heraglyph-accent transition-all duration-300"
+              aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <div className="relative w-6 h-6">
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transform transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'top-3 rotate-45 bg-heraglyph-white' 
+                      : 'top-1 bg-heraglyph-gray'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'opacity-0' 
+                      : 'top-3 bg-heraglyph-gray'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transform transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'top-3 -rotate-45 bg-heraglyph-white' 
+                      : 'top-5 bg-heraglyph-gray'
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-heraglyph-dark-gray/95 backdrop-blur-lg shadow-xl">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <div 
+        className={`fixed inset-0 bg-heraglyph-black/95 backdrop-blur-lg transform transition-all duration-500 ease-in-out md:hidden ${
+          isMenuOpen ? 'opacity-100 translate-y-16' : 'opacity-0 -translate-y-full'
+        }`}
+        style={{ 
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          height: 'calc(100vh - 64px)'
+        }}
+      >
+        <div className="flex flex-col items-center justify-center h-full">
+          <div className="space-y-8 text-center">
             <a 
-              href="#services" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              href="#services"
+              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('services') as HTMLElement, 500);
@@ -181,8 +204,8 @@ const Navbar = () => {
               Services
             </a>
             <a 
-              href="#about" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              href="#about"
+              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('about') as HTMLElement);
@@ -192,8 +215,8 @@ const Navbar = () => {
               About
             </a>
             <a 
-              href="#team" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              href="#team"
+              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('team') as HTMLElement);
@@ -203,8 +226,8 @@ const Navbar = () => {
               Team
             </a>
             <a 
-              href="#faq" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              href="#faq"
+              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('faq') as HTMLElement);
@@ -214,8 +237,8 @@ const Navbar = () => {
               FAQ
             </a>
             <a 
-              href="#testimonials" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
+              href="#testimonials"
+              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
@@ -224,22 +247,23 @@ const Navbar = () => {
             >
               Testimonials
             </a>
+          </div>
+          
+          <div className="mt-12 flex items-center justify-center space-x-6">
             <a
               href="/el"
-              className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow mr-2 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
-              style={{ minWidth: 36 }}
+              className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
               aria-label="Switch to Greek"
             >
               <img
                 src="/uploads/greece.png"
                 alt="Greek"
-                className="w-6 h-6 object-cover rounded-full"
-                style={{ display: 'block' }}
+                className="w-8 h-8 object-cover rounded-full"
               />
             </a>
             <a 
-              href="#contact" 
-              className="block mx-3 mt-2 px-3 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:shadow-lg hover:opacity-90 transition-all duration-300"
+              href="#contact"
+              className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
               onClick={e => {
                 e.preventDefault();
                 smoothScrollTo(document.getElementById('contact') as HTMLElement);
@@ -250,7 +274,7 @@ const Navbar = () => {
             </a>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

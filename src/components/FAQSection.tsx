@@ -50,10 +50,10 @@ export function FAQSection() {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  What can you do?
+                  What comprehensive services does HERAGLYPH offer?
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  We implement chatbots for businesses, email automation, voice assistants that talk in all languages of the world, leads funnel automation and custom made automations for your business.
+                  HERAGLYPH provides end-to-end AI solutions including enterprise-grade chatbots, multilingual voice assistants, automated email marketing systems, advanced lead generation funnels, and custom business process automation tailored to your specific industry requirements.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -67,10 +67,10 @@ export function FAQSection() {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Can you build custom chatbots for my business?
+                  How does HERAGLYPH approach custom AI solution development?
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Yes! We specialize in building custom AI chatbots tailored to your business needs, from customer support to lead generation and more.
+                  We follow a comprehensive consultative approach, beginning with a thorough analysis of your business requirements. Our solutions are built using enterprise-grade AI technologies, ensuring scalability, security, and seamless integration with your existing systems. Each solution is meticulously customized to align with your specific industry needs and business objectives.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -84,10 +84,10 @@ export function FAQSection() {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  How does your cold email automation work?
+                  What ROI can businesses expect from HERAGLYPH's AI solutions?
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Our AI-powered cold email systems generate personalized outreach, automate follow-ups, and provide analytics to maximize your campaign's effectiveness.
+                  Our clients typically experience significant improvements in operational efficiency and revenue generation. Through our advanced AI solutions, businesses see enhanced customer engagement rates, reduced operational costs, and measurable improvements in conversion rates. We provide detailed analytics and regular performance reports to track and optimize your return on investment.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">
@@ -101,10 +101,10 @@ export function FAQSection() {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-heraglyph-accent mb-3 group-hover:text-heraglyph-accent-light transition-colors duration-300 flex items-center gap-3">
                   <div className="w-2 h-2 bg-heraglyph-accent rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  Is my data secure with your AI solutions?
+                  What security measures and compliance standards does HERAGLYPH maintain?
                 </h3>
                 <p className="text-heraglyph-gray opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 leading-relaxed">
-                  Absolutely. We implement enterprise-grade security and compliance measures to ensure your data is protected at all times.
+                  We maintain the highest standards of data security through enterprise-grade infrastructure, end-to-end encryption, and regular security audits. Our solutions comply with international data protection regulations including GDPR and CCPA. We implement robust access controls, continuous monitoring, and automated backup systems to ensure your data remains secure and confidential.
                 </p>
               </div>
               <div className="ml-4 flex-shrink-0">

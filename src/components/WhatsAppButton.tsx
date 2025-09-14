@@ -7,7 +7,7 @@ const WhatsAppButton = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
 
   return (
-    <div className="fixed bottom-10 left-10 z-50 group">
+    <div className="fixed bottom-10 right-10 z-50 group">
       {/* Soft gold glow */}
       <div className="absolute inset-0 bg-heraglyph-accent/40 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-300" />
       <div className="absolute inset-0 bg-heraglyph-gradient-end/30 rounded-full blur-3xl opacity-40" />
