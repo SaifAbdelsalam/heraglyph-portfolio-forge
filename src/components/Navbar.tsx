@@ -190,20 +190,20 @@ const Navbar = () => {
           height: 'calc(100vh - 64px)'
         }}
       >
-        <div className="flex flex-col items-center justify-center min-h-full px-6 -mt-8">
+        <div className="flex flex-col items-center justify-center min-h-full px-6" style={{ marginTop: '-15vh' }}>
           <div className="w-full max-w-sm mx-auto">
-            <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-7">
               {[
-                { href: '#services', text: 'Services' },
-                { href: '#about', text: 'About' },
-                { href: '#team', text: 'Team' },
+                { href: '#services', text: window.location.pathname === '/el' ? 'Υπηρεσίες' : 'Services' },
+                { href: '#about', text: window.location.pathname === '/el' ? 'Σχετικά' : 'About' },
+                { href: '#team', text: window.location.pathname === '/el' ? 'Ομάδα' : 'Team' },
                 { href: '#faq', text: 'FAQ' },
-                { href: '#testimonials', text: 'Testimonials' }
+                { href: '#testimonials', text: window.location.pathname === '/el' ? 'Μαρτυρίες' : 'Testimonials' }
               ].map((item) => (
                 <a 
                   key={item.href}
                   href={item.href}
-                  className="block text-center text-xl sm:text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
+                  className="block text-center text-2xl font-medium text-heraglyph-white/90 hover:text-heraglyph-accent hover:scale-105 transform transition-all duration-300"
                   onClick={e => {
                     e.preventDefault();
                     smoothScrollTo(document.getElementById(item.href.slice(1)) as HTMLElement);
@@ -215,15 +215,15 @@ const Navbar = () => {
               ))}
             </div>
             
-            <div className="mt-10 sm:mt-12 flex items-center justify-center space-x-6">
+            <div className="mt-12 flex items-center justify-center space-x-6">
               <a
-                href="/el"
+                href={window.location.pathname === '/el' ? '/' : '/el'}
                 className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
-                aria-label="Switch to Greek"
+                aria-label={window.location.pathname === '/el' ? 'Switch to English' : 'Μετάβαση στα Ελληνικά'}
               >
                 <img
-                  src="/uploads/greece.png"
-                  alt="Greek"
+                  src={window.location.pathname === '/el' ? '/united-kingdom.png' : '/greece.png'}
+                  alt={window.location.pathname === '/el' ? 'English' : 'Greek'}
                   className="w-8 h-8 object-cover rounded-full"
                 />
               </a>
@@ -236,7 +236,7 @@ const Navbar = () => {
                   setIsMenuOpen(false);
                 }}
               >
-                Contact Us
+                {window.location.pathname === '/el' ? 'Επικοινωνία' : 'Contact Us'}
               </a>
             </div>
           </div>

@@ -56,6 +56,13 @@ const TeamSection = () => {
                         alt="Adam Shawky"
                         className="h-full w-full object-cover rounded-full"
                       />
+                    ) : member.name === "Saif Rayan" ? (
+                      <img
+                        src="./uploads/saif photo.jpeg"
+                        alt="Saif Rayan"
+                        className="h-full w-full object-cover rounded-full"
+                        style={{ transform: 'scale(2)', objectPosition: 'center -10%' }}
+                      />
                     ) : (
                       <AvatarFallback className="bg-gradient-to-br from-heraglyph-black to-heraglyph-dark-gray text-heraglyph-white text-xl font-medium rounded-full">
                         {member.initials}
