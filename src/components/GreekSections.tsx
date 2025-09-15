@@ -1,6 +1,7 @@
 // Greek-translated sections for the /el page
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDown, CheckCircle2, Star, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { Database, Shield, Cloud, Code } from 'lucide-react';
 import { Bot, Cpu, SatelliteDish, BrainCircuit, Users, Globe } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -29,7 +30,7 @@ const itemVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 10,
       duration: 0.8,
@@ -432,13 +433,28 @@ export const GreekTeamSection = () => {
           {teamMembers.map((member, idx) => (
             <Card key={member.name} className="glass-card bg-heraglyph-black/50 opacity-0 animate-fade-in-delayed border border-heraglyph-white/10 hover:border-heraglyph-accent/30 overflow-hidden group rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-heraglyph-accent/10">
               <CardContent className="p-8 flex flex-col items-center text-center">
-                {idx === 0 ? (
-                  <img src="/uploads/me.jpg" alt={member.name} className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-heraglyph-accent shadow" />
-                ) : (
-                  <Avatar className="w-24 h-24 mb-4">
-                    <AvatarFallback>{member.initials}</AvatarFallback>
+                <div className="mb-6 mt-2 relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end rounded-full opacity-0 blur-xl group-hover:opacity-20 transition-all duration-500 -z-10 scale-[1.35]"></div>
+                  <Avatar className="h-28 w-28 border-2 border-heraglyph-accent/20 bg-heraglyph-dark-gray group-hover:border-heraglyph-accent/50 transition-all duration-300 p-0.5">
+                    {member.name === "Αδάμ Σαουκι" ? (
+                      <img
+                        src="/uploads/me.jpg"
+                        alt={member.name}
+                        className="h-full w-full object-cover rounded-full"
+                      />
+                    ) : (
+                      <img
+                        src="/uploads/saif photo.jpeg"
+                        alt={member.name}
+                        className="h-full w-full object-cover rounded-full"
+                        style={{ transform: 'scale(2)', objectPosition: 'center -10%' }}
+                      />
+                    )}
                   </Avatar>
-                )}
+                  <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white p-1.5 rounded-full shadow-lg">
+                    <Users size={16} />
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-heraglyph-white mb-1">{member.name}</h3>
                 <p className="text-heraglyph-accent font-medium mb-2">{member.role}</p>
                 <p className="text-heraglyph-gray text-base">{member.bio}</p>
@@ -999,11 +1015,30 @@ export const GreekFooter = () => {
 };
 
 // Greek Navbar Component
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-
 function smoothScrollTo(element: HTMLElement, duration = 500) {
-  // ...existing code...
+  if (!element) return;
+  
+  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  let startTime: number | null = null;
+
+  function animation(currentTime: number) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = ease(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) requestAnimationFrame(animation);
+  }
+
+  function ease(t: number, b: number, c: number, d: number) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+  }
+
+  requestAnimationFrame(animation);
 }
 
 const GreekNavbar = () => {
@@ -1141,103 +1176,102 @@ const GreekNavbar = () => {
           <div className="md:hidden">
             <button 
               onClick={toggleMenu}
-              className="text-heraglyph-gray hover:text-heraglyph-white transition-colors"
+              className="relative z-50 p-2 rounded-lg text-heraglyph-gray hover:text-heraglyph-white focus:outline-none focus:ring-2 focus:ring-heraglyph-accent transition-all duration-300"
+              aria-label="Εναλλαγή μενού"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <div className="relative w-6 h-6">
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transform transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'top-3 rotate-45 bg-heraglyph-white' 
+                      : 'top-1 bg-heraglyph-gray'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'opacity-0' 
+                      : 'top-3 bg-heraglyph-gray'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 block h-0.5 w-6 transform transition-all duration-300 ${
+                    isMenuOpen 
+                      ? 'top-3 -rotate-45 bg-heraglyph-white' 
+                      : 'top-5 bg-heraglyph-gray'
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
       </div>
       {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-heraglyph-dark-gray/95 backdrop-blur-lg shadow-xl">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a 
-              href="#services" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('services') as HTMLElement, 500);
-                setIsMenuOpen(false);
-              }}
-            >
-              Υπηρεσίες
-            </a>
-            <a 
-              href="#about" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('about') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Σχετικά
-            </a>
-            <a 
-              href="#team" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('team') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Ομάδα
-            </a>
-            <a 
-              href="#faq" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('faq') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              FAQ
-            </a>
-            <a 
-              href="#testimonials" 
-              className="block px-3 py-2 text-heraglyph-gray hover:text-heraglyph-white hover:translate-x-1 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
-                setIsMenuOpen(false);
-                                          }}
-            >
-              Μαρτυρίες
-            </a>
-            <a
-              href="/"
-              className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow mt-2 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
-              style={{ minWidth: 36, padding: 0 }}
-              aria-label="Switch to English"
-              onClick={e => {
-                e.preventDefault();
-                window.location.href = "/";
-              }}
-            >
-              <img
-                src="/uploads/united-kingdom.png"
-                alt="English"
-                className="w-6 h-6 object-cover rounded-full"
-                style={{ display: 'block' }}
-              />
-            </a>
-            <a 
-              href="#contact" 
-              className="block mx-3 mt-2 px-3 py-2 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white rounded-md font-medium hover:shadow-lg hover:opacity-90 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('contact') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Επικοινωνία
-            </a>
+      <div 
+        className={`fixed inset-0 bg-heraglyph-black/95 backdrop-blur-lg transform transition-all duration-500 ease-in-out md:hidden ${
+          isMenuOpen ? 'opacity-100 translate-y-16' : 'opacity-0 -translate-y-full'
+        }`}
+        style={{ 
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          height: 'calc(100vh - 64px)'
+        }}
+      >
+        <div className="flex flex-col items-center justify-center min-h-full px-6" style={{ marginTop: '-15vh' }}>
+          <div className="w-full max-w-sm mx-auto">
+            <div className="space-y-7">
+              {[
+                { href: '#services', text: 'Υπηρεσίες' },
+                { href: '#about', text: 'Σχετικά' },
+                { href: '#team', text: 'Ομάδα' },
+                { href: '#faq', text: 'FAQ' },
+                { href: '#testimonials', text: 'Μαρτυρίες' }
+              ].map((item) => (
+                <a 
+                  key={item.href}
+                  href={item.href}
+                  className="block text-center text-2xl font-medium text-heraglyph-white/90 hover:text-heraglyph-accent hover:scale-105 transform transition-all duration-300"
+                  onClick={e => {
+                    e.preventDefault();
+                    smoothScrollTo(document.getElementById(item.href.slice(1)) as HTMLElement);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.text}
+                </a>
+              ))}
+            </div>
+            
+            <div className="mt-12 flex items-center justify-center space-x-6">
+              <a
+                href="/"
+                className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
+                aria-label="Switch to English"
+                onClick={e => {
+                  e.preventDefault();
+                  window.location.href = "/";
+                }}
+              >
+                <img
+                  src="/uploads/united-kingdom.png"
+                  alt="English"
+                  className="w-8 h-8 object-cover rounded-full"
+                />
+              </a>
+              <a 
+                href="#contact"
+                className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('contact') as HTMLElement);
+                  setIsMenuOpen(false);
+                }}
+              >
+                Επικοινωνία
+              </a>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

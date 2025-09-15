@@ -190,88 +190,55 @@ const Navbar = () => {
           height: 'calc(100vh - 64px)'
         }}
       >
-        <div className="flex flex-col items-center justify-center h-full">
-          <div className="space-y-8 text-center">
-            <a 
-              href="#services"
-              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('services') as HTMLElement, 500);
-                setIsMenuOpen(false);
-              }}
-            >
-              Services
-            </a>
-            <a 
-              href="#about"
-              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('about') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              About
-            </a>
-            <a 
-              href="#team"
-              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('team') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Team
-            </a>
-            <a 
-              href="#faq"
-              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('faq') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              FAQ
-            </a>
-            <a 
-              href="#testimonials"
-              className="block text-2xl font-medium text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transform transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Testimonials
-            </a>
-          </div>
-          
-          <div className="mt-12 flex items-center justify-center space-x-6">
-            <a
-              href="/el"
-              className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
-              aria-label="Switch to Greek"
-            >
-              <img
-                src="/uploads/greece.png"
-                alt="Greek"
-                className="w-8 h-8 object-cover rounded-full"
-              />
-            </a>
-            <a 
-              href="#contact"
-              className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
-              onClick={e => {
-                e.preventDefault();
-                smoothScrollTo(document.getElementById('contact') as HTMLElement);
-                setIsMenuOpen(false);
-              }}
-            >
-              Contact Us
-            </a>
+        <div className="flex flex-col items-center justify-center min-h-full px-6" style={{ marginTop: '-15vh' }}>
+          <div className="w-full max-w-sm mx-auto">
+            <div className="space-y-7">
+              {[
+                { href: '#services', text: window.location.pathname === '/el' ? 'Υπηρεσίες' : 'Services' },
+                { href: '#about', text: window.location.pathname === '/el' ? 'Σχετικά' : 'About' },
+                { href: '#team', text: window.location.pathname === '/el' ? 'Ομάδα' : 'Team' },
+                { href: '#faq', text: 'FAQ' },
+                { href: '#testimonials', text: window.location.pathname === '/el' ? 'Μαρτυρίες' : 'Testimonials' }
+              ].map((item) => (
+                <a 
+                  key={item.href}
+                  href={item.href}
+                  className="block text-center text-2xl font-medium text-heraglyph-white/90 hover:text-heraglyph-accent hover:scale-105 transform transition-all duration-300"
+                  onClick={e => {
+                    e.preventDefault();
+                    smoothScrollTo(document.getElementById(item.href.slice(1)) as HTMLElement);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.text}
+                </a>
+              ))}
+            </div>
+            
+            <div className="mt-12 flex items-center justify-center space-x-6">
+              <a
+                href={window.location.pathname === '/el' ? '/' : '/el'}
+                className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
+                aria-label={window.location.pathname === '/el' ? 'Switch to English' : 'Μετάβαση στα Ελληνικά'}
+              >
+                <img
+                  src={window.location.pathname === '/el' ? '/united-kingdom.png' : '/greece.png'}
+                  alt={window.location.pathname === '/el' ? 'English' : 'Greek'}
+                  className="w-8 h-8 object-cover rounded-full"
+                />
+              </a>
+              <a 
+                href="#contact"
+                className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('contact') as HTMLElement);
+                  setIsMenuOpen(false);
+                }}
+              >
+                {window.location.pathname === '/el' ? 'Επικοινωνία' : 'Contact Us'}
+              </a>
+            </div>
           </div>
         </div>
       </div>
