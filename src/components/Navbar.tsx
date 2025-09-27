@@ -71,54 +71,43 @@ const Navbar = () => {
                 onClick={e => {
                   e.preventDefault();
                   smoothScrollTo(document.getElementById('services') as HTMLElement, 500);
-                  setIsMenuOpen(false); // for mobile menu
+                  setIsMenuOpen(false);
                 }}
               >
                 Services
               </a>
               <a 
-                href="#about"
+                href="#comparison" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('about') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  smoothScrollTo(document.getElementById('comparison') as HTMLElement);
+                  setIsMenuOpen(false);
                 }}
               >
-                About
+                Comparison
               </a>
               <a 
-                href="#team" 
+                href="#chatbot" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('team') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  smoothScrollTo(document.getElementById('chatbot') as HTMLElement);
+                  setIsMenuOpen(false);
                 }}
               >
-                Team
+                Chatbot
               </a>
               <a 
-                href="#faq" 
+                href="#booking" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('faq') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
+                  setIsMenuOpen(false);
                 }}
               >
-                FAQ
-              </a>
-              <a 
-                href="#testimonials" 
-                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
-                onClick={e => {
-                  e.preventDefault();
-                  smoothScrollTo(document.getElementById('testimonials') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
-                }}
-              >
-                Testimonials
+                Book a Call
               </a>
               <a
                 href="/el"
@@ -134,15 +123,15 @@ const Navbar = () => {
                 />
               </a>
               <a 
-                href="#contact" 
+                href="#booking" 
                 className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white px-5 py-2.5 rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('contact') as HTMLElement);
-                  setIsMenuOpen(false); // for mobile menu
+                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
+                  setIsMenuOpen(false);
                 }}
               >
-                Contact Us
+                Book a Call
               </a>
             </div>
           </div>
@@ -195,10 +184,9 @@ const Navbar = () => {
             <div className="space-y-7">
               {[
                 { href: '#services', text: window.location.pathname === '/el' ? 'Υπηρεσίες' : 'Services' },
-                { href: '#about', text: window.location.pathname === '/el' ? 'Σχετικά' : 'About' },
-                { href: '#team', text: window.location.pathname === '/el' ? 'Ομάδα' : 'Team' },
-                { href: '#faq', text: 'FAQ' },
-                { href: '#testimonials', text: window.location.pathname === '/el' ? 'Μαρτυρίες' : 'Testimonials' }
+                { href: '#comparison', text: window.location.pathname === '/el' ? 'Σύγκριση' : 'Comparison' },
+                { href: '#chatbot', text: window.location.pathname === '/el' ? 'Chatbot' : 'Chatbot' },
+                { href: '#booking', text: window.location.pathname === '/el' ? 'Κλείστε Ραντεβού' : 'Book a Call' }
               ].map((item) => (
                 <a 
                   key={item.href}
@@ -228,15 +216,15 @@ const Navbar = () => {
                 />
               </a>
               <a 
-                href="#contact"
+                href="#booking"
                 className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('contact') as HTMLElement);
+                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
                   setIsMenuOpen(false);
                 }}
               >
-                {window.location.pathname === '/el' ? 'Επικοινωνία' : 'Contact Us'}
+                {window.location.pathname === '/el' ? 'Κλείστε Ραντεβού' : 'Book a Call'}
               </a>
             </div>
           </div>
