@@ -88,22 +88,22 @@ const Navbar = () => {
                 Comparison
               </a>
               <a 
-                href="#chatbot" 
+                href="#chatbot-section" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('chatbot') as HTMLElement);
+                  smoothScrollTo(document.getElementById('chatbot-section') as HTMLElement);
                   setIsMenuOpen(false);
                 }}
               >
                 Chatbot
               </a>
               <a 
-                href="#booking" 
+                href="#booking-section" 
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
+                  smoothScrollTo(document.getElementById('booking-section') as HTMLElement);
                   setIsMenuOpen(false);
                 }}
               >
@@ -123,11 +123,11 @@ const Navbar = () => {
                 />
               </a>
               <a 
-                href="#booking" 
+                href="#booking-section" 
                 className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white px-5 py-2.5 rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
+                  smoothScrollTo(document.getElementById('booking-section') as HTMLElement);
                   setIsMenuOpen(false);
                 }}
               >

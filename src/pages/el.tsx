@@ -7,7 +7,9 @@ import {
   GreekTestimonialsSection,
   GreekContactSection,
   GreekFooter,
-  GreekNavbar
+  GreekNavbar,
+  GreekChatbotSection,
+  GreekBookingSection
 } from '@/components/GreekSections';
 
 // NOTE: For a real project, you would use i18n or a translation library. Here, we will just show a placeholder Greek version.
@@ -21,6 +23,10 @@ const greekText = {
   faqTitle: 'Συχνές Ερωτήσεις',
   testimonialsTitle: 'Τι λένε οι πελάτες',
   contactTitle: 'Επικοινωνήστε μαζί μας',
+  chatbotTitle: 'Chatbot Τεχνητής Νοημοσύνης',
+  chatbotSub: 'Ανακαλύψτε την επόμενη γενιά εξυπηρέτησης πελατών',
+  bookingTitle: 'Κλείστε μια Συνάντηση',
+  bookingSub: 'Συζητήστε μαζί μας για τις λύσεις AI που ταιριάζουν στην επιχείρησή σας',
   // ...add more as needed
 };
 
@@ -32,6 +38,8 @@ const GreekPage = () => (
       <GreekServicesSection />
       <GreekAboutSection />
       <GreekTeamSection />
+      <GreekChatbotSection />
+      <GreekBookingSection />
       <GreekFAQSection />
       <GreekTestimonialsSection />
       <GreekContactSection />

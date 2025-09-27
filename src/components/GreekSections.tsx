@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDown, CheckCircle2, Star, Zap } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { Database, Shield, Cloud, Code } from 'lucide-react';
-import { Bot, Cpu, SatelliteDish, BrainCircuit, Users, Globe } from 'lucide-react';
+import { Bot, Cpu, SatelliteDish, BrainCircuit, Users, Globe, Brain, Calendar, Video, CheckCircle, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Phone } from 'lucide-react';
@@ -1100,6 +1100,28 @@ const GreekNavbar = () => {
                 Υπηρεσίες
               </a>
               <a 
+                href="#chatbot-section"
+                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('chatbot-section') as HTMLElement, 500);
+                  setIsMenuOpen(false);
+                }}
+              >
+                Chatbot
+              </a>
+              <a 
+                href="#booking-section"
+                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
+                onClick={e => {
+                  e.preventDefault();
+                  smoothScrollTo(document.getElementById('booking-section') as HTMLElement, 500);
+                  setIsMenuOpen(false);
+                }}
+              >
+                Κλείστε Ραντεβού
+              </a>
+              <a 
                 href="#about"
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
@@ -1223,6 +1245,8 @@ const GreekNavbar = () => {
                 { href: '#services', text: 'Υπηρεσίες' },
                 { href: '#about', text: 'Σχετικά' },
                 { href: '#team', text: 'Ομάδα' },
+                { href: '#chatbot-section', text: 'Chatbot' },
+                { href: '#booking-section', text: 'Κλείστε Ραντεβού' },
                 { href: '#faq', text: 'FAQ' },
                 { href: '#testimonials', text: 'Μαρτυρίες' }
               ].map((item) => (
@@ -1276,5 +1300,130 @@ const GreekNavbar = () => {
   );
 };
 
-// Export GreekNavbar from GreekSections for use in /el page
+// Greek Chatbot Section
+export const GreekChatbotSection = () => {
+  return (
+    <section id="chatbot-section" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Chatbot Τεχνητής Νοημοσύνης</h2>
+          <p className="text-xl text-gray-400">Ανακαλύψτε την επόμενη γενιά εξυπηρέτησης πελατών</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="bg-black/50 p-6 rounded-lg">
+              <Bot className="w-12 h-12 text-heraglyph-accent mb-4" />
+              <h3 className="text-2xl font-semibold mb-2">Έξυπνη Εξυπηρέτηση</h3>
+              <p className="text-gray-400">24/7 υποστήριξη με προηγμένη τεχνητή νοημοσύνη που μαθαίνει και προσαρμόζεται.</p>
+            </div>
+
+            <div className="bg-black/50 p-6 rounded-lg">
+              <Brain className="w-12 h-12 text-heraglyph-accent mb-4" />
+              <h3 className="text-2xl font-semibold mb-2">Εξατομικευμένες Απαντήσεις</h3>
+              <p className="text-gray-400">Προσαρμοσμένες λύσεις βασισμένες στις μοναδικές ανάγκες των πελατών σας.</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="p-6 bg-gradient-to-br from-heraglyph-accent/20 to-transparent rounded-lg"
+          >
+            <div className="mock-chat-interface bg-black/40 rounded-lg p-4 space-y-4">
+              <div className="flex items-start space-x-3">
+                <Bot className="w-8 h-8 text-heraglyph-accent" />
+                <div className="bg-heraglyph-accent/20 rounded-lg p-3">
+                  <p>Γεια σας! Πώς μπορώ να σας βοηθήσω σήμερα;</p>
+                </div>
+              </div>
+              {/* Add more mock chat messages as needed */}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Greek Booking Section
+export const GreekBookingSection = () => {
+  return (
+    <section id="booking-section" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Κλείστε μια Συνάντηση</h2>
+          <p className="text-xl text-gray-400">Συζητήστε μαζί μας για τις λύσεις AI που ταιριάζουν στην επιχείρησή σας</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="bg-black/50 p-6 rounded-lg">
+              <Calendar className="w-12 h-12 text-heraglyph-accent mb-4" />
+              <h3 className="text-2xl font-semibold mb-2">Ευέλικτος Προγραμματισμός</h3>
+              <p className="text-gray-400">Επιλέξτε την ώρα που σας βολεύει καλύτερα για μια προσωπική συνάντηση.</p>
+            </div>
+
+            <div className="bg-black/50 p-6 rounded-lg">
+              <Video className="w-12 h-12 text-heraglyph-accent mb-4" />
+              <h3 className="text-2xl font-semibold mb-2">Διαδικτυακές Συναντήσεις</h3>
+              <p className="text-gray-400">Άνετες συζητήσεις μέσω βιντεοκλήσης από οπουδήποτε στον κόσμο.</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="bg-black/50 p-6 rounded-lg"
+          >
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4">
+                <CheckCircle className="w-8 h-8 text-heraglyph-accent" />
+                <span>Δωρεάν Αρχική Συνάντηση</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Clock className="w-8 h-8 text-heraglyph-accent" />
+                <span>30-λεπτη Συζήτηση</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Globe className="w-8 h-8 text-heraglyph-accent" />
+                <span>Διαθέσιμο σε Πολλές Γλώσσες</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Export all sections from GreekSections for use in /el page
 export { GreekNavbar };
