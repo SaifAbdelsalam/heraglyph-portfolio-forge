@@ -57,8 +57,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 z-50">
             <a href="/" className="group flex items-center">
-              <img src="./uploads/872dcae6-04ca-4497-a5fd-4c14b83f6a66.png" alt="HERAGLYPH Logo" className="h-8 mr-3 transition-transform duration-300 group-hover:scale-105" />
-              <span className="text-xl font-bold font-heading transition-colors duration-300 group-hover:text-heraglyph-accent">
+              <span className="text-2xl font-bold font-heading transition-colors duration-300 group-hover:text-heraglyph-accent">
                 <span className="gradient-text">HERA</span>GLYPH
               </span>
             </a>
@@ -98,18 +97,7 @@ const Navbar = () => {
               >
                 Chatbot
               </a>
-              <a 
-                href="#booking-section" 
-                className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
-                onClick={e => {
-                  e.preventDefault();
-                  smoothScrollTo(document.getElementById('booking-section') as HTMLElement);
-                  setIsMenuOpen(false);
-                }}
-              >
-                Book a Call
-              </a>
-              <a
+              {/* <a
                 href="/el"
                 className="flex items-center justify-center w-9 h-9 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow mr-2 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
                 style={{ minWidth: 36, padding: 0 }}
@@ -121,7 +109,7 @@ const Navbar = () => {
                   className="w-6 h-6 object-cover rounded-full"
                   style={{ display: 'block' }}
                 />
-              </a>
+              </a> */}
               <a 
                 href="#booking-section" 
                 className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white px-5 py-2.5 rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
