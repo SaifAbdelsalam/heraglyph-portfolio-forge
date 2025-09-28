@@ -182,18 +182,24 @@ const Footer = () => {
           <div className="flex space-x-6 text-sm text-heraglyph-gray">
             <a 
               href="/privacy-policy" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-heraglyph-accent transition-colors cursor-pointer"
             >
               Privacy Policy
             </a>
             <a 
               href="/terms-of-service" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-heraglyph-accent transition-colors cursor-pointer"
             >
               Terms of Service
             </a>
             <a 
               href="/cookie-policy" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-heraglyph-accent transition-colors cursor-pointer"
             >
               Cookie Policy
