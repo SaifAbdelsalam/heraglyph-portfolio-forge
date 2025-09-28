@@ -93,3 +93,4 @@ If you prefer not to use Google Sheets, you can:
 3. Remove the Google Sheets integration
 4. Bookings will still be stored locally and you'll receive email notifications
 
+

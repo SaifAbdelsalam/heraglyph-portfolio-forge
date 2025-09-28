@@ -73,7 +73,7 @@ const ChatbotSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+    <section id="chatbot-section" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Starry Background */}
