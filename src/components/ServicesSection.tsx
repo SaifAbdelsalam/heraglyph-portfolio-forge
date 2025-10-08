@@ -199,7 +199,7 @@ const ServicesSection = () => {
 					}}
 				>
 					<a
-						href="#contact"
+						href="#booking-section"
 						className="inline-flex items-center gap-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light text-heraglyph-black px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-heraglyph-accent/25 transition-all duration-300 hover:scale-105"
 					>
 						<span>Book A Call</span>

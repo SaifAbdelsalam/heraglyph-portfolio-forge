@@ -1,0 +1,172 @@
+/* Mobile-specific styles for NewContactSection */
+@media (max-width: 640px) {
+  .contact-section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .contact-header {
+    margin-bottom: 2rem !important;
+  }
+
+  .contact-header h2 {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .contact-header p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    padding: 0 1rem !important;
+  }
+
+  .contact-methods {
+    gap: 1.5rem !important;
+  }
+
+  .contact-method {
+    text-align: center !important;
+    padding: 1.5rem !important;
+  }
+
+  .contact-method .icon-container {
+    margin: 0 auto 1.5rem auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .contact-method h3 {
+    text-align: center !important;
+    margin-bottom: 0.75rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .contact-method .value {
+    text-align: center !important;
+    margin-bottom: 0.75rem !important;
+    font-size: 1rem !important;
+  }
+
+  .contact-method .description {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .contact-method .cta {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+  }
+
+  .contact-method .cta span {
+    text-align: center !important;
+  }
+
+  .contact-method .cta svg {
+    margin-left: 0.5rem !important;
+  }
+
+  .additional-info {
+    margin-top: 2rem !important;
+    padding: 1.5rem !important;
+  }
+
+  .additional-info .company-info {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .additional-info .company-info .icon {
+    margin: 0 auto !important;
+  }
+
+  .additional-info .company-info .name {
+    text-align: center !important;
+    font-size: 1.25rem !important;
+  }
+
+  .additional-info p {
+    text-align: center !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .additional-info .location {
+    justify-content: center !important;
+    margin-top: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Enhanced mobile grid layout */
+@media (max-width: 640px) {
+  .contact-methods {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .contact-method {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Mobile-specific animations */
+@media (max-width: 640px) {
+  .contact-method {
+    animation: slideInUp 0.6s ease-out !important;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Enhanced mobile typography */
+@media (max-width: 640px) {
+  .contact-header .badge {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .contact-method .icon-container {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  .contact-method .icon-container svg {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+/* Mobile-specific spacing improvements */
+@media (max-width: 640px) {
+  .contact-section .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .contact-method {
+    margin-bottom: 0 !important;
+  }
+
+  .contact-method:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+

@@ -387,8 +387,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-heraglyph-white">Phone</p>
-                    <a href="tel:+306948677416" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
-                      +30 (694) 86 77416
+                    <a href="tel:+201091571112" className="text-heraglyph-gray hover:text-heraglyph-accent transition-colors">
+                      +20 109 157 1112
                     </a>
                   </div>
                 </div>

@@ -5,13 +5,16 @@
     margin: 0 auto;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    padding-bottom: 0;
+    padding-top: 0;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 0;
   }
   .hero-mobile-text {
     text-align: center;
     max-width: 450px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 0.5rem auto;
     width: 100%;
     font-size: 1.1rem;
     line-height: 1.5;
@@ -22,7 +25,7 @@
     gap: 1rem;
     width: 100%;
     max-width: 450px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 0.5rem auto;
   }
   .hero-mobile-btns a {
     width: 100%;
@@ -36,7 +39,8 @@
     flex-direction: column !important;
     align-items: center !important;
     gap: 0.75rem !important;
-    margin-top: 1.5rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     width: 100%;
     max-width: 450px;
     margin-left: auto;
@@ -51,23 +55,23 @@
     justify-content: center;
   }
   .section-container {
-    padding-top: 4.5rem !important;
-    padding-bottom: 2.5rem !important;
-    margin-top: 2.5rem !important;
-    margin-bottom: 2.5rem !important;
-    min-height: unset !important;
-    height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 2rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    min-height: 70vh !important;
+    height: 70vh !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
   }
   .min-h-screen {
-    min-height: 100dvh !important;
+    min-height: 70vh !important;
   }
   .absolute.bottom-8.left-0 {
     position: static !important;
-    margin-top: 2.5rem;
+    margin-top: 0 !important;
     transform: none !important;
     justify-content: center !important;
     width: 100% !important;
@@ -87,6 +91,21 @@
     -webkit-backface-visibility: hidden !important;
     backface-visibility: hidden !important;
     will-change: transform !important;
+  }
+
+  /* Position decorative gradient boxes at bottom on mobile */
+  .absolute.bottom-0.left-0.w-96.h-96 {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+  }
+  
+  .absolute.top-0.right-0.w-96.h-96 {
+    top: auto !important;
+    bottom: 0 !important;
+    left: auto !important;
+    right: 0 !important;
   }
 
   /* Services Section mobile styles */

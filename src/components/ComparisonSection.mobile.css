@@ -1,0 +1,178 @@
+/* Mobile-specific styles for ComparisonSection */
+@media (max-width: 640px) {
+  .comparison-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .comparison-header {
+    margin-bottom: 2rem !important;
+  }
+
+  .comparison-header h2 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .comparison-header p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    padding: 0 1rem !important;
+  }
+
+  .comparison-badge {
+    margin-bottom: 2rem !important;
+  }
+
+  .comparison-badge .vs-badge {
+    width: 3rem !important;
+    height: 3rem !important;
+    font-size: 1rem !important;
+  }
+
+  .comparison-headers {
+    margin-bottom: 1.5rem !important;
+    gap: 1rem !important;
+  }
+
+  .comparison-headers h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .comparison-lines {
+    gap: 1rem !important;
+  }
+
+  .comparison-line {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .comparison-line .without,
+  .comparison-line .with {
+    padding: 1rem !important;
+    border-radius: 0.75rem !important;
+    min-height: auto !important;
+    border-left-width: 3px !important;
+  }
+
+  .comparison-line .without {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: #dc2626 !important;
+  }
+
+  .comparison-line .with {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border-color: #ffd700 !important;
+  }
+
+  .comparison-line .icon-container {
+    width: 2rem !important;
+    height: 2rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .comparison-line .text {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .comparison-line .without .text {
+    color: #fca5a5 !important;
+  }
+
+  .comparison-line .with .text {
+    color: #fef3c7 !important;
+    font-weight: 500 !important;
+  }
+
+  .comparison-cta {
+    margin-top: 2rem !important;
+  }
+
+  .comparison-cta a {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* Enhanced mobile grid layout */
+@media (max-width: 640px) {
+  .comparison-lines {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .comparison-line {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .comparison-line .without,
+  .comparison-line .with {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* Mobile-specific animations */
+@media (max-width: 640px) {
+  .comparison-line {
+    animation: slideInUp 0.6s ease-out !important;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Enhanced mobile typography */
+@media (max-width: 640px) {
+  .comparison-header .badge {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .comparison-headers h3 {
+    text-align: center !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .comparison-line .text {
+    text-align: left !important;
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+  }
+}
+
+/* Mobile-specific spacing improvements */
+@media (max-width: 640px) {
+  .comparison-section .max-w-6xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .comparison-line {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .comparison-line:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+

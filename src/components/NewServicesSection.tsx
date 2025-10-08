@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { 
   Zap, 
   Bot, 
-  Workflow, 
   Sparkles, 
   Target, 
   Users, 
@@ -11,10 +10,11 @@ import {
   BarChart3, 
   Shield, 
   Building2,
-  Lightbulb,
   Cpu,
   MessageSquare,
-  Settings
+  PhoneCall,
+  Mic,
+  Globe
 } from 'lucide-react';
 
 const NewServicesSection = () => {
@@ -41,23 +41,17 @@ const NewServicesSection = () => {
       )
     },
     {
-      title: "Smart Automation",
-      icon: <Workflow className="w-8 h-8" />,
-      description: "From instant data collection to automated decision-making, we turn repetitive processes into intelligent, revenue-generating systems that work around the clock.",
+      title: "AI Voice Assistants",
+      icon: <PhoneCall className="w-8 h-8" />,
+      description: "Professional voice agents that answer calls, qualify leads, schedule appointments, and support customers in multiple languages — reducing call center costs while increasing conversions.",
       graphic: (
         <div className="relative w-full h-32 bg-gradient-to-br from-heraglyph-accent/20 to-heraglyph-accent-light/10 rounded-lg p-4 flex items-center justify-center">
-          <div className="space-y-2 w-full">
-            <div className="flex items-center gap-3 bg-heraglyph-accent/20 rounded-lg p-2">
-              <Settings className="w-4 h-4 text-heraglyph-accent" />
-              <span className="text-xs text-heraglyph-white font-medium">Trigger</span>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-heraglyph-accent/30 rounded-xl flex items-center justify-center">
+              <Mic className="w-6 h-6 text-heraglyph-accent" />
             </div>
-            <div className="flex items-center gap-3 bg-heraglyph-accent/20 rounded-lg p-2">
-              <Lightbulb className="w-4 h-4 text-heraglyph-accent" />
-              <span className="text-xs text-heraglyph-white font-medium">Process</span>
-            </div>
-            <div className="flex items-center gap-3 bg-heraglyph-accent/20 rounded-lg p-2">
-              <Zap className="w-4 h-4 text-heraglyph-accent" />
-              <span className="text-xs text-heraglyph-white font-medium">Execute</span>
+            <div className="w-12 h-12 bg-heraglyph-accent/30 rounded-xl flex items-center justify-center">
+              <Globe className="w-6 h-6 text-heraglyph-accent" />
             </div>
           </div>
         </div>
@@ -90,11 +84,11 @@ const NewServicesSection = () => {
     { title: "Continuous Improvement", icon: <TrendingUp className="w-4 h-4" /> },
     { title: "Daily Analytics", icon: <BarChart3 className="w-4 h-4" /> },
     { title: "Enterprise Security", icon: <Shield className="w-4 h-4" /> },
-    { title: "Real-Time Management", icon: <Building2 className="w-4 h-4" /> }
+    { title: "Real-Time Management", icon: <Building2 className="w-4 h-4" />, hideOnMobile: true }
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+    <section id="new-services" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Starry Background */}
@@ -113,8 +107,8 @@ const NewServicesSection = () => {
         <div className="text-center mb-16">
           <motion.div
             className="inline-flex items-center gap-2 bg-heraglyph-accent/10 border border-heraglyph-accent/20 rounded-full px-4 py-2 mb-6"
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ y: 12, scale: 0.98 }}
+            whileInView={{ y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
@@ -124,8 +118,8 @@ const NewServicesSection = () => {
 
           <motion.h2
             className="text-4xl md:text-6xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 18 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
@@ -137,8 +131,8 @@ const NewServicesSection = () => {
 
           <motion.p
             className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
@@ -152,8 +146,8 @@ const NewServicesSection = () => {
             <motion.div
               key={index}
               className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-heraglyph-accent/30 transition-all duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 24 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
               whileHover={{ y: -3 }}
@@ -181,9 +175,9 @@ const NewServicesSection = () => {
           {featureButtons.map((feature, index) => (
             <motion.div
               key={index}
-              className="relative bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-700/40 rounded-2xl p-5 hover:border-heraglyph-accent/50 hover:bg-gradient-to-br hover:from-heraglyph-accent/10 hover:to-heraglyph-accent/5 transition-all duration-300 group cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className={`relative bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-700/40 rounded-2xl p-5 hover:border-heraglyph-accent/50 hover:bg-gradient-to-br hover:from-heraglyph-accent/10 hover:to-heraglyph-accent/5 transition-all duration-300 group cursor-pointer ${feature.hideOnMobile ? 'hidden md:block' : ''}`}
+              initial={{ y: 12 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
               whileHover={{ scale: 1.02, y: -1 }}
@@ -203,13 +197,14 @@ const NewServicesSection = () => {
         {/* Call to Action */}
         <motion.div
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 12 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <motion.button
-            className="bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light text-black font-bold px-8 py-4 rounded-full hover:shadow-lg hover:shadow-heraglyph-accent/25 transition-all duration-300 group"
+          <motion.a
+            href="#booking-section"
+            className="inline-block bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light text-black font-bold px-8 py-4 rounded-full hover:shadow-lg hover:shadow-heraglyph-accent/25 transition-all duration-300 group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -217,7 +212,7 @@ const NewServicesSection = () => {
               Let's Build Something Amazing
               <Zap className="w-5 h-5 group-hover:rotate-6 transition-transform duration-300" />
             </span>
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

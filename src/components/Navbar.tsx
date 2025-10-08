@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function smoothScrollTo(element: HTMLElement, duration = 500) {
+function smoothScrollTo(element: HTMLElement, duration = 1200) {
   const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
   const distance = targetPosition - startPosition;
@@ -15,10 +15,10 @@ function smoothScrollTo(element: HTMLElement, duration = 500) {
   }
 
   function ease(t: number, b: number, c: number, d: number) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
+    // Ease out cubic for smoother, slower animation
+    t /= d;
     t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
+    return c * (t * t * t + 1) + b;
   }
 
   requestAnimationFrame(animation);
@@ -65,11 +65,11 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
               <a 
-                href="#services"
+                href="#new-services"
                 className="text-heraglyph-gray hover:text-heraglyph-white hover:scale-105 transition-all duration-300"
                 onClick={e => {
                   e.preventDefault();
-                  smoothScrollTo(document.getElementById('services') as HTMLElement, 500);
+                  smoothScrollTo(document.getElementById('new-services') as HTMLElement);
                   setIsMenuOpen(false);
                 }}
               >
@@ -171,7 +171,7 @@ const Navbar = () => {
           <div className="w-full max-w-sm mx-auto">
             <div className="space-y-7">
               {[
-                { href: '#services', text: window.location.pathname === '/el' ? 'Υπηρεσίες' : 'Services' },
+                { href: '#new-services', text: window.location.pathname === '/el' ? 'Υπηρεσίες' : 'Services' },
                 { href: '#comparison', text: window.location.pathname === '/el' ? 'Σύγκριση' : 'Comparison' },
                 { href: '#chatbot', text: window.location.pathname === '/el' ? 'Chatbot' : 'Chatbot' },
                 { href: '#booking', text: window.location.pathname === '/el' ? 'Κλείστε Ραντεβού' : 'Book a Call' }
@@ -191,30 +191,19 @@ const Navbar = () => {
               ))}
             </div>
             
-            <div className="mt-12 flex items-center justify-center space-x-6">
-              <a
-                href={window.location.pathname === '/el' ? '/' : '/el'}
-                className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-heraglyph-accent bg-heraglyph-black/80 shadow hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-heraglyph-accent"
-                aria-label={window.location.pathname === '/el' ? 'Switch to English' : 'Μετάβαση στα Ελληνικά'}
-              >
-                <img
-                  src={window.location.pathname === '/el' ? '/united-kingdom.png' : '/greece.png'}
-                  alt={window.location.pathname === '/el' ? 'English' : 'Greek'}
-                  className="w-8 h-8 object-cover rounded-full"
-                />
-              </a>
-              <a 
-                href="#booking"
-                className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
-                onClick={e => {
-                  e.preventDefault();
-                  smoothScrollTo(document.getElementById('booking') as HTMLElement);
-                  setIsMenuOpen(false);
-                }}
-              >
-                {window.location.pathname === '/el' ? 'Κλείστε Ραντεβού' : 'Book a Call'}
-              </a>
-            </div>
+              <div className="mt-12 flex items-center justify-center">
+                <a 
+                  href="#booking-section"
+                  className="px-8 py-3 bg-gradient-to-r from-heraglyph-accent to-heraglyph-gradient-end text-heraglyph-white text-lg rounded-md font-medium hover:shadow-lg hover:shadow-heraglyph-accent/20 hover:scale-105 transition-all duration-300"
+                  onClick={e => {
+                    e.preventDefault();
+                    smoothScrollTo(document.getElementById('booking-section') as HTMLElement);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {window.location.pathname === '/el' ? 'Κλείστε Ραντεβού' : 'Book a Call'}
+                </a>
+              </div>
           </div>
         </div>
       </div>

@@ -94,3 +94,6 @@ If you prefer not to use Google Sheets, you can:
 4. Bookings will still be stored locally and you'll receive email notifications
 
 
+
+
+
