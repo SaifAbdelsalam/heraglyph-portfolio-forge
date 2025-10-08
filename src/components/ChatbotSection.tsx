@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MessageCircle, 
@@ -10,8 +10,12 @@ import {
   Brain,
   Users
 } from 'lucide-react';
+import '@n8n/chat/style.css';
+import { createChat } from '@n8n/chat';
 
 const ChatbotSection = () => {
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -23,7 +27,20 @@ const ChatbotSection = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
-  const handleSendMessage = () => {
+  useEffect(() => {
+    if (!chatContainerRef.current || isInitialized) return;
+    
+    // Initialize n8n chat in hidden container
+    createChat({
+      webhookUrl: 'https://primary-production-e937.up.railway.app/webhook/1be5a202-2e86-4223-80b4-58ed406de545/chat',
+      target: '#n8n-chat-hidden',
+      mode: 'window',
+    });
+    
+    setIsInitialized(true);
+  }, [isInitialized]);
+
+  const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
     const userMessage = {
@@ -34,28 +51,68 @@ const ChatbotSection = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentMessage = inputMessage;
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const responses = [
-        "That's a great question! HERAGLYPH specializes in AI automation solutions for businesses. We can help with chatbots, email automation, voice assistants, and custom automations.",
-        "I'd be happy to help you understand our services better. We offer AI-powered solutions that can transform your business operations and improve customer experience.",
-        "Our AI solutions include intelligent chatbots that can handle customer inquiries 24/7, automated email sequences, multilingual voice assistants, and custom automation workflows tailored to your business needs.",
-        "Would you like to learn more about how our AI automation can specifically benefit your business? I can provide detailed information about our services and pricing."
-      ];
+    try {
+      // Send message to n8n webhook with proper format
+      const response = await fetch('https://primary-production-e937.up.railway.app/webhook/1be5a202-2e86-4223-80b4-58ed406de545/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'sendMessage',
+          chatInput: currentMessage,
+          sessionId: 'heraglyph-session-' + Date.now()
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data); // Debug log
+      
+      // Extract response text from various possible response formats
+      let responseText = 'I received your message. How can I help you further?';
+      
+      if (data.response) {
+        responseText = data.response;
+      } else if (data.message) {
+        responseText = data.message;
+      } else if (data.text) {
+        responseText = data.text;
+      } else if (data.output) {
+        responseText = data.output;
+      } else if (typeof data === 'string') {
+        responseText = data;
+      } else if (data.data && data.data.response) {
+        responseText = data.data.response;
+      }
       
       const botResponse = {
         id: messages.length + 2,
         type: 'bot',
-        text: responses[Math.floor(Math.random() * responses.length)],
+        text: responseText,
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, botResponse]);
-      setIsTyping(false);
-    }, 1500);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const botResponse = {
+        id: messages.length + 2,
+        type: 'bot',
+        text: 'I apologize, but I\'m having trouble connecting right now. Please try again in a moment.',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botResponse]);
+    }
+    
+    setIsTyping(false);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -288,4 +345,3 @@ const ChatbotSection = () => {
 };
 
 export default ChatbotSection;
-
