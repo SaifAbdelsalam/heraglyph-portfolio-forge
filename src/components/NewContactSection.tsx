@@ -9,37 +9,38 @@ import {
   Globe,
   MapPin
 } from 'lucide-react';
+import './NewContactSection.mobile.css';
 
 const NewContactSection = () => {
   const contactMethods = [
     {
       icon: MessageCircle,
       title: 'WhatsApp',
-      value: '+201120574501',
-      link: 'https://wa.me/201120574501',
+      value: '+201091571112',
+      link: 'https://wa.me/201091571112',
       description: 'Chat with us instantly',
       color: 'from-green-500 to-green-600'
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+201120574501',
-      link: 'tel:+201120574501',
+      value: '+201091571112',
+      link: 'tel:+201091571112',
       description: 'Call us directly',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: Mail,
       title: 'Email',
-      value: 'info@heraglyph.com',
-      link: 'mailto:info@heraglyph.com',
+      value: 'info@heraglyphs.com',
+      link: 'mailto:info@heraglyphs.com',
       description: 'Send us an email',
       color: 'from-red-500 to-red-600'
     }
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+    <section id="new-contact" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden contact-section">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Starry Background */}
@@ -56,12 +57,12 @@ const NewContactSection = () => {
       <div className="relative z-10 container mx-auto px-6 py-20">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 contact-header"
           initial={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-heraglyph-accent/10 border border-heraglyph-accent/20 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 bg-heraglyph-accent/10 border border-heraglyph-accent/20 rounded-full px-4 py-2 mb-6 badge"
             initial={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
@@ -92,7 +93,7 @@ const NewContactSection = () => {
 
         {/* Contact Methods */}
         <motion.div
-          className="max-w-6xl mx-auto"
+          className="max-w-6xl mx-auto contact-methods"
           initial={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
@@ -103,7 +104,7 @@ const NewContactSection = () => {
                 href={method.link}
                 target={method.title === 'WhatsApp' ? '_blank' : '_self'}
                 rel={method.title === 'WhatsApp' ? 'noopener noreferrer' : ''}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-heraglyph-accent/50 transition-all duration-300 overflow-hidden"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-heraglyph-accent/50 transition-all duration-300 overflow-hidden contact-method"
                 initial={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
@@ -114,7 +115,7 @@ const NewContactSection = () => {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 icon-container`}>
                     <method.icon className="w-8 h-8 text-white" />
                   </div>
 
@@ -124,17 +125,17 @@ const NewContactSection = () => {
                   </h3>
 
                   {/* Value */}
-                  <p className="text-lg text-gray-300 mb-3 font-medium">
+                  <p className="text-lg text-gray-300 mb-3 font-medium value">
                     {method.value}
                   </p>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-sm mb-6">
+                  <p className="text-gray-400 text-sm mb-6 description">
                     {method.description}
                   </p>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-2 text-heraglyph-accent font-medium group-hover:translate-x-1 transition-transform duration-300">
+                  <div className="flex items-center gap-2 text-heraglyph-accent font-medium group-hover:translate-x-1 transition-transform duration-300 cta">
                     <span>Contact Now</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>
@@ -149,16 +150,16 @@ const NewContactSection = () => {
 
         {/* Additional Info */}
         <motion.div
-          className="max-w-4xl mx-auto mt-16 text-center"
+          className="max-w-4xl mx-auto mt-16 text-center additional-info"
           initial={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-heraglyph-accent/20 rounded-full flex items-center justify-center">
+            <div className="flex items-center justify-center gap-3 mb-4 company-info">
+              <div className="w-8 h-8 bg-heraglyph-accent/20 rounded-full flex items-center justify-center icon">
                 <Sparkles className="w-4 h-4 text-heraglyph-accent" />
               </div>
-              <span className="text-xl text-white font-medium">HERAGLYPH</span>
+              <span className="text-xl text-white font-medium name">HERAGLYPH</span>
             </div>
             
             <p className="text-gray-300 text-lg leading-relaxed">
@@ -167,7 +168,7 @@ const NewContactSection = () => {
               we're ready to discuss your project and provide a tailored solution.
             </p>
             
-            <div className="flex items-center justify-center gap-2 mt-6 text-gray-400">
+            <div className="flex items-center justify-center gap-2 mt-6 text-gray-400 location">
               <MapPin className="w-4 h-4" />
               <span>Based in Egypt • Serving Worldwide</span>
             </div>

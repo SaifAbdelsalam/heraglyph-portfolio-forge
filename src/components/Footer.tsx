@@ -62,7 +62,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-heraglyph-gray mb-6">
-              Transforming visions into digital realities with comprehensive branding solutions that elevate your business.
+              We engineer AI-powered automation solutions that transform your business operations. From intelligent chatbots to voice assistants and custom AI systems, we make your business faster, smarter, and impossible to ignore.
             </p>
           </div>
           
@@ -74,16 +74,16 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>AI Chatbots & Automation
+                <span className="mr-2 text-xs">→</span>AI-Powered Chatbots
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>Cold Email AI Systems
+                <span className="mr-2 text-xs">→</span>AI Voice Assistants
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>AI-Driven Process Optimization
+                <span className="mr-2 text-xs">→</span>Auto Lead Generation
               </div></li>
               <li><div className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center cursor-default">
-                <span className="mr-2 text-xs">→</span>AI Security & Compliance
+                <span className="mr-2 text-xs">→</span>Custom AI Solutions
               </div></li>
             </ul>
           </div>
@@ -95,13 +95,16 @@ const Footer = () => {
               <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-gradient-to-r from-heraglyph-accent to-transparent"></span>
             </h3>
             <ul className="space-y-3 text-heraglyph-gray">
-              <li><a href="#about" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
-                <span className="mr-2 text-xs">→</span>About Us
+              <li><a href="#comparison" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+                <span className="mr-2 text-xs">→</span>Comparison
               </a></li>
-              <li><a href="#testimonials" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
-                <span className="mr-2 text-xs">→</span>Testimonials
+              <li><a href="#new-services" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+                <span className="mr-2 text-xs">→</span>Services
               </a></li>
-              <li><a href="#contact" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+              <li><a href="#chatbot-section" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
+                <span className="mr-2 text-xs">→</span>Chatbot
+              </a></li>
+              <li><a href="#new-contact" className="hover:text-heraglyph-accent transition-colors duration-300 flex items-center">
                 <span className="mr-2 text-xs">→</span>Contact
               </a></li>
             </ul>
@@ -135,6 +138,18 @@ const Footer = () => {
                 <span className="sr-only">Instagram</span>
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465.666.25 1.23.597 1.77 1.139.54.54.889 1.104 1.139 1.76.247.636.416 1.363.465 2.428.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.139 1.77c-.54.54-1.104.889-1.76 1.139-.636.247-1.363.416-2.428.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.77-1.139 4.902 4.902 0 01-1.139-1.77c-.247-.636-.416-1.363-.465-2.428C2.012 14.97 2 14.63 2 11.85c0-2.778.01-3.118.058-4.185.049-1.064.218-1.791.465-2.427.25-.66.599-1.225 1.139-1.77.54-.54 1.104-.89 1.77-1.139.636-.247 1.363-.416 2.428-.465C9.09 2.013 9.43 2 12.108 2h.207zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" clipRule="evenodd" />
+                </svg>
+              </a>
+              
+              <a 
+                href="https://www.linkedin.com/company/heraglyph/?viewAsMember=true" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-heraglyph-dark-gray/90 text-heraglyph-gray hover:text-heraglyph-accent p-2.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-heraglyph-accent/10"
+              >
+                <span className="sr-only">LinkedIn</span>
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" clipRule="evenodd" />
                 </svg>
               </a>
             </div>
