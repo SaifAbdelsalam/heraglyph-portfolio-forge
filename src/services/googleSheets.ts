@@ -88,6 +88,92 @@ Have any questions? Reach out to us at info@heraglyphs.com
   }
 };
 
+// Fetch occupied slots from a public Google Sheet via the gviz JSON endpoint
+// Returns a map of date (YYYY-MM-DD) -> array of occupied time labels (e.g., "11:00 AM")
+export const fetchOccupiedSlotsFromSheet = async (): Promise<Record<string, string[]>> => {
+  try {
+    // Spreadsheet: https://docs.google.com/spreadsheets/d/1KJdJH7SMqIpUlT-pWyFdDQzTv-otMGx1-g-0YL-sG70/edit?gid=0#gid=0
+    const spreadsheetId = '1KJdJH7SMqIpUlT-pWyFdDQzTv-otMGx1-g-0YL-sG70';
+    const gid = '0';
+    const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+
+    const resp = await fetch(url, { method: 'GET' });
+    if (!resp.ok) {
+      throw new Error(`Failed to fetch sheet: ${resp.status}`);
+    }
+    const text = await resp.text();
+    // gviz wraps JSON in a JS function call. Extract the JSON object safely
+    // Example prefix: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
+    let jsonText = '';
+    const wrapperRegex = /google\.visualization\.Query\.setResponse\((.*)\);?\s*$/s;
+    const match = text.match(wrapperRegex);
+    if (match && match[1]) {
+      jsonText = match[1];
+    } else {
+      const marker = 'setResponse(';
+      const start = text.indexOf(marker);
+      const end = text.lastIndexOf(')');
+      if (start !== -1 && end !== -1 && end > start) {
+        jsonText = text.substring(start + marker.length, end);
+      } else {
+        throw new Error('Unable to parse gviz response wrapper');
+      }
+    }
+    const data = JSON.parse(jsonText);
+    console.log('[GVIZ] Raw response parsed:', data);
+
+    const cols: Array<{ label: string }> = data.table.cols || [];
+    const rows: Array<{ c: Array<{ v: any; f?: string }> }> = data.table.rows || [];
+
+    const colIndexByName: Record<string, number> = {};
+    cols.forEach((col, idx) => {
+      const label = (col.label || '').trim();
+      if (label) colIndexByName[label] = idx;
+    });
+
+    const dateIdx = colIndexByName['Date'];
+    const timeIdx = colIndexByName['Time'];
+    if (dateIdx === undefined || timeIdx === undefined) {
+      console.warn('Sheet missing required headers: Date/Time');
+      return {};
+    }
+
+    const occupied: Record<string, Set<string>> = {};
+    for (const row of rows) {
+      const cells = row.c || [];
+      const dateCell = cells[dateIdx];
+      const timeCell = cells[timeIdx];
+      const dateVal = dateCell?.f || dateCell?.v;
+      const timeVal = timeCell?.f || timeCell?.v;
+      if (!dateVal || !timeVal) continue;
+
+      // Normalize date to YYYY-MM-DD
+      let dateStr = String(dateVal).trim();
+      if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(dateStr)) {
+        // Convert MM/DD/YYYY -> YYYY-MM-DD
+        const [m, d, y] = dateStr.split('/');
+        const yyyy = (y.length === 2 ? `20${y}` : y);
+        dateStr = `${yyyy}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      }
+
+      const timeStr = String(timeVal).trim(); // e.g., "11:00 AM"
+      if (!occupied[dateStr]) occupied[dateStr] = new Set();
+      occupied[dateStr].add(timeStr);
+    }
+
+    // Convert sets to arrays
+    const result: Record<string, string[]> = {};
+    Object.entries(occupied).forEach(([date, times]) => {
+      result[date] = Array.from(times);
+    });
+    console.log('[GVIZ] Occupied slots map:', result);
+    return result;
+  } catch (err) {
+    console.error('Error fetching occupied slots from sheet:', err);
+    return {};
+  }
+};
+
 
 
 

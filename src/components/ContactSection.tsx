@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Calendar, Clock } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -63,7 +62,7 @@ const ContactSection = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate email before submission
@@ -80,54 +79,56 @@ const ContactSection = () => {
 
     setIsSubmitting(true);
     setIsError(false);
-    
-    // EmailJS configuration for meeting scheduling
-    const serviceId = 'service_866bl86';
-    const templateId = 'template_fm7s90q';
-    const publicKey = 'T_MaEfPL4Kf782Lc-';
-    
-    // Prepare template parameters
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-      meeting_date: formData.meetingDate,
-      meeting_time: formData.meetingTime,
-      meeting_type: formData.meetingType,
-      to_email: 'heraglyph@gmail.com',
-      subject: `New Meeting Request from ${formData.name}`,
-      reply_to: formData.email
-    };
-    
-    console.log('Sending email with params:', templateParams);
-    
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then((result) => {
-        console.log('Meeting request sent successfully:', result.text);
-        setIsSubmitting(false);
-        setSubmitMessage('Thank you! Your meeting request has been sent. We will confirm your appointment within 24 hours.');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          message: '',
-          meetingDate: '',
-          meetingTime: '',
-          meetingType: 'consultation'
-        });
-        
-        // Clear the success message after 5 seconds
-        setTimeout(() => setSubmitMessage(''), 5000);
-      }, (error) => {
-        console.error('Failed to send meeting request:', error);
-        setIsSubmitting(false);
-        setIsError(true);
-        setSubmitMessage(`Failed to send meeting request. Error: ${error.text || error.message}`);
-        
-        // Clear the error message after 5 seconds
-        setTimeout(() => setSubmitMessage(''), 5000);
+
+    try {
+      const webhookUrl = 'https://primary-production-e937.up.railway.app/webhook/7f4ef36d-02e7-4ef9-8863-02aa220c1cbb';
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'saifkeyauthentication': 'YWRtaW46c2VjcmV0'
+        },
+        body: JSON.stringify({
+          source: 'contact',
+          payload: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            meetingDate: formData.meetingDate,
+            meetingTime: formData.meetingTime,
+            meetingType: formData.meetingType,
+            timestamp: new Date().toISOString(),
+            userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+          }
+        })
       });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || 'Webhook responded with an error');
+      }
+
+      setIsSubmitting(false);
+      setSubmitMessage('Thank you! Your meeting request has been sent. We will confirm your appointment within 24 hours.');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        meetingDate: '',
+        meetingTime: '',
+        meetingType: 'consultation'
+      });
+
+      setTimeout(() => setSubmitMessage(''), 5000);
+    } catch (error: any) {
+      console.error('Failed to send meeting request:', error);
+      setIsSubmitting(false);
+      setIsError(true);
+      setSubmitMessage(`Failed to send meeting request. Error: ${error?.message || 'Unknown error'}`);
+      setTimeout(() => setSubmitMessage(''), 5000);
+    }
   };
 
   return (

@@ -13,12 +13,12 @@ import {
   ChevronRight
 } from 'lucide-react';
 import BookingAdmin from './BookingAdmin';
-import { submitBookingToGoogleSheets, sendBookingEmail, BookingData } from '../services/googleSheets';
+import { BookingData, fetchOccupiedSlotsFromSheet } from '../services/googleSheets';
 
 const BookingSection = () => {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
-  const [selectedTimezone, setSelectedTimezone] = useState<string>('Africa/Cairo');
+  const [selectedTimezone, setSelectedTimezone] = useState<string>('');
   const [isTimezoneOpen, setIsTimezoneOpen] = useState<boolean>(false);
   const [showBookingNotification, setShowBookingNotification] = useState<boolean>(false);
   const [bookingDetails, setBookingDetails] = useState<any>(null);
@@ -29,6 +29,7 @@ const BookingSection = () => {
   const [customerEmail, setCustomerEmail] = useState<string>('');
   const [customerPhone, setCustomerPhone] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [occupiedByDate, setOccupiedByDate] = useState<Record<string, string[]>>({});
   const timezoneRef = useRef<HTMLDivElement>(null);
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [nameError, setNameError] = useState<string>('');
@@ -40,32 +41,142 @@ const BookingSection = () => {
     '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM'
   ];
 
-  // Popular timezones
+  // All timezones with their offsets
   const timezones = [
+    { value: 'Pacific/Midway', label: 'Midway Island (SST)', offset: '-11:00' },
+    { value: 'Pacific/Honolulu', label: 'Hawaii (HST)', offset: '-10:00' },
+    { value: 'America/Anchorage', label: 'Alaska (AKST)', offset: '-09:00' },
+    { value: 'America/Los_Angeles', label: 'Los Angeles (PST)', offset: '-08:00' },
+    { value: 'America/Denver', label: 'Denver (MST)', offset: '-07:00' },
+    { value: 'America/Chicago', label: 'Chicago (CST)', offset: '-06:00' },
+    { value: 'America/New_York', label: 'New York (EST)', offset: '-05:00' },
+    { value: 'America/Caracas', label: 'Caracas (VET)', offset: '-04:00' },
+    { value: 'America/Sao_Paulo', label: 'São Paulo (BRT)', offset: '-03:00' },
+    { value: 'Atlantic/South_Georgia', label: 'South Georgia (GST)', offset: '-02:00' },
+    { value: 'Atlantic/Azores', label: 'Azores (AZOT)', offset: '-01:00' },
     { value: 'Europe/London', label: 'London (GMT)', offset: '+00:00' },
     { value: 'Europe/Paris', label: 'Paris (CET)', offset: '+01:00' },
     { value: 'Europe/Berlin', label: 'Berlin (CET)', offset: '+01:00' },
     { value: 'Europe/Rome', label: 'Rome (CET)', offset: '+01:00' },
     { value: 'Europe/Madrid', label: 'Madrid (CET)', offset: '+01:00' },
     { value: 'Europe/Amsterdam', label: 'Amsterdam (CET)', offset: '+01:00' },
+    { value: 'Europe/Brussels', label: 'Brussels (CET)', offset: '+01:00' },
+    { value: 'Europe/Vienna', label: 'Vienna (CET)', offset: '+01:00' },
+    { value: 'Europe/Zurich', label: 'Zurich (CET)', offset: '+01:00' },
+    { value: 'Europe/Stockholm', label: 'Stockholm (CET)', offset: '+01:00' },
+    { value: 'Europe/Oslo', label: 'Oslo (CET)', offset: '+01:00' },
+    { value: 'Europe/Copenhagen', label: 'Copenhagen (CET)', offset: '+01:00' },
+    { value: 'Europe/Warsaw', label: 'Warsaw (CET)', offset: '+01:00' },
+    { value: 'Europe/Prague', label: 'Prague (CET)', offset: '+01:00' },
+    { value: 'Europe/Budapest', label: 'Budapest (CET)', offset: '+01:00' },
     { value: 'Europe/Athens', label: 'Athens (EET)', offset: '+02:00' },
-    { value: 'America/New_York', label: 'New York (EST)', offset: '-05:00' },
-    { value: 'America/Chicago', label: 'Chicago (CST)', offset: '-06:00' },
-    { value: 'America/Denver', label: 'Denver (MST)', offset: '-07:00' },
-    { value: 'America/Los_Angeles', label: 'Los Angeles (PST)', offset: '-08:00' },
-    { value: 'America/Toronto', label: 'Toronto (EST)', offset: '-05:00' },
-    { value: 'Asia/Tokyo', label: 'Tokyo (JST)', offset: '+09:00' },
-    { value: 'Asia/Shanghai', label: 'Shanghai (CST)', offset: '+08:00' },
+    { value: 'Europe/Helsinki', label: 'Helsinki (EET)', offset: '+02:00' },
+    { value: 'Europe/Riga', label: 'Riga (EET)', offset: '+02:00' },
+    { value: 'Europe/Tallinn', label: 'Tallinn (EET)', offset: '+02:00' },
+    { value: 'Europe/Vilnius', label: 'Vilnius (EET)', offset: '+02:00' },
+    { value: 'Europe/Bucharest', label: 'Bucharest (EET)', offset: '+02:00' },
+    { value: 'Europe/Sofia', label: 'Sofia (EET)', offset: '+02:00' },
+    { value: 'Europe/Kiev', label: 'Kiev (EET)', offset: '+02:00' },
+    { value: 'Europe/Minsk', label: 'Minsk (MSK)', offset: '+03:00' },
+    { value: 'Europe/Moscow', label: 'Moscow (MSK)', offset: '+03:00' },
+    { value: 'Europe/Istanbul', label: 'Istanbul (TRT)', offset: '+03:00' },
     { value: 'Asia/Dubai', label: 'Dubai (GST)', offset: '+04:00' },
+    { value: 'Asia/Tbilisi', label: 'Tbilisi (GET)', offset: '+04:00' },
+    { value: 'Asia/Yerevan', label: 'Yerevan (AMT)', offset: '+04:00' },
+    { value: 'Asia/Baku', label: 'Baku (AZT)', offset: '+04:00' },
+    { value: 'Asia/Karachi', label: 'Karachi (PKT)', offset: '+05:00' },
+    { value: 'Asia/Tashkent', label: 'Tashkent (UZT)', offset: '+05:00' },
     { value: 'Asia/Kolkata', label: 'Mumbai (IST)', offset: '+05:30' },
+    { value: 'Asia/Kathmandu', label: 'Kathmandu (NPT)', offset: '+05:45' },
+    { value: 'Asia/Dhaka', label: 'Dhaka (BST)', offset: '+06:00' },
+    { value: 'Asia/Almaty', label: 'Almaty (ALMT)', offset: '+06:00' },
+    { value: 'Asia/Bangkok', label: 'Bangkok (ICT)', offset: '+07:00' },
+    { value: 'Asia/Jakarta', label: 'Jakarta (WIB)', offset: '+07:00' },
+    { value: 'Asia/Ho_Chi_Minh', label: 'Ho Chi Minh (ICT)', offset: '+07:00' },
+    { value: 'Asia/Shanghai', label: 'Shanghai (CST)', offset: '+08:00' },
+    { value: 'Asia/Hong_Kong', label: 'Hong Kong (HKT)', offset: '+08:00' },
     { value: 'Asia/Singapore', label: 'Singapore (SGT)', offset: '+08:00' },
+    { value: 'Asia/Taipei', label: 'Taipei (CST)', offset: '+08:00' },
+    { value: 'Asia/Manila', label: 'Manila (PHT)', offset: '+08:00' },
+    { value: 'Asia/Kuala_Lumpur', label: 'Kuala Lumpur (MYT)', offset: '+08:00' },
+    { value: 'Asia/Seoul', label: 'Seoul (KST)', offset: '+09:00' },
+    { value: 'Asia/Tokyo', label: 'Tokyo (JST)', offset: '+09:00' },
+    { value: 'Australia/Adelaide', label: 'Adelaide (ACST)', offset: '+09:30' },
+    { value: 'Australia/Darwin', label: 'Darwin (ACST)', offset: '+09:30' },
     { value: 'Australia/Sydney', label: 'Sydney (AEST)', offset: '+10:00' },
     { value: 'Australia/Melbourne', label: 'Melbourne (AEST)', offset: '+10:00' },
+    { value: 'Australia/Brisbane', label: 'Brisbane (AEST)', offset: '+10:00' },
+    { value: 'Australia/Perth', label: 'Perth (AWST)', offset: '+08:00' },
+    { value: 'Pacific/Port_Moresby', label: 'Port Moresby (PGT)', offset: '+10:00' },
+    { value: 'Pacific/Noumea', label: 'Noumea (NCT)', offset: '+11:00' },
+    { value: 'Pacific/Auckland', label: 'Auckland (NZST)', offset: '+12:00' },
+    { value: 'Pacific/Fiji', label: 'Fiji (FJT)', offset: '+12:00' },
+    { value: 'Pacific/Tongatapu', label: 'Tongatapu (TOT)', offset: '+13:00' },
     { value: 'Africa/Cairo', label: 'Cairo (EET)', offset: '+02:00' },
     { value: 'Africa/Johannesburg', label: 'Johannesburg (SAST)', offset: '+02:00' },
-    { value: 'America/Sao_Paulo', label: 'São Paulo (BRT)', offset: '-03:00' },
+    { value: 'Africa/Lagos', label: 'Lagos (WAT)', offset: '+01:00' },
+    { value: 'Africa/Casablanca', label: 'Casablanca (WET)', offset: '+00:00' },
+    { value: 'Africa/Nairobi', label: 'Nairobi (EAT)', offset: '+03:00' },
+    { value: 'Africa/Tunis', label: 'Tunis (CET)', offset: '+01:00' },
+    { value: 'Africa/Algiers', label: 'Algiers (CET)', offset: '+01:00' },
+    { value: 'Africa/Tripoli', label: 'Tripoli (EET)', offset: '+02:00' },
+    { value: 'America/Toronto', label: 'Toronto (EST)', offset: '-05:00' },
+    { value: 'America/Vancouver', label: 'Vancouver (PST)', offset: '-08:00' },
     { value: 'America/Mexico_City', label: 'Mexico City (CST)', offset: '-06:00' },
-    { value: 'Pacific/Auckland', label: 'Auckland (NZST)', offset: '+12:00' }
+    { value: 'America/Buenos_Aires', label: 'Buenos Aires (ART)', offset: '-03:00' },
+    { value: 'America/Santiago', label: 'Santiago (CLT)', offset: '-03:00' },
+    { value: 'America/Lima', label: 'Lima (PET)', offset: '-05:00' },
+    { value: 'America/Bogota', label: 'Bogota (COT)', offset: '-05:00' },
+    { value: 'America/Caracas', label: 'Caracas (VET)', offset: '-04:00' },
+    { value: 'America/Havana', label: 'Havana (CST)', offset: '-05:00' },
+    { value: 'America/Santo_Domingo', label: 'Santo Domingo (AST)', offset: '-04:00' },
+    { value: 'America/Puerto_Rico', label: 'Puerto Rico (AST)', offset: '-04:00' },
+    { value: 'America/Guatemala', label: 'Guatemala (CST)', offset: '-06:00' },
+    { value: 'America/Honduras', label: 'Honduras (CST)', offset: '-06:00' },
+    { value: 'America/El_Salvador', label: 'El Salvador (CST)', offset: '-06:00' },
+    { value: 'America/Nicaragua', label: 'Nicaragua (CST)', offset: '-06:00' },
+    { value: 'America/Costa_Rica', label: 'Costa Rica (CST)', offset: '-06:00' },
+    { value: 'America/Panama', label: 'Panama (EST)', offset: '-05:00' },
+    { value: 'America/Jamaica', label: 'Jamaica (EST)', offset: '-05:00' },
+    { value: 'America/Cayman', label: 'Cayman Islands (EST)', offset: '-05:00' },
+    { value: 'America/Nassau', label: 'Nassau (EST)', offset: '-05:00' },
+    { value: 'America/Bermuda', label: 'Bermuda (AST)', offset: '-04:00' },
+    { value: 'America/St_Johns', label: 'St. Johns (NST)', offset: '-03:30' },
+    { value: 'America/Halifax', label: 'Halifax (AST)', offset: '-04:00' },
+    { value: 'America/Winnipeg', label: 'Winnipeg (CST)', offset: '-06:00' },
+    { value: 'America/Edmonton', label: 'Edmonton (MST)', offset: '-07:00' },
+    { value: 'America/Whitehorse', label: 'Whitehorse (MST)', offset: '-07:00' },
+    { value: 'America/Yellowknife', label: 'Yellowknife (MST)', offset: '-07:00' },
+    { value: 'America/Inuvik', label: 'Inuvik (MST)', offset: '-07:00' },
+    { value: 'America/Dawson', label: 'Dawson (MST)', offset: '-07:00' },
+    { value: 'America/Iqaluit', label: 'Iqaluit (EST)', offset: '-05:00' },
+    { value: 'America/Goose_Bay', label: 'Goose Bay (AST)', offset: '-04:00' },
+    { value: 'America/Moncton', label: 'Moncton (AST)', offset: '-04:00' },
+    { value: 'America/Thunder_Bay', label: 'Thunder Bay (EST)', offset: '-05:00' },
+    { value: 'America/Nipigon', label: 'Nipigon (EST)', offset: '-05:00' },
+    { value: 'America/Rainy_River', label: 'Rainy River (CST)', offset: '-06:00' },
+    { value: 'America/Resolute', label: 'Resolute (CST)', offset: '-06:00' },
+    { value: 'America/Rankin_Inlet', label: 'Rankin Inlet (CST)', offset: '-06:00' },
+    { value: 'America/Cambridge_Bay', label: 'Cambridge Bay (MST)', offset: '-07:00' },
+    { value: 'America/Creston', label: 'Creston (MST)', offset: '-07:00' },
+    { value: 'America/Dawson_Creek', label: 'Dawson Creek (MST)', offset: '-07:00' },
+    { value: 'America/Fort_Nelson', label: 'Fort Nelson (MST)', offset: '-07:00' },
+    { value: 'America/Vancouver', label: 'Vancouver (PST)', offset: '-08:00' },
+    { value: 'America/Whitehorse', label: 'Whitehorse (PST)', offset: '-08:00' },
+    { value: 'America/Dawson', label: 'Dawson (PST)', offset: '-08:00' },
+    { value: 'America/Sitka', label: 'Sitka (AKST)', offset: '-09:00' },
+    { value: 'America/Juneau', label: 'Juneau (AKST)', offset: '-09:00' },
+    { value: 'America/Yakutat', label: 'Yakutat (AKST)', offset: '-09:00' },
+    { value: 'America/Nome', label: 'Nome (AKST)', offset: '-09:00' },
+    { value: 'America/Adak', label: 'Adak (HST)', offset: '-10:00' },
+    { value: 'America/Metlakatla', label: 'Metlakatla (AKST)', offset: '-09:00' },
+    { value: 'Pacific/Honolulu', label: 'Honolulu (HST)', offset: '-10:00' },
+    { value: 'Pacific/Midway', label: 'Midway Island (SST)', offset: '-11:00' },
+    { value: 'Pacific/Wake', label: 'Wake Island (WAKT)', offset: '+12:00' },
+    { value: 'Pacific/Kwajalein', label: 'Kwajalein (MHT)', offset: '+12:00' },
+    { value: 'Pacific/Chatham', label: 'Chatham Islands (CHAST)', offset: '+12:45' },
+    { value: 'Pacific/Apia', label: 'Apia (WST)', offset: '+13:00' },
+    { value: 'Pacific/Kiritimati', label: 'Kiritimati (LINT)', offset: '+14:00' }
   ];
 
   // Generate calendar days for current month
@@ -105,6 +216,39 @@ const BookingSection = () => {
     setSelectedDate(dateString);
     setSelectedTime(''); // Reset time when date changes
   };
+
+  // Load occupied slots and detect user timezone once on mount
+  useEffect(() => {
+    (async () => {
+      const occupied = await fetchOccupiedSlotsFromSheet();
+      console.log('[Booking] Loaded occupied slots:', occupied);
+      setOccupiedByDate(occupied);
+    })();
+
+    // Auto-detect user's timezone
+    const detectUserTimezone = () => {
+      try {
+        const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        console.log('[Booking] Detected user timezone:', userTimezone);
+        
+        // Find matching timezone in our list
+        const foundTimezone = timezones.find(tz => tz.value === userTimezone);
+        if (foundTimezone) {
+          setSelectedTimezone(userTimezone);
+          console.log('[Booking] Set timezone to:', foundTimezone.label);
+        } else {
+          // Fallback to a common timezone if not found
+          setSelectedTimezone('Africa/Cairo');
+          console.log('[Booking] Timezone not found, using fallback: Africa/Cairo');
+        }
+      } catch (error) {
+        console.error('[Booking] Error detecting timezone:', error);
+        setSelectedTimezone('Africa/Cairo');
+      }
+    };
+
+    detectUserTimezone();
+  }, []);
 
   // Get current timezone info
   const getCurrentTimezone = () => {
@@ -217,33 +361,44 @@ const BookingSection = () => {
         const existingBookings = JSON.parse(localStorage.getItem('heraglyph_bookings') || '[]');
         existingBookings.push(booking);
         localStorage.setItem('heraglyph_bookings', JSON.stringify(existingBookings));
-        
-        // Submit to Google Sheets
-        const sheetsSuccess = await submitBookingToGoogleSheets(booking);
-        
-        // Send email notification
-        const emailSuccess = await sendBookingEmail(booking);
-        
-        if (sheetsSuccess || emailSuccess) {
+
+        // Send booking data to n8n webhook
+        const webhookUrl = 'https://primary-production-e937.up.railway.app/webhook/7f4ef36d-02e7-4ef9-8863-02aa220c1cbb';
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'saifkeyauthentication': 'YWRtaW46c2VjcmV0'
+          },
+          body: JSON.stringify({
+            source: 'booking',
+            payload: {
+              ...booking
+            }
+          })
+        });
+
+        if (response.ok) {
           // Show success notification
           setBookingDetails(booking);
           setShowBookingNotification(true);
           setShowConfirmation(true);
-          
+
           // Reset form
           setSelectedDate('');
           setSelectedTime('');
           setCustomerName('');
           setCustomerEmail('');
           setCustomerPhone('');
-          
+
           // Auto-hide notification after 5 seconds
           setTimeout(() => {
             setShowBookingNotification(false);
             setBookingDetails(null);
           }, 5000);
         } else {
-          alert('Booking saved locally, but failed to send notification. Please contact us directly.');
+          const errorText = await response.text();
+          throw new Error(errorText || 'Webhook responded with an error');
         }
       } catch (error) {
         console.error('Error processing booking:', error);
@@ -331,7 +486,7 @@ const BookingSection = () => {
 
         {/* Booking Card */}
         <motion.div
-          className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden"
+          className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-visible"
           initial={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
@@ -377,7 +532,7 @@ const BookingSection = () => {
             </div>
 
             {/* Right Side - Calendar */}
-            <div className="p-8 lg:p-12">
+            <div className="p-8 lg:p-12 relative">
               <h4 className="text-2xl font-bold text-gray-900 mb-8">
                 {showConfirmation ? 'Meeting Booked' : 'Select a Date & Time'}
               </h4>
@@ -515,21 +670,48 @@ const BookingSection = () => {
                         Available Times
                       </h6>
                       <div className="grid grid-cols-2 gap-3 mb-6">
-                        {availableSlots.map((time) => (
-                          <button
-                            key={time}
-                            onClick={() => setSelectedTime(time)}
-                            className={`
-                              p-3 rounded-lg border-2 transition-all duration-200 text-sm font-medium
-                              ${selectedTime === time
-                                ? 'border-heraglyph-accent bg-heraglyph-accent/10 text-heraglyph-accent'
-                                : 'border-gray-200 text-gray-700 hover:border-gray-300'
-                              }
-                            `}
-                          >
-                            {time}
-                          </button>
-                        ))}
+                        {availableSlots.map((time) => {
+                          const times = occupiedByDate[selectedDate] || [];
+                          // Normalize time formats for comparison (e.g., "09:00 AM" vs "9:00 AM")
+                          const normalizedTime = time.replace(/^0/, ''); // Remove leading zero
+                          const normalizedOccupiedTimes = times.map(t => t.replace(/^0/, ''));
+                          const isOccupied = normalizedOccupiedTimes.includes(normalizedTime);
+                          
+                          return (
+                            <button
+                              key={time}
+                              onClick={() => !isOccupied && setSelectedTime(time)}
+                              disabled={isOccupied}
+                              className={`
+                                p-3 rounded-lg border-2 transition-all duration-200 text-sm font-medium relative overflow-hidden
+                                ${isOccupied
+                                  ? 'border-red-200 bg-red-50 text-red-400 cursor-not-allowed shadow-inner'
+                                  : selectedTime === time
+                                    ? 'border-heraglyph-accent bg-heraglyph-accent/10 text-heraglyph-accent shadow-md'
+                                    : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:shadow-sm'
+                                }
+                              `}
+                            >
+                              <span className={`relative z-10 ${isOccupied ? 'opacity-70' : ''}`}>
+                                {time}
+                              </span>
+                              {isOccupied && (
+                                <>
+                                  {/* Diagonal line overlay */}
+                                  <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-full h-0.5 bg-red-300 transform rotate-12"></div>
+                                  </div>
+                                  {/* Subtle pattern overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-br from-red-100/30 to-transparent"></div>
+                                  {/* Crossed out indicator */}
+                                  <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-red-200 flex items-center justify-center">
+                                    <div className="w-2 h-0.5 bg-red-400 transform rotate-45"></div>
+                                  </div>
+                                </>
+                              )}
+                            </button>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   )}
@@ -560,7 +742,7 @@ const BookingSection = () => {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto"
+                          className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-[9999] max-h-80 overflow-y-auto"
                         >
                           {timezones.map((timezone) => (
                             <button
