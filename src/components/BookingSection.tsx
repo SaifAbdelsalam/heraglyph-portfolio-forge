@@ -291,10 +291,13 @@ const BookingSection = () => {
     setCustomerPhone(value);
     // Allow digits, spaces, hyphens, parentheses, and plus sign
     const phoneRegex = /^[\d\s\-\(\)\+]+$/;
-    if (value && !phoneRegex.test(value)) {
+    const digitsOnlyLength = value.replace(/\D/g, '').length;
+    if (!value) {
+      setPhoneError('Phone number is required.');
+    } else if (!phoneRegex.test(value)) {
       setPhoneError('Please enter a valid phone number.');
-    } else if (value && value.replace(/\D/g, '').length < 7) {
-      setPhoneError('Phone number is too short.');
+    } else if (digitsOnlyLength < 10) {
+      setPhoneError('Phone number must be at least 10 digits.');
     } else {
       setPhoneError('');
     }
@@ -339,7 +342,7 @@ const BookingSection = () => {
   };
 
   const handleBooking = async () => {
-    if (selectedDate && selectedTime && customerName && customerEmail) {
+    if (selectedDate && selectedTime && customerName && customerEmail && customerPhone && !phoneError) {
       setIsSubmitting(true);
       
       const timezone = getCurrentTimezone();
@@ -352,7 +355,7 @@ const BookingSection = () => {
         status: 'pending',
         customerName,
         customerEmail,
-        customerPhone: customerPhone || '',
+        customerPhone: customerPhone,
         notes: `Booked via website - Timezone: ${timezone.label}`
       };
       
@@ -379,9 +382,8 @@ const BookingSection = () => {
         });
 
         if (response.ok) {
-          // Show success notification
+          // Success: store booking details and show confirmation (disable popup)git 
           setBookingDetails(booking);
-          setShowBookingNotification(true);
           setShowConfirmation(true);
 
           // Reset form
@@ -391,11 +393,7 @@ const BookingSection = () => {
           setCustomerEmail('');
           setCustomerPhone('');
 
-          // Auto-hide notification after 5 seconds
-          setTimeout(() => {
-            setShowBookingNotification(false);
-            setBookingDetails(null);
-          }, 5000);
+          // (Popup disabled) No auto-hide timeout needed
         } else {
           const errorText = await response.text();
           throw new Error(errorText || 'Webhook responded with an error');
@@ -407,7 +405,7 @@ const BookingSection = () => {
         setIsSubmitting(false);
       }
     } else {
-      alert('Please fill in all required fields (Name and Email are required).');
+      alert('Please fill in all required fields (Name, Email, and Phone are required).');
     }
   };
 
@@ -816,7 +814,7 @@ const BookingSection = () => {
                         
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Phone Number (Optional)
+                            Phone Number *
                           </label>
                       <input
                         type="tel"
@@ -825,6 +823,7 @@ const BookingSection = () => {
                         placeholder="Enter your phone number"
                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-heraglyph-accent/50 focus:ring-2 focus:ring-heraglyph-accent/20 bg-white text-gray-900 placeholder-gray-400"
                         autoComplete="tel"
+                            required
                         inputMode="tel"
                       />
                       {phoneError && (
@@ -838,16 +837,16 @@ const BookingSection = () => {
                   {/* Book Button */}
               <motion.button
                 onClick={handleBooking}
-                disabled={!selectedDate || !selectedTime || !customerName || !!nameError || !customerEmail || !!emailError || !!phoneError || isSubmitting}
+                disabled={!selectedDate || !selectedTime || !customerName || !!nameError || !customerEmail || !!emailError || !customerPhone || !!phoneError || isSubmitting}
                 className={`
                   w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2
-                  ${selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && !phoneError && !isSubmitting
+                  ${selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && customerPhone && !phoneError && !isSubmitting
                     ? 'bg-gradient-to-r from-heraglyph-accent to-heraglyph-accent-light text-black hover:shadow-lg hover:shadow-heraglyph-accent/25'
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   }
                 `}
-                whileHover={selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && !phoneError && !isSubmitting ? { scale: 1.02 } : {}}
-                whileTap={selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && !phoneError && !isSubmitting ? { scale: 0.98 } : {}}
+                whileHover={selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && customerPhone && !phoneError && !isSubmitting ? { scale: 1.02 } : {}}
+                whileTap={selectedDate && selectedTime && customerName && !nameError && customerEmail && !emailError && customerPhone && !phoneError && !isSubmitting ? { scale: 0.98 } : {}}
                   >
                     {isSubmitting ? (
                       <>

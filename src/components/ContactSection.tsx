@@ -25,7 +25,6 @@ const ContactSection = () => {
   };
 
   const validatePhoneNumber = (phone: string) => {
-    if (!phone) return true; // Phone is optional
     const phoneRegex = /^\+?[0-9]{10,}$/;
     return phoneRegex.test(phone);
   };
@@ -44,8 +43,12 @@ const ContactSection = () => {
         [name]: formattedValue
       }));
       
-      // Clear error when field is empty
+      // Validate as user types
       if (!formattedValue) {
+        setPhoneError('Phone number is required');
+      } else if (!validatePhoneNumber(formattedValue)) {
+        setPhoneError('Please enter a valid phone number (min 10 digits, + allowed at start)');
+      } else {
         setPhoneError('');
       }
     } else if (name === 'email') {
@@ -71,8 +74,8 @@ const ContactSection = () => {
       return;
     }
 
-    // Validate phone number before submission
-    if (!validatePhoneNumber(formData.phone)) {
+    // Validate phone number before submission (required)
+    if (!formData.phone || !validatePhoneNumber(formData.phone)) {
       setPhoneError('Please enter a valid phone number (min 10 digits, + allowed at start)');
       return;
     }
@@ -295,7 +298,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-heraglyph-white mb-2 font-medium">
-                    Phone Number (Optional)
+                    Phone Number
                   </label>
                   <input
                     type="tel"
@@ -303,6 +306,7 @@ const ContactSection = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    required
                     className={`w-full p-3 bg-heraglyph-dark-gray/80 border ${
                       phoneError ? 'border-red-500' : 'border-heraglyph-gray/30'
                     } rounded-md text-heraglyph-white focus:outline-none focus:border-heraglyph-accent focus:ring-1 focus:ring-heraglyph-accent/50 transition-all`}
